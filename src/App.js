@@ -1,17 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
 import SuitCards from './suits';
+import {Routes} from "react-router";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 function App() {
     // console.log(suitCards);
 
   return (
-    <div className="App">
-
-      <header className="App-header">
-        <SuitCards />
-      </header>
-    </div>
+    <Router>
+        <div className="App">
+            <header className="App-header">
+                <Routes>
+                    <Route path="/" element={<SuitCards />} />
+                </Routes>
+            </header>
+        </div>
+    </Router>
   );
 }
 

@@ -2,18 +2,21 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding:10px;
 }
 
 .suit-card {
     width: 150px;
-    height: 200px;
+    height: 220px;
     margin: 8px;
 }
 
 .suit-img {
+    display: block;
     width: 150px;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
+    /* background-size: cover; */
 }
 
 .suit-name {
