@@ -1,0 +1,30 @@
+.suit-cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.suit-card {
+    width: 150px;
+    height: 200px;
+    margin: 8px;
+}
+
+.suit-img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.suit-name {
+    position: absolute;
+    padding-left: 10px;
+    margin-top: -40px;
+    font-size: 12px;
+    color: white;
+    max-width: 115px;
+    background-color: rgba(0,0,0,0.6);
+    padding-bottom: 5px;
+    padding-right: 10px;
+    border-radius: 0px 5px 5px 0px;
+}
