@@ -1,7 +1,7 @@
 import './App.css';
 import SuitCards from './suits';
 import {Routes} from "react-router";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route} from "react-router-dom";
 
 function App() {
     // console.log(suitCards);
