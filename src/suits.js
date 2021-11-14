@@ -8,44 +8,79 @@ export default class SuitCards extends Component {
         super(props);
         this.state = {
             suits: [],
+            reflection: [],
             activeSuit: null
         };
     }
     componentDidMount() {
-        window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Suits?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
+            window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Reflections?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
             .then(r => r.json())
             .then(res => {
-                let suits = [];
+                let reflections = {};
 
                 for(let i = 1; i < res.values.length; i++) {
-                    suits.push({
-                        name: res.values[i][0],
-                        awakenedName: res.values[i][1],
-                        designer: res.values[i][5],
-                        rarity: res.values[i][2],
-                        attribute: res.values[i][3],
+                    const skills_a = res.values[i][9].split('\n');
+                    const skills_b = res.values[i][10].split('\n')
+                    reflections[res.values[i][1]] = {
+                        // name: res.values[i][0],
+                        // suitName: res.values[i][1],
+                        tier: res.values[i][2],
                         images: {
-                            promo: res.values[i][11],
-                            detail: res.values[i][12],
-                            original: res.values[i][13],
-                            awakened: res.values[i][14]
+                            icon: res.values[i][3],
+                            original: res.values[i][4],
+                            awakened: res.values[i][5]
                         },
-                        source: {
-                            type: res.values[i][7],
-                            eventName: res.values[i][8]
-                        },
-                        availability: {
-                            TW: true,
-                            JP: res.values[i][9] === 'TRUE',
-                            EN: res.values[i][10] === 'TRUE'
-                        },
-                        metadata: {
-                            nation: res.values[i][4],
-                            archive: res.values[i][6]
-                        }
-                    });
+                        CoR: [
+                            null,
+                            res.values[i][7].replace('A%', skills_a[0]).replace('B%', skills_b[0]),
+                            res.values[i][7].replace('A%', skills_a[1]).replace('B%', skills_b[1]),
+                            res.values[i][7].replace('A%', skills_a[2]).replace('B%', skills_b[2]),
+                            res.values[i][7].replace('A%', skills_a[3]).replace('B%', skills_b[3]),
+                            res.values[i][7].replace('A%', skills_a[4]).replace('B%', skills_b[4])
+                        ]
+                    };
                 }
-                this.setState({suits});
+                return reflections;
+            })
+            .then((reflections) => {
+                window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Suits?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
+                .then(r => r.json())
+                .then(res => {
+                    let suits = [];
+                    for(let i = 1; i < res.values.length; i++) {
+                        suits.push({
+                            name: res.values[i][0],
+                            awakenedName: res.values[i][1],
+                            reflection: {
+                                name: res.values[i][5],
+                                ...reflections[res.values[i][0]]
+                            },
+                            designer: res.values[i][5],
+                            rarity: res.values[i][2],
+                            attribute: res.values[i][3],
+                            images: {
+                                promo: res.values[i][11],
+                                detail: res.values[i][12],
+                                original: res.values[i][13],
+                                awakened: res.values[i][14]
+                            },
+                            source: {
+                                type: res.values[i][7],
+                                eventName: res.values[i][8]
+                            },
+                            availability: {
+                                TW: true,
+                                JP: res.values[i][9] === 'TRUE',
+                                EN: res.values[i][10] === 'TRUE'
+                            },
+                            metadata: {
+                                nation: res.values[i][4],
+                                archive: res.values[i][6]
+                            }
+                        });
+                    }
+                    this.setState({suits});
+                })
             })
     }
 
