@@ -6,6 +6,7 @@ export default class SuitDetail extends Component {
         super(props);
         this.state = {
             imgType: "promo",
+            zoom: "zoomed-out"
         };
     }
 
@@ -32,17 +33,25 @@ export default class SuitDetail extends Component {
             });
     }
 
+    toggleZoom = () => {
+        if(this.state.zoom === "zoomed-out") {
+            this.setState({zoom: "zoomed-in"});
+        } else {
+            this.setState({zoom: "zoomed-out"});
+        }
+    }
+
     render() {
         if(this.props.suit) {
             return (
-              <div className='suit-detail-container'>
+              <div className={'suit-detail-container ' + this.state.zoom}>
               <div className='suit-detail-type-button-container'>
                   <div className='suit-title'>{this.props.suit.name}</div>
                   {this.renderSuitImageButtons()}
                   <button className='suit-detail-type-button' onClick={this.props.closePane}>❌</button>
               </div>
                 <div className='suit-detail-img-container'>
-                    <img className='suit-detail-img' src={this.props.suit.images[this.state.imgType]} alt={this.state.imgType} />
+                    <img className={'suit-detail-img ' + this.state.zoom} src={this.props.suit.images[this.state.imgType]} alt={this.state.imgType} onClick={this.toggleZoom}/>
                 </div>
 
               </div>
