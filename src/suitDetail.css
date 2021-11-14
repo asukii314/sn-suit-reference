@@ -54,7 +54,7 @@
 
 .suit-title {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     margin-bottom: 15px;
 }
@@ -98,4 +98,15 @@
 .selected {
     background-color: #d1668f;
     color: white;
+}
+
+.suit-detail-header-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.suit-detail-icon-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
 }

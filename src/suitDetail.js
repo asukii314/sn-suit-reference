@@ -33,6 +33,15 @@ export default class SuitDetail extends Component {
             });
     }
 
+    renderSuitIcons = () => {
+        return (
+            <div className='suit-detail-icon-container'>
+                <img src={`rarity/${this.props.suit.rarity}.png`} className='suit-icon' alt='rarity' />
+                {this.props.suit.attribute && <img src={`attribute/${this.props.suit.attribute}.png`} className='suit-icon' alt='rarity' />}
+            </div>
+        );
+    }
+
     toggleZoom = () => {
         if(this.state.zoom === "zoomed-out") {
             this.setState({zoom: "zoomed-in"});
@@ -44,17 +53,20 @@ export default class SuitDetail extends Component {
     render() {
         if(this.props.suit) {
             return (
-              <div className={'suit-detail-container ' + this.state.zoom}>
-              <div className='suit-detail-type-button-container'>
-                  <div className='suit-title'>{this.props.suit.name}</div>
-                  {this.renderSuitImageButtons()}
-                  <button className='suit-detail-type-button' onClick={this.props.closePane}>❌</button>
-              </div>
-                <div className='suit-detail-img-container'>
-                    <img className={'suit-detail-img ' + this.state.zoom} src={this.props.suit.images[this.state.imgType]} alt={this.state.imgType} onClick={this.toggleZoom}/>
-                </div>
+                <div className={'suit-detail-container ' + this.state.zoom}>
 
-              </div>
+                    <div className='suit-detail-type-button-container'>
+                        <div className='suit-detail-header-container'>
+                            {this.renderSuitIcons()}
+                            <div className='suit-title'>{this.props.suit.name}</div>
+                        </div>
+                        {this.renderSuitImageButtons()}
+                        <button className='suit-detail-type-button' onClick={this.props.closePane}>❌</button>
+                    </div>
+                    <div className='suit-detail-img-container'>
+                        <img className={'suit-detail-img ' + this.state.zoom} src={this.props.suit.images[this.state.imgType]} alt={this.state.imgType} onClick={this.toggleZoom}/>
+                    </div>
+                </div>
             );
         }
         return null;
