@@ -37,8 +37,8 @@ export default class SuitDetail extends Component {
     renderSuitIcons = () => {
         return (
             <div className='suit-detail-icon-container'>
-                <img src={`rarity/${this.props.suit.rarity}.png`} className='suit-icon' alt='rarity' />
-                {this.props.suit.attribute && <img src={`attribute/${this.props.suit.attribute}.png`} className='suit-icon' alt='rarity' />}
+                <img src={`rarity/${this.props.suit.rarity.toLowerCase()}.png`} className='suit-icon' alt='rarity' />
+                {this.props.suit.attribute && <img src={`attribute/${this.props.suit.attribute.toLowerCase()}.png`} className='suit-icon' alt='rarity' />}
             </div>
         );
     }
