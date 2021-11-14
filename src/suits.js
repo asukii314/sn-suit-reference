@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import SuitDetail from './suitDetail';
 import 'whatwg-fetch';
 import './suits.css';
 
@@ -6,7 +7,8 @@ export default class SuitCards extends Component {
     constructor(props){
         super(props);
         this.state = {
-            suits: []
+            suits: [],
+            activeSuit: null
         };
     }
     componentDidMount() {
@@ -47,21 +49,34 @@ export default class SuitCards extends Component {
             })
     }
 
+    renderSuitCard = (suit, idx) => {
+        return (
+            <div className='suit-card' key={idx} onClick={this.setActiveSuit.bind(this,suit)}>
+                <img src={suit.images.promo} className='suit-img' alt={suit.name}/>
+                <p className='suit-name'> {suit.name} </p>
+            </div>
+        )
+    }
+
+    setActiveSuit = (activeSuit) => {
+        if(this.state.activeSuit === activeSuit) {
+            this.setState({activeSuit: null});
+        } else {
+            this.setState({activeSuit});
+        }
+    }
+
+    closePane = () => {
+        this.setState({activeSuit: null});
+    }
+
     render() {
         if(!this.state.suits) return null;
         return (
           <div className='suit-cards-container'>
-            {this.state.suits.map(renderSuitCard)}
+            <SuitDetail suit={this.state.activeSuit} closePane={this.closePane}/>
+            {this.state.suits.map(this.renderSuitCard)}
           </div>
         );
     }
-}
-
-function renderSuitCard(suit, idx) {
-    return (
-        <div className='suit-card' key={idx}>
-            <img src={suit.images.promo} className='suit-img' alt={suit.name}/>
-            <p className='suit-name'> {suit.name} </p>
-        </div>
-    )
 }

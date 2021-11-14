@@ -2,8 +2,10 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding:10px;
+    justify-content: space-between;
+    padding: 10px;
 }
+
 
 .suit-card {
     width: 150px;
@@ -16,7 +18,6 @@
     width: 150px;
     height: 220px;
     object-fit: cover;
-    /* background-size: cover; */
 }
 
 .suit-name {
