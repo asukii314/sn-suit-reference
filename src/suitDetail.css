@@ -14,11 +14,6 @@
     flex-direction: row;
 }
 
-.suit-detail-container.zoomed-in {
-    height: 90vh;
-    padding-bottom: 10px;
-}
-
 @media only screen and (max-width: 400px) {
     .suit-detail-container {
         flex-direction: column;
@@ -31,19 +26,8 @@
     max-width: 100%;
     -webkit-user-select: none;
     margin: auto;
-}
-
-.suit-detail-img.zoomed-out {
-    cursor: zoom-in;
+    margin-right: 10px;
     max-height: 300px;
-}
-
-.suit-detail-img.zoomed-in {
-    cursor: zoom-out;
-    /* max-width: 95vw; */
-    max-height: 90vh;
-    /* right: 0;
-    position: absolute; */
 }
 
 @media only screen and (max-width: 400px) {
@@ -109,4 +93,5 @@
     display: flex;
     flex-direction: column;
     margin-right: 5px;
+    margin-bottom: 6px;
 }

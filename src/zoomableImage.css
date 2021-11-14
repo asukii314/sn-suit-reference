@@ -1,0 +1,13 @@
+.suit-detail-img.zoomed-out {
+    cursor: zoom-in;
+    max-height: 300px;
+}
+
+.suit-detail-img.zoomed-in {
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: zoom-out;
+    max-height: 100vh;
+    max-width: 100vw;
+}
