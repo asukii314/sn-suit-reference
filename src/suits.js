@@ -88,8 +88,8 @@ export default class SuitCards extends Component {
         return (
             <div className={`suit-card${suit === this.state.activeSuit ? ' active' : ''}`} key={idx} onClick={this.setActiveSuit.bind(this,suit)}>
                 <div className='suit-icon-container'>
-                    <img src={`rarity/${suit.rarity}.png`} className='suit-icon' alt='rarity' />
-                    {suit.attribute && <img src={`attribute/${suit.attribute}.png`} className='suit-icon' alt='rarity' />}
+                    <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon' alt='rarity' />
+                    {suit.attribute && <img src={`attribute/${suit.attribute.toLowerCase()}.png`} className='suit-icon' alt='rarity' />}
                 </div>
                 <img src={suit.images.promo} className='suit-img' alt={suit.name}/>
                 <p className='suit-name'> {suit.name} </p>
