@@ -22,17 +22,28 @@ export default class ReflectionInfo extends Component {
     }
 
     render() {
-        if(!this.props.iconUrl && !this.props.CoR) return null;
+        if(!this.props.iconUrl && !this.props.CoR) return (
+            <div className='reflection-info-card' >
+                <div className='reflection-card-column'>
+                    <div className="CoR-title">Call of Reflection</div>
+                    <div class="CoR-description" style={{marginTop: '5px', color: 'darkgray'}}><i>(no skill info found)</i></div>
+                </div>
+            </div>
+        );
         return (
             <div className='reflection-info-card'>
-                <img className='reflection-icon' src={this.props.iconUrl} alt='reflection-icon' />
-                <div className="CoR-title">Call of Reflection</div>
-                <div className="level-input">
-                    <button className='CoR-level-change' onClick={this.decrement}>-</button>
-                    <div className='CoR-level'>{`Level ${this.state.level}`}</div>
-                    <button className='CoR-level-change' onClick={this.increment}>+</button>
+                <div className='reflection-card-column'>
+                    <div className="CoR-title">Call of Reflection</div>
+                    <img className='reflection-icon' src={this.props.iconUrl} alt='reflection-icon' />
                 </div>
-                <div class="CoR-description" dangerouslySetInnerHTML={{__html: this.props.CoR[this.state.level]}}></div>
+                <div className='reflection-card-column'>
+                    <div className="level-input">
+                        <button className='CoR-level-change' onClick={this.decrement}>-</button>
+                        <div className='CoR-level'>{`Lvl ${this.state.level}`}</div>
+                        <button className='CoR-level-change' onClick={this.increment}>+</button>
+                    </div>
+                    <div class="CoR-description" dangerouslySetInnerHTML={{__html: this.props.CoR[this.state.level]}}></div>
+                </div>
             </div>
         );
     }

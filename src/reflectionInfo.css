@@ -1,17 +1,23 @@
 
 .reflection-info-card {
     background-color: #33262b;
-    padding: 10px;
     border-radius: 10px;
-    max-width: 108px;
+    width: 228px;
     margin-left: 20px;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    height: 50%;
+}
+
+.reflection-card-column {
+    display: flex;
     flex-direction: column;
+    margin: 10px;
 }
 
 .reflection-icon {
-    width: 80px;
+    width: 60px;
+    margin-top: 10px;
 }
 
 .CoR-title {
@@ -21,12 +27,12 @@
 }
 
 .CoR-description {
-    font-size: 12px;
+    font-size: 11px;
     color: white;
 }
 
 .level-input {
-    margin: 8px 2px;
+    margin-bottom: 10px;
     padding: 3px 5px;
     background-color: rgba(255,255,255,0.25);
     border-radius: 5px;
@@ -41,7 +47,7 @@
     padding: 5px;
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.7px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
