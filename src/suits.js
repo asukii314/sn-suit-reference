@@ -32,11 +32,11 @@ export default class SuitCards extends Component {
                         },
                         CoR: [
                             null,
-                            res.values[i][7].replace('A%', skills_a[0]).replace('B%', skills_b[0]),
-                            res.values[i][7].replace('A%', skills_a[1]).replace('B%', skills_b[1]),
-                            res.values[i][7].replace('A%', skills_a[2]).replace('B%', skills_b[2]),
-                            res.values[i][7].replace('A%', skills_a[3]).replace('B%', skills_b[3]),
-                            res.values[i][7].replace('A%', skills_a[4]).replace('B%', skills_b[4])
+                            res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[0]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[0]}</b>`).replace('\n\n', ' · '),
+                            res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[1]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[1]}</b>`).replace('\n\n', ' · '),
+                            res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[2]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[2]}</b>`).replace('\n\n', ' · '),
+                            res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[3]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[3]}</b>`).replace('\n\n', ' · '),
+                            res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[4]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[4]}</b>`).replace('\n\n', ' · ')
                         ]
                     };
                 }

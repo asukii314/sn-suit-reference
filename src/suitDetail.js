@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import ZoomableImage from './zoomableImage';
+import ReflectionInfo from './reflectionInfo';
 import './suitDetail.css';
 
 export default class SuitDetail extends Component {
@@ -68,6 +69,10 @@ export default class SuitDetail extends Component {
                             alt='reflection'
                         />}
                     </div>
+                    <ReflectionInfo
+                        iconUrl={this.props.suit.reflection.images?.icon}
+                        CoR={this.props.suit.reflection?.CoR}
+                    />
                 </div>
             );
         }
