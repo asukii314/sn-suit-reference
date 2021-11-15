@@ -10,7 +10,7 @@
 .filter-box-title {
     font-weight: 600;
     font-size: 14px;
-    background-color: darkslategray;
+    background-color: rgba(0,0,0,0.6);
     color: white;
     letter-spacing: 0.7px;
     padding: 8px;

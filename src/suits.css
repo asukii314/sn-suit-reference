@@ -4,9 +4,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 10px;
-    margin-left: 220px;
+    margin-left: 50px;
 }
 
+.suit-cards-container.narrow {
+    margin-left: 210px;
+}
 
 .suit-card {
     width: 150px;
@@ -25,6 +28,17 @@
     width: 150px;
     height: 220px;
     object-fit: cover;
+}
+
+@media only screen and (max-width: 400px) {
+    .suit-card {
+        width: 125px;
+        height: 180px;
+    }
+    .suit-img {
+        width: 125px;
+        height: 180px; 
+    }
 }
 
 .suit-name {

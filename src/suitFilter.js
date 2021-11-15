@@ -6,38 +6,44 @@ export default class SuitFilter extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Rarity: {
-                R: false,
-                SR: false,
-                SSR: false,
-                UR: false
-            },
-            Attribute: {
-                Cool: false,
-                Elegant: false,
-                Fresh: false,
-                Sexy: false,
-                Sweet: false
+            filters: {
+                Rarity: {
+                    R: false,
+                    SR: false,
+                    SSR: false,
+                    UR: false
+                },
+                Attribute: {
+                    Cool: false,
+                    Elegant: false,
+                    Fresh: false,
+                    Sexy: false,
+                    Sweet: false
+                }
             }
         };
     }
 
     updateFilter = (category, option, value) => {
         return this.setState({
-            [category]: {
-                ...this.state[category],
-                [option]: value
+            filters: {
+                ...this.state.filters,
+                [category]: {
+                    ...this.state.filters[category],
+                    [option]: value
+                }
             }
+
         }, this.filterSuits)
     }
 
     filterSuits = () => {
-        const filteredCategories = Object.keys(this.state).filter((category) =>
-            Object.values(this.state[category]).some((val) => !!val)
+        const filteredCategories = Object.keys(this.state.filters).filter((category) =>
+            Object.values(this.state.filters[category]).some((val) => !!val)
         )
         const res = filteredCategories.reduce((suits, category) => {
-            const appliedFilters = Object.keys(this.state[category]).filter((val) =>
-                this.state[category][val]
+            const appliedFilters = Object.keys(this.state.filters[category]).filter((val) =>
+                this.state.filters[category][val]
             ).map((v) => v.toLowerCase());
             return suits.filter((suit) => {
                 const suitVal = suit[category.toLowerCase()].toLowerCase();
@@ -48,12 +54,12 @@ export default class SuitFilter extends Component {
     }
 
     renderFilters = () => {
-        return Object.keys(this.state).map((category) => {
+        return Object.keys(this.state.filters).map((category) => {
             return (
                 <FilterBox
                     category={category}
                     key={category}
-                    options={Object.keys(this.state[category])}
+                    options={Object.keys(this.state.filters[category])}
                     onChange={this.updateFilter.bind(this,category)}
                 />
             )
@@ -63,8 +69,12 @@ export default class SuitFilter extends Component {
     render() {
         return (
             <div className='suit-filter-container'>
-                <div className='filter-title'>Filters</div>
-                {this.renderFilters()}
+                <div className='toggle-filter-btn' onClick={this.props.toggleFilterPane}>
+                    <img className='toggle-filter-icon' src='filter-icon.png' />
+                    <div className='toggle-filter-label'>{this.props.expanded ? 'Hide Filters' : 'Show Filters'}</div>
+                </div>
+                {this.props.expanded && <div className='filter-title'>Filters</div>}
+                {this.props.expanded && this.renderFilters()}
             </div>
         );
     }

@@ -11,7 +11,8 @@ export default class SuitPanel extends Component {
         this.state = {
             suits: [],
             filteredSuits: [],
-            activeSuit: null
+            activeSuit: null,
+            filterPaneOpen: false
         };
     }
     componentDidMount() {
@@ -105,6 +106,10 @@ export default class SuitPanel extends Component {
         this.setState({filteredSuits});
     }
 
+    toggleFilterPane = () => {
+        this.setState({filterPaneOpen: !this.state.filterPaneOpen});
+    }
+
     render() {
         if(!this.state.suits) return null;
         return (
@@ -117,11 +122,14 @@ export default class SuitPanel extends Component {
                     <SuitFilter
                         suits={this.state.suits}
                         updateFilteredSuits={this.updateFilteredSuits}
+                        expanded={this.state.filterPaneOpen}
+                        toggleFilterPane={this.toggleFilterPane}
                     />
                     <SuitCards
                         suits={this.state.filteredSuits}
                         activeSuit={this.state.activeSuit}
                         setActiveSuit={this.setActiveSuit}
+                        layout={this.state.filterPaneOpen ? 'narrow' : 'wide'}
                     />
                 </div>
           </div>
