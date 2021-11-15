@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import SuitDetail from './suitDetail';
 import SuitCards from './suits';
+import SuitFilter from './suitFilter';
 import 'whatwg-fetch';
 import './suits.css';
 
@@ -104,11 +105,14 @@ export default class SuitPanel extends Component {
                     suit={this.state.activeSuit}
                     closePane={this.closePane}
                 />
-                <SuitCards
-                    suits={this.state.suits}
-                    activeSuit={this.state.activeSuit}
-                    setActiveSuit={this.setActiveSuit}
-                />
+                <div>
+                    <SuitFilter />
+                    <SuitCards
+                        suits={this.state.suits}
+                        activeSuit={this.state.activeSuit}
+                        setActiveSuit={this.setActiveSuit}
+                    />
+                </div>
           </div>
         );
     }

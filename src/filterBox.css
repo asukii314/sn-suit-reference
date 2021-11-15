@@ -1,0 +1,27 @@
+.filter-box-container {
+    background-color: lightgray;
+    width: 100%;
+    margin: 10px 0px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #383838;
+}
+
+.filter-box-title {
+    font-weight: 600;
+    font-size: 14px;
+    background-color: darkslategray;
+    color: white;
+    letter-spacing: 0.7px;
+    padding: 8px;
+}
+
+.filter-option-container {
+    padding: 5px;
+}
+
+.filter-option {
+    display: flex;
+    flex-direction: row;
+    padding-left: 5px;
+}

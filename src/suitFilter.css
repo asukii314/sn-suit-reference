@@ -1,0 +1,20 @@
+
+.suit-filter-container {
+    width: 170px;
+    height: 100%;
+    position: fixed;
+    margin: 18px;
+    background-color: gray;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-title {
+    font-weight: bold;
+}
+
+.filter-label {
+    font-weight: normal;
+    font-size: 13px;
+}
