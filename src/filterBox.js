@@ -34,7 +34,11 @@ export default class FilterBox extends Component {
     render() {
         return (
             <div className='filter-box-container' >
-            <div className='filter-box-title' onClick={this.toggleExpand}>{this.props.category}</div>
+            <div className='filter-box-title' onClick={this.toggleExpand}>
+                <div>{this.props.category}</div>
+                <div style={{fontWeight: 'normal', fontSize: '10px'}}>{this.state.expanded ? '∧' : '∨'}</div>
+            </div>
+
                 {this.state.expanded && (<div className='filter-option-container'>{this.showOptions()}</div>)}
             </div>
         );
