@@ -10,6 +10,7 @@ export default class SuitPanel extends Component {
         super(props);
         this.state = {
             suits: [],
+            filteredSuits: [],
             activeSuit: null
         };
     }
@@ -80,7 +81,10 @@ export default class SuitPanel extends Component {
                             }
                         });
                     }
-                    this.setState({suits});
+                    this.setState({
+                        suits: suits,
+                        filteredSuits: suits
+                    });
                 })
             })
     }
@@ -97,6 +101,10 @@ export default class SuitPanel extends Component {
         this.setState({activeSuit: null});
     }
 
+    updateFilteredSuits = (filteredSuits) => {
+        this.setState({filteredSuits});
+    }
+
     render() {
         if(!this.state.suits) return null;
         return (
@@ -106,9 +114,12 @@ export default class SuitPanel extends Component {
                     closePane={this.closePane}
                 />
                 <div>
-                    <SuitFilter />
-                    <SuitCards
+                    <SuitFilter
                         suits={this.state.suits}
+                        updateFilteredSuits={this.updateFilteredSuits}
+                    />
+                    <SuitCards
+                        suits={this.state.filteredSuits}
                         activeSuit={this.state.activeSuit}
                         setActiveSuit={this.setActiveSuit}
                     />

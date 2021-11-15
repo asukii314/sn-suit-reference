@@ -23,12 +23,28 @@ export default class SuitFilter extends Component {
     }
 
     updateFilter = (category, option, value) => {
-        this.setState({
+        return this.setState({
             [category]: {
                 ...this.state[category],
                 [option]: value
             }
-        });
+        }, this.filterSuits)
+    }
+
+    filterSuits = () => {
+        const filteredCategories = Object.keys(this.state).filter((category) =>
+            Object.values(this.state[category]).some((val) => !!val)
+        )
+        const res = filteredCategories.reduce((suits, category) => {
+            const appliedFilters = Object.keys(this.state[category]).filter((val) =>
+                this.state[category][val]
+            ).map((v) => v.toLowerCase());
+            return suits.filter((suit) => {
+                const suitVal = suit[category.toLowerCase()].toLowerCase();
+                return appliedFilters.includes(suitVal);
+            })
+        }, this.props.suits);
+        this.props.updateFilteredSuits(res);
     }
 
     renderFilters = () => {
@@ -40,7 +56,6 @@ export default class SuitFilter extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div className='suit-filter-container'>
                 <div className='filter-title'>Filters</div>
