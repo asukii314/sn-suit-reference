@@ -50,7 +50,12 @@ export default class SuitFilter extends Component {
     renderFilters = () => {
         return Object.keys(this.state).map((category) => {
             return (
-                <FilterBox category={category} key={category} options={Object.keys(this.state[category])} onChange={this.updateFilter.bind(this,category)}/>
+                <FilterBox
+                    category={category}
+                    key={category}
+                    options={Object.keys(this.state[category])}
+                    onChange={this.updateFilter.bind(this,category)}
+                />
             )
         })
     }
