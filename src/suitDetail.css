@@ -1,11 +1,10 @@
 .suit-detail-container {
-    width: 100%;
     height: 300px;
     background-color: #eddae1;
     border-radius: 5px;
     position: sticky;
-    top: 20px;
-    margin-bottom: 20px;
+    top: 0px;
+    border: 20px solid #282c34;
     margin-top: 0px;
     padding: 20px;
     z-index: 10;

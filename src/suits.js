@@ -112,9 +112,11 @@ export default class SuitCards extends Component {
     render() {
         if(!this.state.suits) return null;
         return (
-          <div className='suit-cards-container'>
-            <SuitDetail suit={this.state.activeSuit} closePane={this.closePane}/>
-            {this.state.suits.map(this.renderSuitCard)}
+            <div>
+                <SuitDetail suit={this.state.activeSuit} closePane={this.closePane}/>
+                <div className='suit-cards-container'>
+                    {this.state.suits.map(this.renderSuitCard)}
+                </div>
           </div>
         );
     }
