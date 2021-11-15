@@ -1,5 +1,5 @@
 import './App.css';
-import SuitCards from './suits';
+import SuitPage from './suitPage';
 import {Routes} from "react-router";
 import {HashRouter as Router, Route} from "react-router-dom";
 
@@ -11,7 +11,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <Routes>
-                    <Route path="/" element={<SuitCards />} />
+                    <Route path="/" element={<SuitPage />} />
                 </Routes>
             </header>
         </div>

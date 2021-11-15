@@ -26,7 +26,7 @@ export default class ReflectionInfo extends Component {
             <div className='reflection-info-card' >
                 <div className='reflection-card-column'>
                     <div className="CoR-title">Call of Reflection</div>
-                    <div class="CoR-description" style={{marginTop: '5px', color: 'darkgray'}}><i>(no skill info found)</i></div>
+                    <div className="CoR-description" style={{marginTop: '5px', color: 'darkgray'}}><i>(no skill info found)</i></div>
                 </div>
             </div>
         );
@@ -42,7 +42,7 @@ export default class ReflectionInfo extends Component {
                         <div className='CoR-level'>{`Lvl ${this.state.level}`}</div>
                         <button className='CoR-level-change' onClick={this.increment}>+</button>
                     </div>
-                    <div class="CoR-description" dangerouslySetInnerHTML={{__html: this.props.CoR[this.state.level]}}></div>
+                    <div className="CoR-description" dangerouslySetInnerHTML={{__html: this.props.CoR[this.state.level]}}></div>
                 </div>
             </div>
         );
