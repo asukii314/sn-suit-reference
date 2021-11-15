@@ -59,7 +59,7 @@ export default class SuitFilter extends Component {
                 <FilterBox
                     category={category}
                     key={category}
-                    options={Object.keys(this.state.filters[category])}
+                    options={this.state.filters[category]}
                     onChange={this.updateFilter.bind(this,category)}
                 />
             )
