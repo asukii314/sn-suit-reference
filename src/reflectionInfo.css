@@ -3,10 +3,17 @@
     background-color: #33262b;
     border-radius: 10px;
     width: 228px;
-    margin-left: 20px;
+    margin-left: 10px;
     display: flex;
     flex-direction: row;
     height: 50%;
+}
+
+@media only screen and (max-width: 400px) {
+    .reflection-info-card {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
 }
 
 .reflection-card-column {

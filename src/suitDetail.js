@@ -48,7 +48,7 @@ export default class SuitDetail extends Component {
         if(this.props.suit) {
             const reflectionImgUrl = this.props.suit.reflection?.images?.[this.state.imgType];
             return (
-                <div className={'suit-detail-container ' + this.state.zoom}>
+                <div className='suit-detail-container'>
                     <div className='suit-detail-type-button-container'>
                         <div className='suit-detail-header-container'>
                             {this.renderSuitIcons()}

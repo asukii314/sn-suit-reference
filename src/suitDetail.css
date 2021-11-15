@@ -5,7 +5,6 @@
     border-radius: 5px;
     position: sticky;
     top: 20px;
-    margin: 8px;
     margin-bottom: 20px;
     margin-top: 0px;
     padding: 20px;
@@ -18,22 +17,28 @@
 @media only screen and (max-width: 400px) {
     .suit-detail-container {
         flex-direction: column;
-        height: 400px;
+        height: 520px;
     }
 }
 
+.suit-detail-img-container {
+    display: flex;
+}
 
 .suit-detail-img {
-    max-width: 100%;
     -webkit-user-select: none;
-    margin: auto;
     margin-right: 10px;
     max-height: 300px;
 }
 
 @media only screen and (max-width: 400px) {
+    .suit-detail-img-container {
+        margin-bottom: 10px;
+    }
+
     .suit-detail-img {
-        max-height: 280px;
+        max-height: 225px;
+
     }
 }
 
@@ -95,4 +100,10 @@
     flex-direction: column;
     margin-right: 5px;
     margin-bottom: 6px;
+}
+
+@media only screen and (max-width: 400px) {
+    .suit-detail-icon-container {
+        flex-direction: row;
+    }
 }
