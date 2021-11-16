@@ -68,7 +68,8 @@ export default class SuitPanel extends Component {
                                 awakened: res.values[i][14]
                             },
                             source: {
-                                type: res.values[i][7],
+                                type: res.values[i][7].split(' - ')[0],
+                                subtype: res.values[i][7].split(' - ')[1],
                                 eventName: res.values[i][8]
                             },
                             availability: {
