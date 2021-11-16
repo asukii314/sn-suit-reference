@@ -23,7 +23,11 @@ export default class FilterBox extends Component {
             return (
                 <div className='filter-option' key={`${option}-container`}>
                     <input type='checkbox' key={`${option}-checkbox`} checked={this.props.options[option]} onChange={this.toggleCheckbox.bind(this,option)}/>
-                    <img className='filter-icon' key={`${option}-icon`} src={`${this.props.category.toLowerCase()}/${option.toLowerCase()}.png`} />
+                    {this.props.hasIcons && <img
+                        className='filter-icon'
+                        key={`${option}-icon`}
+                        src={`${this.props.category.toLowerCase()}/${option.toLowerCase()}.png`}
+                    />}
                     <div className='filter-label' key={`${option}-label`}>{option}</div>
                 </div>
             );

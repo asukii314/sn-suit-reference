@@ -19,9 +19,37 @@ export default class SuitFilter extends Component {
                     Fresh: false,
                     Sexy: false,
                     Sweet: false
+                },
+                'Source Type': {
+                    Pavillion: false,
+                    Crafting: false,
+                    Free: false,
+                    Paid: false
                 }
             }
         };
+        this.metadata = {
+            Rarity: {
+                paths: ['rarity'],
+                hasIcons: true,
+            },
+            Attribute: {
+                paths: ['attribute'],
+                hasIcons: true,
+            },
+            'Source Type': {
+                paths: ['source', 'type'],
+                hasIcons: false
+            }
+        }
+    }
+
+    getNestedValue = (obj, path) => {
+        let res = obj;
+        for(const step of path){
+            res = res?.[step];
+        }
+        return res;
     }
 
     updateFilter = (category, option, value) => {
@@ -46,7 +74,7 @@ export default class SuitFilter extends Component {
                 this.state.filters[category][val]
             ).map((v) => v.toLowerCase());
             return suits.filter((suit) => {
-                const suitVal = suit[category.toLowerCase()].toLowerCase();
+                const suitVal = this.getNestedValue(suit, this.metadata[category].paths).toLowerCase();
                 return appliedFilters.includes(suitVal);
             })
         }, this.props.suits);
@@ -61,6 +89,7 @@ export default class SuitFilter extends Component {
                     key={category}
                     options={this.state.filters[category]}
                     onChange={this.updateFilter.bind(this,category)}
+                    hasIcons={this.metadata[category].hasIcons}
                 />
             )
         })
