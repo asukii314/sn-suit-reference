@@ -1,11 +1,15 @@
 import { Component } from 'react';
 import './suitFilter.css';
 import FilterBox from './filterBox';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+
 
 export default class SuitFilter extends Component {
     constructor(props){
         super(props);
         this.state = {
+            searchByNameResults: null,
+            searchByDesignerResults: null,
             filters: {
                 Rarity: {
                     R: false,
@@ -113,12 +117,21 @@ export default class SuitFilter extends Component {
         }
     }
 
-    filterSuits = () => {
+    filterSuits = ({triggerUpdate = true} = {}) => {
         const filteredCategories = Object.keys(this.state.filters).filter((category) =>
             Object.values(this.state.filters[category]).some((val) => !!val)
         )
 
-        // parent categories
+        // check both search bars
+        const searchedSuits = this.props.suits.filter((suit) => {
+            if((this.state.searchByNameResults && !this.state.searchByNameResults.map(suit => suit.name).includes(suit.name)) ||
+               (this.state.searchByDesignerResults && !this.state.searchByDesignerResults.map(suit => suit.name).includes(suit.name))) {
+                   return false;
+            }
+            return true;
+        })
+
+        // check parent categories
         const res = filteredCategories.reduce((suits, category) => {
             const appliedFilters = Object.keys(this.state.filters[category]).filter((val) =>
                 this.state.filters[category][val]
@@ -156,8 +169,11 @@ export default class SuitFilter extends Component {
 
                 return true;
             })
-        }, this.props.suits);
-        this.props.updateFilteredSuits(res);
+        }, searchedSuits);
+        if(triggerUpdate) {
+            this.props.updateFilteredSuits(res);
+        }
+        return res;
     }
 
     renderFilters = () => {
@@ -175,14 +191,107 @@ export default class SuitFilter extends Component {
         })
     }
 
+    handleSearch = (searchTerm, results) => {
+        this.setState(
+            {searchByNameResults: results},
+            this.props.updateFilteredSuits(results)
+        );
+    }
+
+    handleClear = () => {
+        this.setState(
+            {searchByNameResults: null},
+            this.filterSuits
+        );
+    }
+
+    handleSelect = (suit) => {
+        this.handleSearch([suit]);
+        this.props.setActiveSuit(suit);
+    }
+
+    handleDesignerSearch = (searchTerm, results) => {
+        const designers = results.map(obj => obj.name);
+        const filteredSuits =
+            this.filterSuits({triggerUpdate: false})
+                .filter(suit => designers.includes(suit.designer));
+
+        this.setState(
+            {searchByDesignerResults: filteredSuits},
+            () => this.props.updateFilteredSuits(filteredSuits)
+        );
+    }
+
+    handleDesignerSelect = (designerObj) => {
+        this.handleDesignerSearch(null, [designerObj])
+    }
+
+
+    handleDesignerClear = () => {
+        this.setState(
+            {searchByDesignerResults: null},
+            this.filterSuits
+        );
+    }
+
+    renderSearchBars = () => {
+        const designers = this.props.suits
+            .map((suit) => suit.designer)
+            .filter((value, index, self) => self.indexOf(value) === index)
+            .filter((name) => name.length > 0)
+            .sort((a, b) => a.localeCompare(b))
+            .map((name) => { return {name} })
+
+        return (
+            <div>
+                {/*<div className='search-bar-wrapper first'>
+                    <ReactSearchAutocomplete
+                        items={this.props.suits}
+                        placeholder='Search by suit name'
+                        onSearch={this.handleSearch}
+                        onSelect={this.handleSelect}
+                        onClear={this.handleClear}
+                        styling={{
+                            fontSize: '11px',
+                            height: '30px',
+                            searchIconMargin: '0px 0px 0px 8px',
+                        }}
+                        useCaching={false}
+                      />
+                      </div>*/}
+                      <div className='search-bar-wrapper'>
+                      <ReactSearchAutocomplete
+                          items={designers}
+                          placeholder='Search by designer'
+                          onSearch={this.handleDesignerSearch}
+                          onSelect={this.handleDesignerSelect}
+                          onClear={this.handleDesignerClear}
+                          styling={{
+                              fontSize: '11px',
+                              height: '30px',
+                              searchIconMargin: '0px 0px 0px 8px',
+                          }}
+                          useCaching={false}
+                        />
+                </div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <div className='suit-filter-container'>
                 <div className='toggle-filter-btn' onClick={this.props.toggleFilterPane}>
-                    <img className='toggle-filter-icon' alt='toggle-filters' src='filter-icon.png' />
-                    <div className='toggle-filter-label'>{this.props.expanded ? 'Hide Filters' : 'Show Filters'}</div>
+                    <img
+                        className='toggle-filter-icon'
+                        alt='toggle-filter-view'
+                        title={this.props.expanded ? 'Close filter pane' :'Open filter pane'}
+                        src={this.props.expanded ? 'collapse-icon.png' :'filter-icon.png'}
+                    />
+                    {!this.props.expanded && <div className='toggle-filter-label'>Show Filters</div>}
                 </div>
                 {this.props.expanded && <div className='filter-title'>Filters</div>}
+                {this.props.expanded && this.renderSearchBars()}
                 {this.props.expanded && this.renderFilters()}
             </div>
         );

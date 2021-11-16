@@ -125,6 +125,7 @@ export default class SuitPanel extends Component {
                         updateFilteredSuits={this.updateFilteredSuits}
                         expanded={this.state.filterPaneOpen}
                         toggleFilterPane={this.toggleFilterPane}
+                        setActiveSuit={this.setActiveSuit}
                     />
                     <SuitCards
                         suits={this.state.filteredSuits}
