@@ -49,6 +49,7 @@ export default class FilterBox extends Component {
                         {this.props.hasIcons && <img
                             className='filter-icon'
                             key={`${option}-icon`}
+                            alt={`${option}-icon`}
                             src={`${this.props.category.toLowerCase()}/${option.toLowerCase()}.png`}
                         />}
                         <div className='filter-label' key={`${option}-label`}>{option}</div>

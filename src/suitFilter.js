@@ -179,7 +179,7 @@ export default class SuitFilter extends Component {
         return (
             <div className='suit-filter-container'>
                 <div className='toggle-filter-btn' onClick={this.props.toggleFilterPane}>
-                    <img className='toggle-filter-icon' src='filter-icon.png' />
+                    <img className='toggle-filter-icon' alt='toggle-filters' src='filter-icon.png' />
                     <div className='toggle-filter-label'>{this.props.expanded ? 'Hide Filters' : 'Show Filters'}</div>
                 </div>
                 {this.props.expanded && <div className='filter-title'>Filters</div>}
