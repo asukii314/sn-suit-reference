@@ -29,6 +29,12 @@
     padding: 5px;
 }
 
+.child-option-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+}
+
 .filter-option {
     display: flex;
     flex-direction: row;

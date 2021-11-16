@@ -13,26 +13,59 @@ export default class FilterBox extends Component {
         this.setState({expanded: !this.state.expanded})
     }
 
-    toggleCheckbox = (option, e) => {
-        this.props.onChange(option, e.target.checked)
+    toggleCheckbox = (option, parent, e) => {
+        this.props.onChange(this.props.category, (this.props.category === parent ? null : parent), option, e.target.checked)
     }
 
-    showOptions = () => {
-        return (
-            Object.keys(this.props.options).map((option) => {
+    showChildren = (option) => {
+        if (!this.props.subcategories?.[option] || !this.props.checked[option]){
+            return null;
+        } else {
             return (
-                <div className='filter-option' key={`${option}-container`}>
-                    <input type='checkbox' key={`${option}-checkbox`} checked={this.props.options[option]} onChange={this.toggleCheckbox.bind(this,option)}/>
-                    {this.props.hasIcons && <img
-                        className='filter-icon'
-                        key={`${option}-icon`}
-                        src={`${this.props.category.toLowerCase()}/${option.toLowerCase()}.png`}
-                    />}
-                    <div className='filter-label' key={`${option}-label`}>{option}</div>
+                <div className='child-option-container'>
+                    {this.showOptions(
+                        Object.keys(this.props.subcategories[option]),
+                        this.props.subcategories[option],
+                        option
+                    )}
+                </div>
+            )
+
+        }
+    }
+
+    showOptions = (options, status, parent) => {
+        return (
+            options.map((option) => {
+            return (
+                <div key={`${option}-wrapper`}>
+                    <div className='filter-option' key={`${option}-container`}>
+                        <input
+                            type='checkbox'
+                            key={`${option}-checkbox`}
+                            checked={status[option]}
+                            onChange={this.toggleCheckbox.bind(this,option, parent)}
+                        />
+                        {this.props.hasIcons && <img
+                            className='filter-icon'
+                            key={`${option}-icon`}
+                            src={`${this.props.category.toLowerCase()}/${option.toLowerCase()}.png`}
+                        />}
+                        <div className='filter-label' key={`${option}-label`}>{option}</div>
+                    </div>
+                    {this.showChildren(option)}
                 </div>
             );
         })
     )
+    }
+
+    showAllOptions = () => {
+        return this.showOptions(
+            Object.keys(this.props.checked),
+            this.props.checked,
+            this.props.category
+        );
     }
 
 
@@ -44,7 +77,7 @@ export default class FilterBox extends Component {
                 <div style={{fontWeight: 'normal', fontSize: '10px'}}>{this.state.expanded ? '∧' : '∨'}</div>
             </div>
 
-                {this.state.expanded && (<div className='filter-option-container'>{this.showOptions()}</div>)}
+                {this.state.expanded && (<div className='filter-option-container'>{this.showAllOptions()}</div>)}
             </div>
         );
     }

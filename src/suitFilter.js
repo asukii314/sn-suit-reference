@@ -20,11 +20,43 @@ export default class SuitFilter extends Component {
                     Sexy: false,
                     Sweet: false
                 },
-                'Source Type': {
+                Source: {
                     Pavillion: false,
                     Crafting: false,
                     Free: false,
-                    Paid: false
+                    Paid: false,
+                    'Other event type': false
+                }
+            },
+            childFilters: {
+                Source: {
+                    Pavillion: {
+                        'Permanent': false,
+                        'Rotational': false,
+                        'Event': false,
+                        'Collab': false,
+                    },
+                    Crafting: {
+                        'Lifetime': false,
+                        'Chapter suit': false,
+                        'Mind maze': false,
+                        'Memory stairway': false,
+                        'Other': false,
+                    },
+                    Free: {
+                        'Arena': false,
+                        'Pinnacle battle': false,
+                        'Styling competition': false,
+                        'Intel hub': false,
+                        'Welfare': false,
+                        'Other': false,
+                    },
+                    Paid: {
+                        'Recharge': false,
+                        'VIP level': false,
+                        'Fashion plan': false,
+                        'Purple diamonds': false,
+                    }
                 }
             }
         };
@@ -37,10 +69,11 @@ export default class SuitFilter extends Component {
                 paths: ['attribute'],
                 hasIcons: true,
             },
-            'Source Type': {
+            Source: {
                 paths: ['source', 'type'],
-                hasIcons: false
-            }
+                hasIcons: false,
+                childPaths: ['source', 'subtype']
+            },
         }
     }
 
@@ -52,30 +85,76 @@ export default class SuitFilter extends Component {
         return res;
     }
 
-    updateFilter = (category, option, value) => {
-        return this.setState({
-            filters: {
-                ...this.state.filters,
-                [category]: {
-                    ...this.state.filters[category],
-                    [option]: value
+    updateFilter = (category, subcategory, option, value) => {
+        if(subcategory === null) {
+            return this.setState({
+                filters: {
+                    ...this.state.filters,
+                    [category]: {
+                        ...this.state.filters[category],
+                        [option]: value
+                    }
                 }
-            }
 
-        }, this.filterSuits)
+            }, this.filterSuits)
+        } else {
+            return this.setState({
+                childFilters: {
+                    ...this.state.childFilters,
+                    [category]: {
+                        ...this.state.childFilters[category],
+                        [subcategory]: {
+                            ...this.state.childFilters[category][subcategory],
+                            [option]: value
+                        }
+                    }
+                }
+            }, this.filterSuits)
+        }
     }
 
     filterSuits = () => {
         const filteredCategories = Object.keys(this.state.filters).filter((category) =>
             Object.values(this.state.filters[category]).some((val) => !!val)
         )
+
+        // parent categories
         const res = filteredCategories.reduce((suits, category) => {
             const appliedFilters = Object.keys(this.state.filters[category]).filter((val) =>
                 this.state.filters[category][val]
             ).map((v) => v.toLowerCase());
+
             return suits.filter((suit) => {
+                // can we rule out based on the parent categoories only?
                 const suitVal = this.getNestedValue(suit, this.metadata[category].paths).toLowerCase();
-                return appliedFilters.includes(suitVal);
+                if(!appliedFilters.includes(suitVal)) return false;
+
+                // check children
+                if(this.state.childFilters[category]) {
+                    let activeChildFilters = [], affectedParentFilters = [];
+                    for (const subcategory of Object.keys(this.state.childFilters[category])) {
+                        const selectedChildOptions = (
+                            Object.keys(this.state.childFilters[category][subcategory])
+                            .filter((option) => this.state.childFilters[category][subcategory][option])
+                            .map(x => x.toLowerCase())
+                        );
+
+                        // affectedParentFilters -> if suit it from a category that hasn't been narrowed, don't force narrowing
+                        if(selectedChildOptions.length > 0) {
+                            activeChildFilters = activeChildFilters.concat(selectedChildOptions);
+                            affectedParentFilters.push(subcategory.toLowerCase());
+                        }
+                    }
+
+                    if(activeChildFilters.length > 0 && affectedParentFilters.includes(suitVal)) {
+                        const suitSubVal = this.getNestedValue(suit, this.metadata[category].childPaths)?.toLowerCase();
+                        if(!activeChildFilters.includes(suitSubVal)) {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
             })
         }, this.props.suits);
         this.props.updateFilteredSuits(res);
@@ -87,8 +166,9 @@ export default class SuitFilter extends Component {
                 <FilterBox
                     category={category}
                     key={category}
-                    options={this.state.filters[category]}
-                    onChange={this.updateFilter.bind(this,category)}
+                    checked={this.state.filters[category]}
+                    subcategories={this.state.childFilters[category]}
+                    onChange={this.updateFilter}
                     hasIcons={this.metadata[category].hasIcons}
                 />
             )
