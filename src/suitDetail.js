@@ -50,6 +50,7 @@ export default class SuitDetail extends Component {
             return (
                 <div className='suit-detail-container'>
                     <div className='suit-detail-type-button-container'>
+                        <div className='suit-source'>{this.props.suit.source.type}</div>
                         <div className='suit-detail-header-container'>
                             {this.renderSuitIcons()}
                             <div className='suit-title'>{`${this.props.suit.designer} · ${(this.state.imgType === 'awakened' && this.props.suit.awakenedName !== '') ? this.props.suit.awakenedName : this.props.suit.name}`}</div>

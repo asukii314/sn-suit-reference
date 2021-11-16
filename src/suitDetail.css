@@ -45,7 +45,15 @@
     font-weight: 500;
     font-size: 16px;
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.suit-source {
+    margin-bottom: 8px;
+    color: lightgray;
+    font-size: 11px;
+    font-style: italic;
+    text-align: left;
 }
 
 .suit-detail-type-button-container {
@@ -55,6 +63,7 @@
     margin-right: 20px;
     margin-top: 0;
     padding: 20px;
+    flex-shrink: 0;
 }
 
 
@@ -74,6 +83,7 @@
     border-style: none;
     font-weight: bold;
     padding: 5px;
+    font-size: 12px;
 }
 
 @media only screen and (max-width: 400px) {
