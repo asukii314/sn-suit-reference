@@ -123,24 +123,23 @@ export default class SuitPanel extends Component {
         if(!this.state.suits) return null;
         return (
             <div>
-                <SuitDetail
-                    suit={this.state.activeSuit}
-                    closePane={this.closePane}
-                    nextSuit={this.nextSuit}
+                <SuitFilter
+                    suits={this.state.suits}
+                    updateFilteredSuits={this.updateFilteredSuits}
+                    expanded={this.state.filterPaneOpen}
+                    toggleFilterPane={this.toggleFilterPane}
+                    setActiveSuit={this.setActiveSuit}
                 />
-                <div>
-                    <SuitFilter
-                        suits={this.state.suits}
-                        updateFilteredSuits={this.updateFilteredSuits}
-                        expanded={this.state.filterPaneOpen}
-                        toggleFilterPane={this.toggleFilterPane}
-                        setActiveSuit={this.setActiveSuit}
+                <div className={this.state.filterPaneOpen ? 'narrow' : 'wide'}>
+                    <SuitDetail
+                        suit={this.state.activeSuit}
+                        closePane={this.closePane}
+                        nextSuit={this.nextSuit}
                     />
                     <SuitCards
                         suits={this.state.filteredSuits}
                         activeSuit={this.state.activeSuit}
                         setActiveSuit={this.setActiveSuit}
-                        layout={this.state.filterPaneOpen ? 'narrow' : 'wide'}
                         nextSuit={this.nextSuit}
                     />
                 </div>

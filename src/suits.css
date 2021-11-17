@@ -4,11 +4,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 10px;
-    margin-left: 50px;
-}
-
-.suit-cards-container.narrow {
-    margin-left: 210px;
 }
 
 .suit-card {
@@ -37,7 +32,7 @@
     }
     .suit-img {
         width: 125px;
-        height: 180px; 
+        height: 180px;
     }
 }
 
@@ -67,4 +62,12 @@
     width: 20px;
     height: 20px;
     filter: drop-shadow(0px 0px 5px black);
+}
+
+.narrow {
+    margin-left: 215px;
+}
+
+.wide {
+    margin-left: 55px;
 }

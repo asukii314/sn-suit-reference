@@ -49,7 +49,7 @@ export default class SuitCards extends Component {
     render() {
         if(!this.props.suits) return null;
         return (
-            <div className={`suit-cards-container ${this.props.layout}`}>
+            <div className={`suit-cards-container`}>
                 {this.props.suits.map(this.renderSuitCard)}
             </div>
         );
