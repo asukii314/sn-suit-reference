@@ -61,6 +61,8 @@ export default class SuitPanel extends Component {
                             designer: res.values[i][5],
                             rarity: res.values[i][2],
                             attribute: res.values[i][3],
+                            nation: res.values[i][4],
+                            archive: res.values[i][6],
                             images: {
                                 promo: res.values[i][11],
                                 detail: res.values[i][12],
@@ -77,10 +79,6 @@ export default class SuitPanel extends Component {
                                 JP: res.values[i][9] === 'TRUE',
                                 EN: res.values[i][10] === 'TRUE'
                             },
-                            metadata: {
-                                nation: res.values[i][4],
-                                archive: res.values[i][6]
-                            }
                         });
                     }
                     this.setState({

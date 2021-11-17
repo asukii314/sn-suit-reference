@@ -30,6 +30,15 @@ export default class SuitFilter extends Component {
                     Free: false,
                     Paid: false,
                     'Other event type': false
+                },
+                Nation : {
+                    Apple: false,
+                    Cloud: false,
+                    Ninir: false,
+                    North: false,
+                    Pigeon: false,
+                    Ruin: false,
+                    Wasteland: false
                 }
             },
             childFilters: {
@@ -78,6 +87,10 @@ export default class SuitFilter extends Component {
                 hasIcons: false,
                 childPaths: ['source', 'subtype']
             },
+            Nation: {
+                paths: ['nation'],
+                hasIcons: true,
+            }
         }
     }
 
