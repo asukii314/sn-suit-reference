@@ -54,3 +54,7 @@ input {
 .first {
     z-index: 10 !important;
 }
+
+.hidden {
+    display: none;
+}

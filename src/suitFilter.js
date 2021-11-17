@@ -301,11 +301,13 @@ export default class SuitFilter extends Component {
                         title={this.props.expanded ? 'Close filter pane' :'Open filter pane'}
                         src={this.props.expanded ? 'collapse-icon.png' :'filter-icon.png'}
                     />
-                    {!this.props.expanded && <div className='toggle-filter-label'>Show Filters</div>}
+                    <div className={`toggle-filter-label${this.props.expanded ? ' hidden' : ''}`}>Show Filters</div>
                 </div>
-                {this.props.expanded && <div className='filter-title'>Filters</div>}
-                {this.props.expanded && this.renderSearchBars()}
-                {this.props.expanded && this.renderFilters()}
+                <div className={this.props.expanded ? '' : 'hidden'}>
+                    <div className='filter-title'>Filters</div>
+                    {this.renderSearchBars()}
+                    {this.renderFilters()}
+                </div>
             </div>
         );
     }
