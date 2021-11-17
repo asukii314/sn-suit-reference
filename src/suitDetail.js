@@ -12,8 +12,8 @@ export default class SuitDetail extends Component {
             imgType: "promo"
         };
         SwipeReact.config({
-          left: () => this.props.nextSuit({forward: false}),
-          right: () => this.props.nextSuit({forward: true})
+          left: () => this.props.nextSuit({forward: true}),
+          right: () => this.props.nextSuit({forward: false})
         });
         ArrowKeysReact.config({
           left: () => this.props.nextSuit({forward: false}),
