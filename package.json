@@ -15,6 +15,7 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "react-search-autocomplete": "^5.4.2",
+    "swipe-react": "^1.0.4",
     "web-vitals": "^1.1.2",
     "whatwg-fetch": "^3.6.2"
   },

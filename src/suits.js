@@ -2,6 +2,7 @@ import { Component } from 'react';
 import 'whatwg-fetch';
 import './suits.css';
 import ArrowKeysReact from 'arrow-keys-react';
+import SwipeReact from 'swipe-react';
 
 export default class SuitCards extends Component {
     constructor(props){
@@ -9,17 +10,13 @@ export default class SuitCards extends Component {
         this.state = {
         };
         ArrowKeysReact.config({
-          left: () => this.nextSuit({forward: false}),
-          right: () => this.nextSuit({forward: true})
+          left: () => this.props.nextSuit({forward: false}),
+          right: () => this.props.nextSuit({forward: true})
         });
-    }
-
-    nextSuit = ({forward=true}={}) => {
-        if(!this.props.activeSuit) return;
-        const curSuitIdx = this.props.suits.map(suit => suit.name).indexOf(this.props.activeSuit.name);
-        const newSuitIdx = curSuitIdx + (forward ? 1 : -1);
-        if(newSuitIdx < 0 || newSuitIdx >= this.props.suits.length) return;
-        this.props.setActiveSuit(this.props.suits[newSuitIdx]);
+        SwipeReact.config({
+          left: () => this.props.nextSuit({forward: false}),
+          right: () => this.props.nextSuit({forward: true})
+        });
     }
 
     onClick = (suit) => {
@@ -33,6 +30,7 @@ export default class SuitCards extends Component {
                 key={idx}
                 onClick={this.onClick.bind(this,suit)}
                 {...ArrowKeysReact.events} tabIndex="1"
+                {...SwipeReact.events}
             >
                 <div className='suit-icon-container'>
                     <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon' alt='rarity' />

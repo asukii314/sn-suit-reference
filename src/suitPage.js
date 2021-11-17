@@ -111,6 +111,14 @@ export default class SuitPanel extends Component {
         this.setState({filterPaneOpen: !this.state.filterPaneOpen});
     }
 
+    nextSuit = ({forward=true}={}) => {
+        if(!this.state.activeSuit) return;
+        const curSuitIdx = this.state.filteredSuits.map(suit => suit.name).indexOf(this.state.activeSuit.name);
+        const newSuitIdx = curSuitIdx + (forward ? 1 : -1);
+        if(newSuitIdx < 0 || newSuitIdx >= this.state.filteredSuits.length) return;
+        this.setActiveSuit(this.state.filteredSuits[newSuitIdx]);
+    }
+
     render() {
         if(!this.state.suits) return null;
         return (
@@ -118,6 +126,7 @@ export default class SuitPanel extends Component {
                 <SuitDetail
                     suit={this.state.activeSuit}
                     closePane={this.closePane}
+                    nextSuit={this.nextSuit}
                 />
                 <div>
                     <SuitFilter
@@ -132,6 +141,7 @@ export default class SuitPanel extends Component {
                         activeSuit={this.state.activeSuit}
                         setActiveSuit={this.setActiveSuit}
                         layout={this.state.filterPaneOpen ? 'narrow' : 'wide'}
+                        nextSuit={this.nextSuit}
                     />
                 </div>
           </div>

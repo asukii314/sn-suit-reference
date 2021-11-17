@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
+import SwipeReact from 'swipe-react';
 import './suitDetail.css';
 
 export default class SuitDetail extends Component {
@@ -9,6 +10,10 @@ export default class SuitDetail extends Component {
         this.state = {
             imgType: "promo"
         };
+        SwipeReact.config({
+          left: () => this.props.nextSuit({forward: true}),
+          right: () => this.props.nextSuit({forward: false})
+        });
     }
 
     componentDidUpdate() {
@@ -48,7 +53,7 @@ export default class SuitDetail extends Component {
         if(this.props.suit) {
             const reflectionImgUrl = this.props.suit.reflection?.images?.[this.state.imgType];
             return (
-                <div className='suit-detail-container'>
+                <div className='suit-detail-container' {...SwipeReact.events}>
                     <div className='suit-detail-type-button-container'>
                         <div className='suit-source'>{`${this.props.suit.source.type} · ${this.props.suit.source.subtype}`}</div>
                         <div className='suit-detail-header-container'>
