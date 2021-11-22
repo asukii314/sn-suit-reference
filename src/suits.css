@@ -4,6 +4,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 10px;
+    position: fixed;
+    height: 100vh;
+}
+
+.suit-cards-container.loaded {
+    overflow-y: scroll;
 }
 
 .suit-card {

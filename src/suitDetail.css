@@ -41,6 +41,13 @@
     }
 }
 
+div {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+}
+
 .suit-title {
     font-weight: 500;
     font-size: 16px;
