@@ -31,6 +31,10 @@
     border-radius: 0px 0px 0px 10px;
 }
 
+.tile-img.reflection {
+    margin-left: 5px;
+}
+
 .suit-tile-title {
     font-size: 16px;
     font-weight: bold;
