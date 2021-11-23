@@ -12,7 +12,6 @@ export default class SuitFilter extends Component {
             searchByDesignerResults: null,
             filters: {
                 Rarity: {
-                    R: false,
                     SR: false,
                     SSR: false,
                     UR: false

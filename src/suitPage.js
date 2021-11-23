@@ -68,7 +68,7 @@ export default class SuitPanel extends Component {
                                 detail: res.values[i][12],
                                 original: res.values[i][13],
                                 awakened: res.values[i][14],
-                                'memory stairway': res.values[i][15],
+                                'idea lab': res.values[i][15],
 
                             },
                             source: {
