@@ -15,12 +15,24 @@ export default class SuitDetail extends Component {
 
     render() {
         return (
-            <img
-                className={this.props.className + (this.state.zoomed ? ' zoomed-in' : ' zoomed-out')}
-                src={this.props.src}
-                alt={this.props.alt}
-                onClick={this.toggleZoom}
-            />
+            <div>
+                <div
+                    className={this.state.zoomed ? 'dark-background' : ''}
+                    onClick={this.toggleZoom}
+                />
+                <img
+                    className={`${this.props.className} zoomed-out`}
+                    src={this.props.src}
+                    alt={this.props.alt}
+                    onClick={this.toggleZoom}
+                />
+                {this.state.zoomed && <img
+                    className={`${this.props.className} zoomed-in`}
+                    src={this.props.src}
+                    alt={this.props.alt}
+                    onClick={this.toggleZoom}
+                />}
+            </div>
         );
     }
 }

@@ -1,12 +1,21 @@
-.suit-detail-img.zoomed-out {
+.zoomed-out {
     cursor: zoom-in;
 }
 
-.suit-detail-img.zoomed-in {
+.zoomed-in {
     position: fixed;
     top: 0;
     left: 0;
     cursor: zoom-out;
-    max-height: 100vh;
-    max-width: 100vw;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+}
+
+.dark-background {
+    position: fixed;
+    background-color: rgba(0,0,0,0.6);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
 }

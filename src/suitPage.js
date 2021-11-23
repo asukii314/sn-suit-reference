@@ -2,7 +2,7 @@ import { Component } from 'react';
 import SuitDetail from './suitDetail';
 import SuitCards from './suits';
 import SuitFilter from './suitFilter';
-import fetchSuitInfo from './fetchSuitInfo';
+import fetchAllSuits from './fetchSuitInfo';
 import './suits.css';
 
 export default class SuitPanel extends Component {
@@ -16,7 +16,7 @@ export default class SuitPanel extends Component {
         };
     }
     componentDidMount() {
-        fetchSuitInfo().then((suits) => {
+        fetchAllSuits().then((suits) => {
             this.setState({
                 suits: suits,
                 filteredSuits: suits

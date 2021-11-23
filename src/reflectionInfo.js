@@ -25,7 +25,7 @@ export default class ReflectionInfo extends Component {
         if(!this.props.iconUrl && !this.props.CoR) return (
             <div className='reflection-info-card' >
                 <div className='reflection-card-column'>
-                    <div className="CoR-title">Call of Reflection</div>
+                    <div className="CoR-title">Skill Info</div>
                     <div className="CoR-description" style={{marginTop: '5px', color: 'darkgray'}}><i>(no skill info found)</i></div>
                 </div>
             </div>
@@ -33,7 +33,7 @@ export default class ReflectionInfo extends Component {
         return (
             <div className='reflection-info-card'>
                 <div className='reflection-card-column'>
-                    <div className="CoR-title">Call of Reflection</div>
+                    <div className="CoR-title">Skill Info</div>
                     <img className='reflection-icon' src={this.props.iconUrl} alt='reflection-icon' />
                 </div>
                 <div className='reflection-card-column'>

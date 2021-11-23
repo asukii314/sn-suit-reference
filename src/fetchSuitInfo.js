@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-export default function fetchSuitInfo() {
+export default function fetchAllSuits() {
     return window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Reflections?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
     .then(r => r.json())
     .then(res => {
@@ -71,4 +71,11 @@ export default function fetchSuitInfo() {
             return suits;
         })
     })
+}
+
+// maybe figure out if the sheets api has a less hacky way to do this, but ehhhh
+export function fetchSuitByName(suitName) {
+    return fetchAllSuits().then(
+        suits => suits.filter(suit => suit.name.toLowerCase() === suitName.toLowerCase())?.[0]
+    )
 }
