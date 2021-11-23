@@ -43,6 +43,7 @@ export default function fetchAllSuits() {
                         name: res.values[i][5],
                         ...reflections[res.values[i][0]]
                     },
+                    detailPageUrl: `https://asukii314.github.io/sn-suit-reference/#/${res.values[i][0].replace(/ /g, '-').toLowerCase()}`,
                     designer: res.values[i][5],
                     rarity: res.values[i][2],
                     attribute: res.values[i][3],
