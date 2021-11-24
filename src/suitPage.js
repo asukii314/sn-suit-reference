@@ -3,81 +3,71 @@ import SuitDetail from './suitDetail';
 import SuitCards from './suits';
 import SuitFilter from './suitFilter';
 import fetchAllSuits from './fetchSuitInfo';
+import { useState, useEffect } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import './suits.css';
 
-export default class SuitPanel extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            suits: [],
-            filteredSuits: [],
-            activeSuit: null,
-            filterPaneOpen: false
-        };
-    }
-    componentDidMount() {
-        fetchAllSuits().then((suits) => {
-            this.setState({
-                suits: suits,
-                filteredSuits: suits
-            });
-        })
+export default function SuitPanel() {
+    let [suits, setSuits] = useState([]);
+    let [filteredSuits, setFilteredSuits] = useState([]);
+    let [activeSuit, setActiveSuit] = useState(null);
+    let [filterPaneOpen, setFilterPaneOpen] = useState(false);
 
-    }
-
-    setActiveSuit = (suit) => {
-        if(this.state.activeSuit === suit) {
-            this.closePane();
-        } else {
-            this.setState({activeSuit: suit});
+    useEffect(() => {
+        if(!suits.length) {
+            fetchAllSuits().then(suits => {
+                console.log(suits)
+                setSuits(suits);
+                setFilteredSuits(suits);
+            })
         }
+    })
+
+    const onSuitClick = (suit) => {
+        activeSuit === suit
+            ? this.closePane()
+            : setActiveSuit(suit);
     }
 
-    closePane = () => {
-        this.setState({activeSuit: null});
+    const closePane = () => {
+        setActiveSuit(null);
     }
 
-    updateFilteredSuits = (filteredSuits) => {
-        this.setState({filteredSuits});
+    const toggleFilterPane = () => {
+        setFilterPaneOpen(!filterPaneOpen);
     }
 
-    toggleFilterPane = () => {
-        this.setState({filterPaneOpen: !this.state.filterPaneOpen});
-    }
-
-    nextSuit = ({forward=true}={}) => {
-        if(!this.state.activeSuit) return;
-        const curSuitIdx = this.state.filteredSuits.map(suit => suit.name).indexOf(this.state.activeSuit.name);
+    const nextSuit = ({forward=true}={}) => {
+        if(!activeSuit) return;
+        const curSuitIdx = filteredSuits.map(suit => suit.name).indexOf(activeSuit.name);
         const newSuitIdx = curSuitIdx + (forward ? 1 : -1);
-        if(newSuitIdx < 0 || newSuitIdx >= this.state.filteredSuits.length) return;
-        this.setActiveSuit(this.state.filteredSuits[newSuitIdx]);
+        if(newSuitIdx < 0 || newSuitIdx >= filteredSuits.length) return;
+        setActiveSuit(filteredSuits[newSuitIdx]);
     }
 
-    render() {
-        if(!this.state.suits) return null;
-        return (
-            <div>
-                <SuitFilter
-                    suits={this.state.suits}
-                    updateFilteredSuits={this.updateFilteredSuits}
-                    expanded={this.state.filterPaneOpen}
-                    toggleFilterPane={this.toggleFilterPane}
-                    setActiveSuit={this.setActiveSuit}
+    if(!suits) return null;
+    return (
+        <div>
+            <SuitFilter
+                suits={suits}
+                updateFilteredSuits={setFilteredSuits}
+                expanded={filterPaneOpen}
+                toggleFilterPane={toggleFilterPane}
+                setActiveSuit={onSuitClick}
+            />
+            <div className={filterPaneOpen ? 'narrow' : 'wide'}>
+                <SuitDetail
+                    suit={activeSuit}
+                    closePane={closePane}
+                    nextSuit={nextSuit}
                 />
-                <div className={this.state.filterPaneOpen ? 'narrow' : 'wide'}>
-                    <SuitDetail
-                        suit={this.state.activeSuit}
-                        closePane={this.closePane}
-                        nextSuit={this.nextSuit}
-                    />
-                    <SuitCards
-                        suits={this.state.filteredSuits}
-                        activeSuit={this.state.activeSuit}
-                        setActiveSuit={this.setActiveSuit}
-                        nextSuit={this.nextSuit}
-                    />
-                </div>
-          </div>
-        );
-    }
+                <SuitCards
+                    suits={filteredSuits}
+                    activeSuit={activeSuit}
+                    setActiveSuit={onSuitClick}
+                    nextSuit={nextSuit}
+                />
+            </div>
+      </div>
+    );
 }
