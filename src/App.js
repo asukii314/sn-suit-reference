@@ -16,7 +16,7 @@ function App() {
       <Auth0Provider
         domain='dev-semwqhjw.us.auth0.com'
         clientId='96kzE3AqjHdAz8fzOJvTuENJO7AQj0wb'
-        redirectUri={window.location.origin}
+        redirectUri={window.location.origin.includes('localhost') ? window.location.origin : 'https://asukii314.github.io/sn-suit-reference' }
       >
         <Router>
             <div className="App">
