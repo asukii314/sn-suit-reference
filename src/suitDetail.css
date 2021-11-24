@@ -64,7 +64,7 @@ div {
 }
 
 .suit-detail-type-button-container {
-    width: 120px;
+    width: 130px;
     background-color: #33262b;
     border-radius: 10px;
     margin-right: 20px;
@@ -123,4 +123,20 @@ div {
     .suit-detail-icon-container {
         flex-direction: row;
     }
+}
+
+.favourite-icon-container {
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.heart-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.heart-icon.unfavourited {
+    filter: invert(100%);
+    opacity: 50%;
 }

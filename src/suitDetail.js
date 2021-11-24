@@ -52,14 +52,22 @@ export default class SuitDetail extends Component {
         );
     }
 
-
     render() {
         if(this.props.suit) {
             const reflectionImgUrl = this.props.suit.reflection?.images?.[this.state.imgType];
             return (
                 <div className='suit-detail-container' {/*...SwipeReact.events*/ ...ArrowKeysReact.events} tabIndex="1">
                     <div className='suit-detail-type-button-container'>
-                        <div className='suit-source'>{this.props.suit.source.subtype ? `${this.props.suit.source.type} · ${this.props.suit.source.subtype}` : this.props.suit.source.type}</div>
+                    <div className='favourite-icon-container'>
+                        {!this.props.isFavourited && <img src='heart_outline.png' className='heart-icon unfavourited' alt='favourite' onClick={() => this.props.favourite(this.props.suit)}/>}
+                        {this.props.isFavourited && <img src='heart_red.png' className='heart-icon favourited' alt='unfavourite' onClick={() => this.props.unfavourite(this.props.suit)}/>}
+                    </div>
+                        <div className='suit-source'>
+                            {this.props.suit.source.subtype
+                                ? `${this.props.suit.source.type} · ${this.props.suit.source.subtype}`
+                                : this.props.suit.source.type
+                            }
+                        </div>
                         <div className='suit-detail-header-container'>
                             {this.renderSuitIcons()}
                             <div className='suit-title'>{`${this.props.suit.designer} · ${(this.state.imgType === 'awakened' && this.props.suit.awakenedName !== '') ? this.props.suit.awakenedName : this.props.suit.name}`}</div>

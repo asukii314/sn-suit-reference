@@ -38,6 +38,7 @@ export default function fetchAllSuits() {
             for(let i = 1; i < res.values.length; i++) {
                 suits.push({
                     name: res.values[i][0],
+                    id: res.values[i][0].replace(/ /g, '-').toLowerCase(),
                     awakenedName: res.values[i][1],
                     reflection: {
                         name: res.values[i][5],

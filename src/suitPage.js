@@ -4,15 +4,18 @@ import SuitFilter from './suitFilter';
 import fetchAllSuits from './fetchSuitInfo';
 import { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
+import 'whatwg-fetch';
 import './suits.css';
 
 export default function SuitPanel() {
     let [suits, setSuits] = useState([]);
+    let [favourites, setFavourites] = useState([]);
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
     let [filterPaneOpen, setFilterPaneOpen] = useState(false);
-    const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
-
+    let [fetchedFavourites, setFetchedFavourites] = useState(false);
+    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+    
     useEffect(() => {
         if(!suits.length) {
             fetchAllSuits().then(suits => {
@@ -20,11 +23,40 @@ export default function SuitPanel() {
                 setFilteredSuits(suits);
             })
         }
+        if(isAuthenticated && favourites.length === 0  && !fetchedFavourites) {
+            setFetchedFavourites(true);
+            window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}`)
+                .then(r => r.json())
+                .then(res => setFavourites(res))
+        }
     })
+
+    const addFavourite = (suit) => {
+        if(!suit || !user?.email) return;
+        setFavourites([...favourites, suit.id])
+        window.fetch(
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}/${suit.id}`,
+            {method: 'PUT'}
+        )
+    }
+
+    const removeFavourite = (suit) => {
+        if(!suit || !user?.email) return;
+        const index = favourites.indexOf(suit.id);
+        if (index > -1) {
+            let copy = [...favourites];
+            copy.splice(index, 1)
+            setFavourites(copy);
+        }
+        window.fetch(
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}/${suit.id}`,
+            {method: 'DELETE'}
+        )
+    }
 
     const onSuitClick = (suit) => {
         activeSuit === suit
-            ? this.closePane()
+            ? closePane()
             : setActiveSuit(suit);
     }
 
@@ -61,6 +93,9 @@ export default function SuitPanel() {
                     suit={activeSuit}
                     closePane={closePane}
                     nextSuit={nextSuit}
+                    isFavourited={favourites.includes(activeSuit?.id) || false}
+                    favourite={addFavourite}
+                    unfavourite={removeFavourite}
                 />
                 <SuitCards
                     suits={filteredSuits}

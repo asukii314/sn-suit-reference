@@ -8,7 +8,7 @@ import {Auth0Provider} from "@auth0/auth0-react";
 function App() {
 
     // hack around a bug in the facebook login redirect handler
-    if (window.location.hash && window.location.hash == '#_=_') {
+    if (window.location.hash && window.location.hash === '#_=_') {
         window.location.hash = '';
     }
 
