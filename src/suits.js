@@ -33,8 +33,22 @@ export default class SuitCards extends Component {
                 {...SwipeReact.events}
             >
                 <div className='suit-icon-container'>
-                    <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon shadowed' alt='rarity' />
-                    {suit.attribute && <img src={`attribute/${suit.attribute.toLowerCase()}.png`} className='suit-icon' alt='rarity' />}
+                    <div className='favourite-icon-container'>
+                        {!this.props.favouriteSuits.includes(suit.id) &&
+                            <img src='heart_black.png'
+                            className='heart-icon unfavourited suit-icon shadowed'
+                            alt='favourite'
+                            onClick={(e) => this.props.favourite(suit,e)}
+                        />}
+                        {this.props.favouriteSuits.includes(suit.id) &&
+                            <img src='heart_red.png'
+                            className='heart-icon favourited suit-icon shadowed'
+                            alt='unfavourite'
+                            onClick={(e) => this.props.unfavourite(suit,e)}
+                            />}
+                        <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon shadowed' alt='rarity' />
+                        {suit.attribute && <img src={`attribute/${suit.attribute.toLowerCase()}.png`} className='suit-icon' alt='rarity' />}
+                    </div>
                 </div>
                 <img src={suit.images.promo} className='suit-img' alt={suit.name}/>
                 <p className='suit-name'> {suit.name} </p>

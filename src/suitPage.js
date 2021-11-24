@@ -15,7 +15,7 @@ export default function SuitPanel() {
     let [filterPaneOpen, setFilterPaneOpen] = useState(false);
     let [fetchedFavourites, setFetchedFavourites] = useState(false);
     const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
-    
+
     useEffect(() => {
         if(!suits.length) {
             fetchAllSuits().then(suits => {
@@ -31,7 +31,12 @@ export default function SuitPanel() {
         }
     })
 
-    const addFavourite = (suit) => {
+    const addFavourite = (suit,e) => {
+        if(e) e.stopPropagation();
+        if(!isAuthenticated) {
+            loginWithRedirect();
+            return;
+        }
         if(!suit || !user?.email) return;
         setFavourites([...favourites, suit.id])
         window.fetch(
@@ -40,7 +45,8 @@ export default function SuitPanel() {
         )
     }
 
-    const removeFavourite = (suit) => {
+    const removeFavourite = (suit,e) => {
+        if(e) e.stopPropagation();
         if(!suit || !user?.email) return;
         const index = favourites.indexOf(suit.id);
         if (index > -1) {
@@ -51,7 +57,7 @@ export default function SuitPanel() {
         window.fetch(
             `https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}/${suit.id}`,
             {method: 'DELETE'}
-        )
+        );
     }
 
     const onSuitClick = (suit) => {
@@ -102,6 +108,9 @@ export default function SuitPanel() {
                     activeSuit={activeSuit}
                     setActiveSuit={onSuitClick}
                     nextSuit={nextSuit}
+                    favouriteSuits={favourites}
+                    favourite={addFavourite}
+                    unfavourite={removeFavourite}
                 />
             </div>
       </div>
