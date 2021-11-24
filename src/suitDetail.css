@@ -138,5 +138,5 @@ div {
 
 .heart-icon.unfavourited {
     filter: invert(100%);
-    opacity: 50%;
+    opacity: 0.5;
 }
