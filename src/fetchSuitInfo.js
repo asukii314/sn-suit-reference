@@ -57,6 +57,7 @@ export default function fetchAllSuits() {
                         'idea lab': res.values[i][15],
 
                     },
+                    video: res.values[i][16],
                     source: {
                         type: res.values[i][7].split(' - ')[0],
                         subtype: res.values[i][7].split(' - ')[1],

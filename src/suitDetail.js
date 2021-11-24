@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
-import SwipeReact from 'swipe-react';
 import ArrowKeysReact from 'arrow-keys-react';
 import './suitDetail.css';
 

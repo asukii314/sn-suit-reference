@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {fetchSuitByName} from './fetchSuitInfo';
 import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
+import VideoEmbed from './VideoEmbed';
 import './suitDetailPage.css';
 
 function renderSuitImageTile(imgType, suitImgUrl, reflectionImgUrl) {
@@ -20,6 +21,20 @@ function renderSuitImageTile(imgType, suitImgUrl, reflectionImgUrl) {
                     src={reflectionImgUrl}
                     alt='reflection'
                     />}
+            </div>
+        </div>
+    );
+}
+
+// there's gotta be a better way to do this with hooks/HOCs that
+// avoids the duplicative code here but I can't be arsed
+function renderVideoImageTile(videoUrl) {
+    if(!videoUrl) return null;
+    return (
+        <div className='suit-img-tile' key='video'>
+            <div className='suit-tile-title'>Suit Display Video</div>
+            <div className='suit-tile-img-wrapper'>
+                <VideoEmbed url={videoUrl} />
             </div>
         </div>
     );
@@ -50,13 +65,14 @@ function renderSuitIcons(suit) {
 export default function SuitDetailPage() {
     let [suit, setSuit] = useState(0);
     let { suitId } = useParams();
+    const suitName = suitId[0].toUpperCase() + suitId.replace(/-/g, ' ').substring(1);
 
     useEffect(() => {
         if(!suit) {
-            fetchSuitByName(suitId.replace(/-/g, ' '))
+            fetchSuitByName(suitName)
             .then(setSuit)
         }
-    })
+    }, [suit, suitName])
 
     if(!suit) return null;
     return (
@@ -76,6 +92,7 @@ export default function SuitDetailPage() {
 
             <div className='suit-img-tiles-container'>
                 {renderAllSuitImageTiles(suit)}
+                {renderVideoImageTile(suit.video)}
             </div>
 
         </div>
