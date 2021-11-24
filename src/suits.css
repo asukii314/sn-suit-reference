@@ -80,3 +80,9 @@
 .wide {
     margin-left: 55px;
 }
+
+.fb-login-button {
+    background: center/cover url('facebook-sign-in-button.png') no-repeat;
+    width: 150px;
+    height: 35px;
+}

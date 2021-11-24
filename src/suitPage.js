@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import SuitDetail from './suitDetail';
 import SuitCards from './suits';
 import SuitFilter from './suitFilter';
@@ -12,11 +11,11 @@ export default function SuitPanel() {
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
     let [filterPaneOpen, setFilterPaneOpen] = useState(false);
+    const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
 
     useEffect(() => {
         if(!suits.length) {
             fetchAllSuits().then(suits => {
-                console.log(suits)
                 setSuits(suits);
                 setFilteredSuits(suits);
             })
@@ -48,6 +47,8 @@ export default function SuitPanel() {
     if(!suits) return null;
     return (
         <div>
+            {!isAuthenticated && <button className='fb-login-button' onClick={() => loginWithRedirect()}/>}
+            {isAuthenticated && <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>}
             <SuitFilter
                 suits={suits}
                 updateFilteredSuits={setFilteredSuits}
