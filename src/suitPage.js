@@ -25,7 +25,7 @@ export default function SuitPanel() {
         }
         if(isAuthenticated && favourites.length === 0  && !fetchedFavourites) {
             setFetchedFavourites(true);
-            window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}`)
+            window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub.split("|")[1]}`)
                 .then(r => r.json())
                 .then(res => setFavourites(res))
         }
@@ -64,7 +64,7 @@ export default function SuitPanel() {
         }
 
         window.fetch(
-            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}/${suit.id}`,
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub.split("|")[1]}/${suit.id}`,
             {method: 'PUT'}
         )
     }
@@ -102,7 +102,7 @@ export default function SuitPanel() {
             setFilteredSuits(copy);
         }
         window.fetch(
-            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}/${suit.id}`,
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub.split("|")[1]}/${suit.id}`,
             {method: 'DELETE'}
         );
     }
