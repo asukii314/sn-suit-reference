@@ -105,10 +105,10 @@ export default class SuitDetail extends Component {
                         {this.renderSuitSubtitle()}
                         {this.renderSuitImageButtons()}
 
-                        <ReflectionInfo
+                        {this.props.suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
                             iconUrl={this.props.suit.reflection.images?.icon}
                             CoR={this.props.suit.reflection?.CoR}
-                        />
+                        />}
                     </div>
                 </div>
             );

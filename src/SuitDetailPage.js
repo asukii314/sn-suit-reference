@@ -84,10 +84,11 @@ export default function SuitDetailPage() {
                         <div className='suit-title full'>{`${suit.designer} · ${suit.name}`}</div>
                     </div>
                 </div>
-                <ReflectionInfo
+                {suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
                     iconUrl={suit.reflection.images?.icon}
                     CoR={suit.reflection?.CoR}
-                />
+                />}
+
             </div>
 
             <div className='suit-img-tiles-container'>
