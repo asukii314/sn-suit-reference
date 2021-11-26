@@ -6,8 +6,8 @@ window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtT
     .then(res => {
         let reflections = {};
         for(let i = 1; i < res.values.length; i++) {
-            const skills_a = res.values[i][9].split('\n');
-            const skills_b = res.values[i][10].split('\n')
+            const skills_a = res.values[i][9]?.split('\n');
+            const skills_b = res.values[i][10]?.split('\n')
             reflections[res.values[i][1]] = {
                 // name: res.values[i][0],
                 // suitName: res.values[i][1],
@@ -19,11 +19,11 @@ window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtT
                 },
                 CoR: [
                     null,
-                    res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[0]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[0]}</b>`).replace('\n\n', ' · '),
-                    res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[1]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[1]}</b>`).replace('\n\n', ' · '),
-                    res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[2]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[2]}</b>`).replace('\n\n', ' · '),
-                    res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[3]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[3]}</b>`).replace('\n\n', ' · '),
-                    res.values[i][7].replace('A%', `<b style="color:#d1668f">${skills_a[4]}</b>`).replace('B%', `<b style="color:#d1668f">${skills_b[4]}</b>`).replace('\n\n', ' · ')
+                    res.values[i][7]?.replace('A%', `<b style="color:#d1668f">${skills_a[0]}</b>`)?.replace('B%', `<b style="color:#d1668f">${skills_b[0]}</b>`)?.replace('\n\n', ' · '),
+                    res.values[i][7]?.replace('A%', `<b style="color:#d1668f">${skills_a[1]}</b>`)?.replace('B%', `<b style="color:#d1668f">${skills_b[1]}</b>`)?.replace('\n\n', ' · '),
+                    res.values[i][7]?.replace('A%', `<b style="color:#d1668f">${skills_a[2]}</b>`)?.replace('B%', `<b style="color:#d1668f">${skills_b[2]}</b>`)?.replace('\n\n', ' · '),
+                    res.values[i][7]?.replace('A%', `<b style="color:#d1668f">${skills_a[3]}</b>`)?.replace('B%', `<b style="color:#d1668f">${skills_b[3]}</b>`)?.replace('\n\n', ' · '),
+                    res.values[i][7]?.replace('A%', `<b style="color:#d1668f">${skills_a[4]}</b>`)?.replace('B%', `<b style="color:#d1668f">${skills_b[4]}</b>`)?.replace('\n\n', ' · ')
                 ]
             };
         }
