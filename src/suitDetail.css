@@ -13,10 +13,11 @@
     justify-content: space-between;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 468px) {
     .suit-detail-container {
         flex-direction: column;
         height: 520px;
+        justify-content: flex-start;
     }
 }
 
@@ -37,14 +38,18 @@
     max-width: 100%;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 468px) {
     .suit-detail-img-container {
         margin-bottom: 10px;
+        width: 100%;
+        background-color: transparent;
+        width: 100%;
+        padding: 0;
+        justify-content: flex-start;
     }
 
     .suit-detail-img {
         max-height: 225px;
-
     }
 }
 
@@ -75,6 +80,16 @@ div {
     text-align: left;
 }
 
+@media only screen and (max-width: 468px) {
+    .suit-title-block {
+        width: 100%;
+        font-size: 12px;
+    }
+    .suit-title {
+        font-size: 24px;
+    }
+}
+
 .suit-detail-type-button-container {
     width: 130px;
     background-color: #33262b;
@@ -86,7 +101,7 @@ div {
 }
 
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 468px) {
     .suit-detail-type-button-container {
         width: auto;
         margin-bottom: 10px;
@@ -107,7 +122,7 @@ div {
     font-size: 12px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 468px) {
     .suit-detail-type-button {
         width: auto;
         margin-right: 5px;
@@ -142,7 +157,7 @@ div {
     margin-left: 8px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 468px) {
     .suit-detail-icon-container {
         flex-direction: row;
     }
