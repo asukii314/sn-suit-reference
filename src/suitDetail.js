@@ -96,6 +96,7 @@ export default class SuitDetail extends Component {
             const reflectionImgUrl = this.props.suit.reflection?.images?.[this.state.imgType];
             return (
                 <div className='suit-detail-container' {/*...SwipeReact.events*/ ...ArrowKeysReact.events} tabIndex="1">
+                    <button className='suit-detail-close-button' onClick={this.props.closePane}>❌</button>
                     {this.renderSuitImages(reflectionImgUrl)}
                     <div className='suit-title-block'>
                         <div className='suit-title'>{`${this.props.suit.designer} · ${(this.state.imgType === 'awakened' && this.props.suit.awakenedName !== '') ? this.props.suit.awakenedName : this.props.suit.name}`}</div>

@@ -206,3 +206,13 @@ div {
     filter: invert(100%);
     opacity: 0.5;
 }
+
+.suit-detail-close-button {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+
+}
