@@ -57,8 +57,8 @@ export default function SuitPanel() {
         if (filteredSuitIdx > -1) {
             let copy = [...filteredSuits];
             copy[filteredSuitIdx] = {
-                ...suits[filteredSuitIdx],
-                likes: suits[filteredSuitIdx].likes + 1
+                ...filteredSuits[filteredSuitIdx],
+                likes: filteredSuits[filteredSuitIdx].likes + 1
             }
             setFilteredSuits(copy);
         }
@@ -96,8 +96,8 @@ export default function SuitPanel() {
         if (filteredSuitIdx > -1) {
             let copy = [...filteredSuits];
             copy[filteredSuitIdx] = {
-                ...suits[filteredSuitIdx],
-                likes: suits[filteredSuitIdx].likes - 1
+                ...filteredSuits[filteredSuitIdx],
+                likes: filteredSuits[filteredSuitIdx].likes - 1
             }
             setFilteredSuits(copy);
         }
