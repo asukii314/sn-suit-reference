@@ -70,7 +70,7 @@ export default class SuitDetail extends Component {
             <div className='suit-detail-left-column'>
             <div className='suit-detail-img-container'>
                 {this.state.imgType === 'video' &&
-                    <VideoEmbed url={this.props.suit.video} />
+                    <VideoEmbed url={this.props.suit.video} autoplay={true} />
                 }
                 {this.state.imgType !== 'video' && <ZoomableImage
                     className='suit-detail-img'
