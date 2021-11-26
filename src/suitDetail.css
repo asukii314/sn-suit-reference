@@ -197,7 +197,9 @@ div {
     border-radius: 0px 0px 10px 10px;
     box-sizing: border-box;
     padding: 5px;
-    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .heart-icon.unfavourited {
