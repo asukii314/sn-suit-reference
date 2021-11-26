@@ -32,65 +32,70 @@ export default class SuitDetail extends Component {
     }
 
     renderSuitImageButtons = () => {
-        return Object.entries(this.props.suit.images)
-            .filter(([imgType, imgUrl]) => !!imgUrl)
-            .map(([imgType, imgUrl]) => {
-                const cn = 'suit-detail-type-button' + (imgType === this.state.imgType ? ' selected' : '');
-                return (
-                    <button className={cn} key={imgType} onClick={this.updateImgType.bind(this, imgType)}>{imgType[0].toUpperCase() + imgType.substring(1)}</button>
-                );
+        return (
+            <div className='suit-image-buttons-container'>
+                {Object.entries(this.props.suit.images)
+                    .filter(([imgType, imgUrl]) => !!imgUrl)
+                    .map(([imgType, imgUrl]) => {
+                        const cn = 'suit-detail-type-button' + (imgType === this.state.imgType ? ' selected' : '');
+                        return (
+                            <button className={cn} key={imgType} onClick={this.updateImgType.bind(this, imgType)}>{imgType[0].toUpperCase() + imgType.substring(1)}</button>
+                        );
 
-            });
+                    }
+                )}
+            </div>
+        )
     }
 
-    renderSuitIcons = () => {
+    renderSuitSubtitle = () => {
         return (
-            <div className='suit-detail-icon-container'>
-                <img src={`rarity/${this.props.suit.rarity.toLowerCase()}.png`} className='suit-icon' alt='rarity' />
-                {this.props.suit.attribute && <img src={`attribute/${this.props.suit.attribute.toLowerCase()}.png`} className='suit-icon' alt='rarity' />}
+            <div className='suit-subtitle-container'>
+                {this.props.suit.source.subtype
+                    ? `${this.props.suit.source.type} · ${this.props.suit.source.subtype}`
+                    : this.props.suit.source.type
+                }
+                <div className='suit-detail-icon-container'>
+                    <img src={`rarity/${this.props.suit.rarity.toLowerCase()}.png`} className='suit-icon' alt='rarity' />
+                    {this.props.suit.attribute && <img src={`attribute/${this.props.suit.attribute.toLowerCase()}.png`} className='suit-icon' alt='rarity' />}
+                </div>
             </div>
         );
     }
+
+    renderSuitImages = (reflectionImgUrl) => {
+        return (
+            <div className='suit-detail-img-container'>
+                <ZoomableImage
+                    className='suit-detail-img'
+                    src={this.props.suit.images[this.state.imgType]}
+                    alt={this.state.imgType}
+                />
+                {reflectionImgUrl && <ZoomableImage
+                    className='suit-detail-img'
+                    src={reflectionImgUrl}
+                    alt='reflection'
+                />}
+            </div>
+        );
+    }
+
+    // <ReflectionInfo
+    //     iconUrl={this.props.suit.reflection.images?.icon}
+    //     CoR={this.props.suit.reflection?.CoR}
+    // />
 
     render() {
         if(this.props.suit) {
             const reflectionImgUrl = this.props.suit.reflection?.images?.[this.state.imgType];
             return (
                 <div className='suit-detail-container' {/*...SwipeReact.events*/ ...ArrowKeysReact.events} tabIndex="1">
-                    <div className='suit-detail-type-button-container'>
-                    <div className='favourite-icon-container'>
-                        {!this.props.isFavourited && <img src='heart_outline.png' className='heart-icon unfavourited' alt='favourite' onClick={() => this.props.favourite(this.props.suit)}/>}
-                        {this.props.isFavourited && <img src='heart_red.png' className='heart-icon favourited' alt='unfavourite' onClick={() => this.props.unfavourite(this.props.suit)}/>}
-                    </div>
-                        <div className='suit-source'>
-                            {this.props.suit.source.subtype
-                                ? `${this.props.suit.source.type} · ${this.props.suit.source.subtype}`
-                                : this.props.suit.source.type
-                            }
-                        </div>
-                        <div className='suit-detail-header-container'>
-                            {this.renderSuitIcons()}
-                            <div className='suit-title'>{`${this.props.suit.designer} · ${(this.state.imgType === 'awakened' && this.props.suit.awakenedName !== '') ? this.props.suit.awakenedName : this.props.suit.name}`}</div>
-                        </div>
+                    {this.renderSuitImages(reflectionImgUrl)}
+                    <div className='suit-title-block'>
+                        <div className='suit-title'>{`${this.props.suit.designer} · ${(this.state.imgType === 'awakened' && this.props.suit.awakenedName !== '') ? this.props.suit.awakenedName : this.props.suit.name}`}</div>
+                        {this.renderSuitSubtitle()}
                         {this.renderSuitImageButtons()}
-                        <button className='suit-detail-type-button' onClick={this.props.closePane}>❌</button>
                     </div>
-                    <div className='suit-detail-img-container'>
-                        <ZoomableImage
-                            className='suit-detail-img'
-                            src={this.props.suit.images[this.state.imgType]}
-                            alt={this.state.imgType}
-                        />
-                        {reflectionImgUrl && <ZoomableImage
-                            className='suit-detail-img'
-                            src={reflectionImgUrl}
-                            alt='reflection'
-                        />}
-                    </div>
-                    <ReflectionInfo
-                        iconUrl={this.props.suit.reflection.images?.icon}
-                        CoR={this.props.suit.reflection?.CoR}
-                    />
                 </div>
             );
         }

@@ -15,7 +15,7 @@ export default class SuitDetail extends Component {
 
     render() {
         return (
-            <div>
+            <div className='zoomable-img-wrapper'>
                 <div
                     className={this.state.zoomed ? 'dark-background' : ''}
                     onClick={this.toggleZoom}

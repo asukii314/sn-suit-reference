@@ -22,12 +22,19 @@
 
 .suit-detail-img-container {
     display: flex;
+    justify-content: center;
+    width: 50%;
+    padding: 10px;
+    background-color: rosybrown;
+    border-radius: 10px;
+    margin-right: 40px;
 }
 
 .suit-detail-img {
     -webkit-user-select: none;
-    margin-right: 10px;
-    max-height: 300px;
+    flex-shrink: 1;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 @media only screen and (max-width: 400px) {
@@ -50,15 +57,20 @@ div {
 
 .suit-title {
     font-weight: 500;
-    font-size: 16px;
-    color: white;
+    font-size: 32px;
+    color: black;
     margin-bottom: 10px;
+    font-style: normal;
+    margin-top: 10px;
+    font-family: Candara, sans-serif;
 }
 
-.suit-source {
+.suit-title-block {
     margin-bottom: 8px;
-    color: lightgray;
-    font-size: 11px;
+    margin-right: 20px;
+    width: 50%;
+    color: darkgray;
+    font-size: 14px;
     font-style: italic;
     text-align: left;
 }
@@ -84,7 +96,9 @@ div {
 }
 
 .suit-detail-type-button {
-    width: 100%;
+    width: 75px;
+    margin-left: 0;
+    margin-right: 8px;
     margin-bottom: 8px;
     border-radius: 50px;
     border-style: none;
@@ -112,11 +126,20 @@ div {
     align-items: flex-start;
 }
 
-.suit-detail-icon-container {
-    display: flex;
-    flex-direction: column;
+.suit-image-buttons-container {
+    margin-top: 10px;
+}
+
+.suit-subtitle-container {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
     margin-right: 5px;
     margin-bottom: 6px;
+}
+
+.suit-detail-icon-container {
+    margin-left: 8px;
 }
 
 @media only screen and (max-width: 400px) {
