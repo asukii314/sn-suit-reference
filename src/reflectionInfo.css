@@ -10,7 +10,8 @@
 
 @media only screen and (max-width: 400px) {
     .reflection-info-card {
-        margin-bottom: 10px;
+        width: 100%;
+        height: auto;
     }
 }
 
