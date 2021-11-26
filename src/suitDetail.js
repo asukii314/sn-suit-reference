@@ -65,6 +65,7 @@ export default class SuitDetail extends Component {
 
     renderSuitImages = (reflectionImgUrl) => {
         return (
+            <div className='suit-detail-left-column'>
             <div className='suit-detail-img-container'>
                 <ZoomableImage
                     className='suit-detail-img'
@@ -76,6 +77,11 @@ export default class SuitDetail extends Component {
                     src={reflectionImgUrl}
                     alt='reflection'
                 />}
+                </div>
+                <div className='favourite-icon-container'>
+                    {!this.props.isFavourited && <img src='heart_outline.png' className='heart-icon detail unfavourited' alt='favourite' onClick={() => this.props.favourite(this.props.suit)}/>}
+                    {this.props.isFavourited && <img src='heart_red.png' className='heart-icon detail favourited' alt='unfavourite' onClick={() => this.props.unfavourite(this.props.suit)}/>}
+                </div>
             </div>
         );
     }
