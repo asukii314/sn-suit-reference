@@ -104,6 +104,11 @@ export default class SuitDetail extends Component {
                         <div className='suit-title'>{`${this.props.suit.designer} · ${(this.state.imgType === 'awakened' && this.props.suit.awakenedName !== '') ? this.props.suit.awakenedName : this.props.suit.name}`}</div>
                         {this.renderSuitSubtitle()}
                         {this.renderSuitImageButtons()}
+
+                        <ReflectionInfo
+                            iconUrl={this.props.suit.reflection.images?.icon}
+                            CoR={this.props.suit.reflection?.CoR}
+                        />
                     </div>
                 </div>
             );

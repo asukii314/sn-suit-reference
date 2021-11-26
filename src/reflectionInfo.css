@@ -2,16 +2,14 @@
 .reflection-info-card {
     background-color: #33262b;
     border-radius: 10px;
-    width: 228px;
-    margin-left: 10px;
+    width: 250px;
     display: flex;
     flex-direction: row;
-    height: 50%;
+    height: 40%;
 }
 
 @media only screen and (max-width: 400px) {
     .reflection-info-card {
-        margin-left: 0;
         margin-bottom: 10px;
     }
 }

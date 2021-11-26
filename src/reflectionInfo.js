@@ -22,7 +22,7 @@ export default class ReflectionInfo extends Component {
     }
 
     render() {
-        if(!this.props.iconUrl && !this.props.CoR) return (
+        if(!this.props.iconUrl?.length) return (
             <div className='reflection-info-card' >
                 <div className='reflection-card-column'>
                     <div className="CoR-title">Skill Info</div>
