@@ -25,7 +25,7 @@ export default function SuitPanel() {
         }
         if(isAuthenticated && favourites.length === 0  && !fetchedFavourites) {
             setFetchedFavourites(true);
-            window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}`)
+            window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}`)
                 .then(r => r.json())
                 .then(res => setFavourites(res))
         }
@@ -37,7 +37,7 @@ export default function SuitPanel() {
             loginWithRedirect();
             return;
         }
-        if(!suit || !user?.email) return;
+        if(!suit || !user?.sub) return;
         setFavourites([...favourites, suit.id])
 
         const suitIdx = suits.map(suit => suit.id).indexOf(suit.id);
@@ -48,7 +48,7 @@ export default function SuitPanel() {
                 likes: suits[suitIdx].likes + 1
             }
             setSuits(copy);
-            if(activeSuit.id === suit.id) {
+            if(activeSuit?.id === suit.id) {
                 setActiveSuit(copy[suitIdx])
             }
         }
@@ -64,14 +64,14 @@ export default function SuitPanel() {
         }
 
         window.fetch(
-            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}/${suit.id}`,
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}/${suit.id}`,
             {method: 'PUT'}
         )
     }
 
     const removeFavourite = (suit,e) => {
         if(e) e.stopPropagation();
-        if(!suit || !user?.email) return;
+        if(!suit || !user?.sub) return;
         const index = favourites.indexOf(suit.id);
         if (index > -1) {
             let copy = [...favourites];
@@ -87,7 +87,7 @@ export default function SuitPanel() {
                 likes: suits[suitIdx].likes - 1
             }
             setSuits(copy);
-            if(activeSuit.id === suit.id) {
+            if(activeSuit?.id === suit.id) {
                 setActiveSuit(copy[suitIdx])
             }
         }
@@ -102,7 +102,7 @@ export default function SuitPanel() {
             setFilteredSuits(copy);
         }
         window.fetch(
-            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}/${suit.id}`,
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}/${suit.id}`,
             {method: 'DELETE'}
         );
     }
