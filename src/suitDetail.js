@@ -78,7 +78,7 @@ export default class SuitDetail extends Component {
                     alt='reflection'
                 />}
                 </div>
-                <div className='favourite-icon-container'>
+                <div className='favourite-icon-container detail'>
                     {!this.props.isFavourited && <img src='heart_outline.png' className='heart-icon detail unfavourited' alt='favourite' onClick={() => this.props.favourite(this.props.suit)}/>}
                     {this.props.isFavourited && <img src='heart_red.png' className='heart-icon detail favourited' alt='unfavourite' onClick={() => this.props.unfavourite(this.props.suit)}/>}
                 </div>
