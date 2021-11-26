@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
+import VideoEmbed from './VideoEmbed';
 import ArrowKeysReact from 'arrow-keys-react';
 import './suitDetail.css';
 
@@ -22,7 +23,8 @@ export default class SuitDetail extends Component {
 
     componentDidUpdate() {
         if(!this.props.suit) return;
-        if(!this.props.suit.images[this.state.imgType]) {
+        if( (this.state.imgType === 'video' && !this.props.suit.video) ||
+            (this.state.imgType !== 'video' && !this.props.suit.images[this.state.imgType])) {
             this.setState({imgType: "promo"});
         }
     }
@@ -31,19 +33,23 @@ export default class SuitDetail extends Component {
         this.setState({imgType});
     }
 
+    renderSuitImageButton = (imgType) => {
+        const cn = 'suit-detail-type-button' + (imgType === this.state.imgType ? ' selected' : '');
+        return (
+            <button className={cn} key={imgType} onClick={this.updateImgType.bind(this, imgType)}>{imgType[0].toUpperCase() + imgType.substring(1)}</button>
+        );
+    }
+
     renderSuitImageButtons = () => {
         return (
             <div className='suit-image-buttons-container'>
                 {Object.entries(this.props.suit.images)
                     .filter(([imgType, imgUrl]) => !!imgUrl)
                     .map(([imgType, imgUrl]) => {
-                        const cn = 'suit-detail-type-button' + (imgType === this.state.imgType ? ' selected' : '');
-                        return (
-                            <button className={cn} key={imgType} onClick={this.updateImgType.bind(this, imgType)}>{imgType[0].toUpperCase() + imgType.substring(1)}</button>
-                        );
-
+                        return this.renderSuitImageButton(imgType);
                     }
                 )}
+                {this.props.suit.video && this.renderSuitImageButton('video')}
             </div>
         )
     }
@@ -63,11 +69,14 @@ export default class SuitDetail extends Component {
         return (
             <div className='suit-detail-left-column'>
             <div className='suit-detail-img-container'>
-                <ZoomableImage
+                {this.state.imgType === 'video' &&
+                    <VideoEmbed url={this.props.suit.video} />
+                }
+                {this.state.imgType !== 'video' && <ZoomableImage
                     className='suit-detail-img'
                     src={this.props.suit.images[this.state.imgType]}
                     alt={this.state.imgType}
-                />
+                />}
                 {reflectionImgUrl && <ZoomableImage
                     className='suit-detail-img'
                     src={reflectionImgUrl}
@@ -87,11 +96,6 @@ export default class SuitDetail extends Component {
             </div>
         );
     }
-
-    // <ReflectionInfo
-    //     iconUrl={this.props.suit.reflection.images?.icon}
-    //     CoR={this.props.suit.reflection?.CoR}
-    // />
 
     render() {
         if(this.props.suit) {

@@ -1,5 +1,6 @@
 
 const VideoEmbed = ({ url }) => {
+    if(!url) return null;
     const embedUrl = (
           url.includes('youtu')
         ? `https://www.youtube.com/embed/${url.slice(url.length-11)}`
@@ -13,7 +14,7 @@ const VideoEmbed = ({ url }) => {
           src={embedUrl}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen="true"
+          allowFullScreen
           title="YouTube video player"
         />
       </div>
