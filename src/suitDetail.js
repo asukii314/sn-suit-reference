@@ -55,10 +55,6 @@ export default class SuitDetail extends Component {
                     ? `${this.props.suit.source.type} · ${this.props.suit.source.subtype}`
                     : this.props.suit.source.type
                 }
-                <div className='suit-detail-icon-container'>
-                    <img src={`rarity/${this.props.suit.rarity.toLowerCase()}.png`} className='suit-icon' alt='rarity' />
-                    {this.props.suit.attribute && <img src={`attribute/${this.props.suit.attribute.toLowerCase()}.png`} className='suit-icon' alt='rarity' />}
-                </div>
             </div>
         );
     }
@@ -79,6 +75,12 @@ export default class SuitDetail extends Component {
                 />}
                 </div>
                 <div className='favourite-icon-container detail'>
+                    <div className='suit-attribute-icons'>
+                        <img src={`rarity/${this.props.suit.rarity.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />
+                        <div className='suit-attribute-label'>{this.props.suit.rarity}</div>
+                        {this.props.suit.attribute && <img src={`attribute/${this.props.suit.attribute.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />}
+                        {this.props.suit.attribute && <div className='suit-attribute-label'>{this.props.suit.attribute}</div>}
+                    </div>
                     {!this.props.isFavourited && <img src='heart_outline.png' className='heart-icon detail unfavourited' alt='favourite' onClick={() => this.props.favourite(this.props.suit)}/>}
                     {this.props.isFavourited && <img src='heart_red.png' className='heart-icon detail favourited' alt='unfavourite' onClick={() => this.props.unfavourite(this.props.suit)}/>}
                 </div>
