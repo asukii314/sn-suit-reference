@@ -233,3 +233,14 @@ div {
     color: lightgray;
     padding-right: 10px;
 }
+
+
+.suit-likes-container {
+    display: flex;
+}
+
+.suit-attribute-label.favourites {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+}

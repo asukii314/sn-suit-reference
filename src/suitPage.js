@@ -39,6 +39,30 @@ export default function SuitPanel() {
         }
         if(!suit || !user?.email) return;
         setFavourites([...favourites, suit.id])
+
+        const suitIdx = suits.map(suit => suit.id).indexOf(suit.id);
+        if (suitIdx > -1) {
+            let copy = [...suits];
+            copy[suitIdx] = {
+                ...suits[suitIdx],
+                likes: suits[suitIdx].likes + 1
+            }
+            setSuits(copy);
+            if(activeSuit.id === suit.id) {
+                setActiveSuit(copy[suitIdx])
+            }
+        }
+
+        const filteredSuitIdx = filteredSuits.map(suit => suit.id).indexOf(suit.id);
+        if (filteredSuitIdx > -1) {
+            let copy = [...filteredSuits];
+            copy[filteredSuitIdx] = {
+                ...suits[filteredSuitIdx],
+                likes: suits[filteredSuitIdx].likes + 1
+            }
+            setFilteredSuits(copy);
+        }
+
         window.fetch(
             `https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}/${suit.id}`,
             {method: 'PUT'}
@@ -53,6 +77,29 @@ export default function SuitPanel() {
             let copy = [...favourites];
             copy.splice(index, 1)
             setFavourites(copy);
+        }
+
+        const suitIdx = suits.map(suit => suit.id).indexOf(suit.id);
+        if (suitIdx > -1) {
+            let copy = [...suits];
+            copy[suitIdx] = {
+                ...suits[suitIdx],
+                likes: suits[suitIdx].likes - 1
+            }
+            setSuits(copy);
+            if(activeSuit.id === suit.id) {
+                setActiveSuit(copy[suitIdx])
+            }
+        }
+
+        const filteredSuitIdx = filteredSuits.map(suit => suit.id).indexOf(suit.id);
+        if (filteredSuitIdx > -1) {
+            let copy = [...filteredSuits];
+            copy[filteredSuitIdx] = {
+                ...suits[filteredSuitIdx],
+                likes: suits[filteredSuitIdx].likes - 1
+            }
+            setFilteredSuits(copy);
         }
         window.fetch(
             `https://sn-suit-reference-api.herokuapp.com/favourites/${user.email}/${suit.id}`,

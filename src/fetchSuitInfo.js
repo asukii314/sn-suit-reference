@@ -1,11 +1,10 @@
 import 'whatwg-fetch';
 
-export default function fetchAllSuits() {
-    return window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Reflections?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
+const fetchReflections =
+window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Reflections?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
     .then(r => r.json())
     .then(res => {
         let reflections = {};
-
         for(let i = 1; i < res.values.length; i++) {
             const skills_a = res.values[i][9].split('\n');
             const skills_b = res.values[i][10].split('\n')
@@ -30,12 +29,30 @@ export default function fetchAllSuits() {
         }
         return reflections;
     })
-    .then((reflections) => {
+
+const fetchFavouriteCounts = window.fetch('https://sn-suit-reference-api.herokuapp.com/favourites')
+        .then(r => r.json())
+        .then(res => {
+            let counts = {};
+            for(let i = 1; i < res.length; i++) {
+                counts[res[i].suitid] = res[i].num
+            }
+            return counts;
+        })
+
+export default function fetchAllSuits() {
+    return Promise.all([
+        fetchReflections,
+        fetchFavouriteCounts
+    ])
+    .then((values) => {
+        const [reflections, favouriteCounts] = values;
         return window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Suits?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
         .then(r => r.json())
         .then(res => {
             let suits = [];
             for(let i = 1; i < res.values.length; i++) {
+                let suitid = res.values[i][0].replace(/ /g, '-').toLowerCase();
                 suits.push({
                     name: res.values[i][0],
                     id: res.values[i][0].replace(/ /g, '-').toLowerCase(),
@@ -44,7 +61,8 @@ export default function fetchAllSuits() {
                         name: res.values[i][5],
                         ...reflections[res.values[i][0]]
                     },
-                    detailPageUrl: `https://asukii314.github.io/sn-suit-reference/#/${res.values[i][0].replace(/ /g, '-').toLowerCase()}`,
+                    detailPageUrl: `https://asukii314.github.io/sn-suit-reference/#/${suitid}`,
+                    likes: favouriteCounts[suitid] || 0,
                     designer: res.values[i][5],
                     rarity: res.values[i][2],
                     attribute: res.values[i][3],
