@@ -14,8 +14,7 @@ export default function WishlistPage () {
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
     let [filterPaneOpen, setFilterPaneOpen] = useState(false);
-    let [fetchedFavourites, setFetchedFavourites] = useState(false);
-    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+    const { user } = useAuth0();
     const { userid } = useParams();
 
     useEffect(() => {

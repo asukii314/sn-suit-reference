@@ -14,7 +14,7 @@ export default function SuitPanel() {
     let [activeSuit, setActiveSuit] = useState(null);
     let [filterPaneOpen, setFilterPaneOpen] = useState(false);
     let [fetchedFavourites, setFetchedFavourites] = useState(false);
-    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+    const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
     useEffect(() => {
         if(!suits.length) {
