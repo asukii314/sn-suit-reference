@@ -7,6 +7,7 @@ import {Auth0Provider} from "@auth0/auth0-react";
 import Navbar from './Navbar';
 import ContactPage from './ContactPage';
 import CreditsPage from './CreditsPage';
+import Wishlist from './Wishlist';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
                         <Route path=":suitId" element={<SuitDetailPage />} />
                         <Route path="/credits" element={<CreditsPage />} />
                         <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/wishlist/:userid" element={<Wishlist />} />
                     </Routes>
                 </header>
             </div>
