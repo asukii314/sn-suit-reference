@@ -3,7 +3,8 @@
     background-color: #eddae1;
     border-radius: 5px;
     position: sticky;
-    top: 0px;
+    top: 0;
+    left: 0;
     border: 20px solid #282c34;
     margin-top: 0px;
     padding: 20px;

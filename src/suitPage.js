@@ -132,8 +132,6 @@ export default function SuitPanel() {
     if(!suits) return null;
     return (
         <div>
-            {!isAuthenticated && <button className='fb-login-button' onClick={() => loginWithRedirect()}/>}
-            {isAuthenticated && <button onClick={() => logout({ returnTo: window.location.origin.includes('localhost') ? window.location.origin : 'https://asukii314.github.io/sn-suit-reference' })}>Log Out</button>}
             <SuitFilter
                 suits={suits}
                 updateFilteredSuits={setFilteredSuits}

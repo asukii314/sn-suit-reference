@@ -4,3 +4,26 @@
   min-height: 100vh;
   min-width: 100vw;
 }
+
+a.inline {
+    color: lightblue;
+}
+a.inline:visited {
+    color: mediumpurple;
+}
+
+.infopage {
+    color: lightgrey;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.App {
+    margin: 0;
+}
+
+/* the fixed position navbar mucks up alignment in weird ways... */
+img.hack {
+    height: 40px;
+    visibility: hidden;
+}

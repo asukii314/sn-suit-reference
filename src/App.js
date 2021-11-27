@@ -4,6 +4,9 @@ import SuitDetailPage from './SuitDetailPage';
 import {Routes} from "react-router";
 import {HashRouter as Router, Route} from "react-router-dom";
 import {Auth0Provider} from "@auth0/auth0-react";
+import Navbar from './Navbar';
+import ContactPage from './ContactPage';
+import CreditsPage from './CreditsPage';
 
 function App() {
 
@@ -21,9 +24,13 @@ function App() {
         <Router>
             <div className="App">
                 <header className="App-header">
+                <Navbar />
+                <img className='hack' src='./menu.png' />
                     <Routes>
                         <Route exact path="/" element={<SuitPage />} />
                         <Route path=":suitId" element={<SuitDetailPage />} />
+                        <Route path="/credits" element={<CreditsPage />} />
+                        <Route path="/contact" element={<ContactPage />} />
                     </Routes>
                 </header>
             </div>
