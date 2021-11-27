@@ -4,7 +4,7 @@
     min-width: 12px;
     position: fixed;
     margin: 18px 12px;
-    background-color: gray;
+    background-color: rgba(255,255,255,0.4);
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@ input {
 
 .toggle-filter-icon {
     width: 14px;
-    background-color: lightgray;
+    background-color: rgba(255,255,255,0.55);
     padding: 5px;
     border-radius: 10px;
 }
