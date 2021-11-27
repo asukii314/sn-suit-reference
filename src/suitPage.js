@@ -2,7 +2,7 @@ import SuitDetail from './suitDetail';
 import SuitCards from './suits';
 import SuitFilter from './suitFilter';
 import fetchAllSuits from './fetchSuitInfo';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import 'whatwg-fetch';
 import './suits.css';
@@ -106,6 +106,18 @@ export default function SuitPanel() {
             {method: 'DELETE'}
         );
     }
+
+    const escFunction = useCallback((event) => {
+      if (event.keyCode === 27) {
+        closePane();
+      }
+    }, []);
+    useEffect(() => {
+      document.addEventListener("keydown", escFunction);
+      return () => {
+        document.removeEventListener("keydown", escFunction);
+      };
+    }, [escFunction]);
 
     const onSuitClick = (suit) => {
         activeSuit === suit
