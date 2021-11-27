@@ -35,7 +35,7 @@ const fetchFavouriteCounts = window.fetch('https://sn-suit-reference-api.herokua
         .then(res => {
             let counts = {};
             for(let i = 1; i < res.length; i++) {
-                counts[res[i].suitid] = res[i].num
+                counts[res[i].suitid] = parseInt(res[i].num)
             }
             return counts;
         })
