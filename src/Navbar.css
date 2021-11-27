@@ -11,7 +11,6 @@ nav * {
   top: 0;
   left: 0;
   font-family: 'Lato', sans-serif;
-  height: 40px;
 
 }
 
@@ -32,14 +31,7 @@ nav {
   text-transform: uppercase;
 }
 
-@media only screen and (max-width: 650px) {
-  nav {
-    height: 40px;
-    overflow-y: hidden;
-  }
-}
-
-@media only screen and (min-width: 651px) {
+@media only screen and (max-width: 770px) {
   nav {
     height: 40px;
     min-height: 40px;
