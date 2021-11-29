@@ -116,5 +116,6 @@ nav > ul ul li a {
 
     nav.open {
         height: auto;
+        z-index: 9999;
     }
 }
