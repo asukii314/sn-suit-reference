@@ -6,6 +6,18 @@
     color: white;
 }
 
+.event-card-container ul {
+    padding-inline-start: 20px;
+}
+
+
+@media only screen and (max-width: 468px) {
+    .event-card-container {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
 .suit-link {
     font-size: 11px;
 }

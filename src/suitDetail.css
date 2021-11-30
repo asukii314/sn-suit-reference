@@ -251,3 +251,11 @@ div {
     flex-direction: row;
     height: fit-content;
 }
+
+
+@media only screen and (max-width: 468px) {
+    .suit-detail-infocard-container {
+        flex-direction: column;
+        width: 100%;
+    }
+}
