@@ -40,13 +40,64 @@ const fetchFavouriteCounts = window.fetch('https://sn-suit-reference-api.herokua
             return counts;
         })
 
+function formatEventDates(start, end) {
+    if(!start && !end) return null;
+    return {
+        start,
+        end
+    }
+}
+
+function formatEventDateList(start1, end1, start2, end2) {
+    return [
+        formatEventDates(start1, end1),
+        formatEventDates(start2, end2),
+    ].filter(obj => obj !== null);
+}
+
+const fetchEvents = window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Events?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
+        .then(r => r.json())
+        .then(res => {
+            let events = {};
+            for(let i = 1; i < res.values.length; i++) {
+                events[res.values[i][0]] = {
+                    name: res.values[i][0],
+                    nickname: res.values[i][1],
+                    type: res.values[i][2],
+                    releases: {
+                        TW: formatEventDateList(
+                            res.values[i][3],
+                            res.values[i][4],
+                            res.values[i][5],
+                            res.values[i][6],
+                        ),
+                        JP: formatEventDateList(
+                            res.values[i][7],
+                            res.values[i][8],
+                            res.values[i][9],
+                            res.values[i][10],
+                        ),
+                        EN: formatEventDateList(
+                            res.values[i][11],
+                            res.values[i][12],
+                            res.values[i][13],
+                            res.values[i][14],
+                        ),
+                    },
+                    suits: []
+                }
+            }
+            return events;
+        })
+
 export default function fetchAllSuits() {
     return Promise.all([
         fetchReflections,
-        fetchFavouriteCounts
+        fetchFavouriteCounts,
+        fetchEvents
     ])
     .then((values) => {
-        const [reflections, favouriteCounts] = values;
+        const [reflections, favouriteCounts, eventInfo] = values;
         return window.fetch('https://sheets.googleapis.com/v4/spreadsheets/1XkJ4QD8pzoOwL97lFtTSAv2fOb3DikNQYDNkXn6LL9Y/values/Suits?key=AIzaSyBXC3NZmF3G0LK50YSS4EY4yxb3W7AJa80')
         .then(r => r.json())
         .then(res => {
@@ -80,7 +131,11 @@ export default function fetchAllSuits() {
                     source: {
                         type: res.values[i][7].split(' - ')[0],
                         subtype: res.values[i][7].split(' - ')[1],
-                        eventName: res.values[i][8]
+                        eventName: res.values[i][8],
+                        event: {
+                            name: res.values[i][8],
+                            ...eventInfo[res.values[i][8]]
+                        }
                     },
                     availability: {
                         TW: true,
@@ -88,6 +143,22 @@ export default function fetchAllSuits() {
                         EN: res.values[i][10] === 'TRUE'
                     },
                 });
+            }
+
+            for(let i = 1; i < suits.length; i++) {
+                if(suits[i].source.eventName) {
+                    suits[i].source.event.suits =
+                    suits.filter(suit => suit.source.eventName === suits[i].source.eventName)
+                    .map(suit => {
+                        const suitid = suit.name.replace(/ /g, '-').toLowerCase();
+                        return {
+                            name: suit.name,
+                            rarity: suit.rarity,
+                            type: (suit.source.subtype === 'event' ? 'pavillion' : suit.source.subtype || 'other'),
+                            detailPageUrl: `https://asukii314.github.io/sn-suit-reference/#/${suitid}`
+                        }
+                    })
+                }
             }
             return suits;
         })

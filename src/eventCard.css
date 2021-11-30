@@ -1,0 +1,22 @@
+.event-card-container {
+    margin-right: 30px;
+    background-color: #33262b;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.suit-link {
+    font-size: 11px;
+}
+
+.event-title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.event-subtitle {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);;
+    margin-top: 5px;
+}

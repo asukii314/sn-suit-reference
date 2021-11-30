@@ -23,7 +23,7 @@
 }
 
 .suit-detail-left-column {
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     background-color: #e3bac2;
@@ -87,7 +87,7 @@ div {
 .suit-title-block {
     margin-bottom: 8px;
     margin-right: 20px;
-    width: 50%;
+    width: 60%;
     font-size: 14px;
     text-align: left;
 }
@@ -244,4 +244,9 @@ div {
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
+}
+
+.suit-detail-infocard-container {
+    display: flex;
+    flex-direction: row;
 }

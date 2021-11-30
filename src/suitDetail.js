@@ -2,6 +2,7 @@ import { Component } from 'react';
 import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
 import VideoEmbed from './VideoEmbed';
+import EventCard from './eventCard';
 import ArrowKeysReact from 'arrow-keys-react';
 import './suitDetail.css';
 
@@ -111,11 +112,13 @@ export default class SuitDetail extends Component {
                         <div className='suit-title'>{`${this.props.suit.designer} · ${(this.state.imgType === 'awakened' && this.props.suit.awakenedName !== '') ? this.props.suit.awakenedName : this.props.suit.name}`}</div>
                         {this.renderSuitSubtitle()}
                         {this.renderSuitImageButtons()}
-
-                        {this.props.suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
-                            iconUrl={this.props.suit.reflection.images?.icon}
-                            CoR={this.props.suit.reflection?.CoR}
-                        />}
+                        <div className='suit-detail-infocard-container'>
+                            <EventCard event={this.props.suit.source?.event} />
+                            {this.props.suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
+                                iconUrl={this.props.suit.reflection.images?.icon}
+                                CoR={this.props.suit.reflection?.CoR}
+                            />}
+                        </div>
                     </div>
                 </div>
             );
