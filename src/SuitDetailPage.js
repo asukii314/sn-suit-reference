@@ -4,6 +4,7 @@ import {fetchSuitByName} from './fetchSuitInfo';
 import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
 import VideoEmbed from './VideoEmbed';
+import EventCard from './eventCard';
 import './suitDetailPage.css';
 
 function renderSuitImageTile(imgType, suitImgUrl, reflectionImgUrl) {
@@ -84,10 +85,13 @@ export default function SuitDetailPage() {
                         <div className='suit-title full'>{`${suit.designer} · ${suit.name}`}</div>
                     </div>
                 </div>
-                {suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
-                    iconUrl={suit.reflection.images?.icon}
-                    CoR={suit.reflection?.CoR}
-                />}
+                <div className='suit-detail-infocard-container'>
+                    <EventCard event={suit.source?.event} />
+                    {suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
+                        iconUrl={suit.reflection.images?.icon}
+                        CoR={suit.reflection?.CoR}
+                    />}
+                </div>
 
             </div>
 

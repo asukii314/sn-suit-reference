@@ -249,4 +249,5 @@ div {
 .suit-detail-infocard-container {
     display: flex;
     flex-direction: row;
+    height: fit-content;
 }
