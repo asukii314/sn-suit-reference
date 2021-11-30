@@ -9,12 +9,17 @@ function renderEventSuit(suit) {
 }
 
 export default function eventCard({ event }) {
+    let sortedSuits = (event.suits?.length ? [...event.suits] : []);
+    sortedSuits.sort(function(a,b) {
+        if(a.rarity === b.rarity) return 0;
+        return (a.rarity < b.rarity ? +1 : -1)
+    })
     return (
         <div className='event-card-container'>
             <div className="event-title">Source: {event.name}</div>
             <div className="event-subtitle">{event.type}</div>
             <ul>
-                {event.suits && event.suits.map(renderEventSuit)}
+                {sortedSuits.map(renderEventSuit)}
             </ul>
         </div>
     );
