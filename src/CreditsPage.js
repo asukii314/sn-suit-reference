@@ -28,7 +28,7 @@ export default function CreditsPage() {
         <ul>
             <li>Reflection skill data from Kami's <a className='inline' href='https://docs.google.com/spreadsheets/d/1Va9SCIrxni6TUEB1DFxwQK8Vj9mnsCxztsPA9OJja-g/'>Shadow Ranking Sheet</a></li>
             <li>Metadata for global suits from <a className='inline' href='https://shining-nikki.fandom.com/wiki/Shining_Nikki_Wiki'>the Shining Nikki Wiki</a></li>
-            <li>Help finding/organizing suit data from KikiChan94#3642</li>
+            <li>Help finding/organizing suit data from Demonic Dragon#3189</li>
             <li>Icons made by <a className='inline' href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" className='inline' title="Flaticon">www.flaticon.com</a></li>
             <li>And of course, <a className='inline' href="#/contact">me (asukii)</a> to pull it all together :)</li>
         </ul>
