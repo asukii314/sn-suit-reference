@@ -27,7 +27,7 @@ export default function Navbar() {
 
   const renderWishlistBtn = () => {
       if(user?.sub) {
-          return (<li><a href={`#/wishlist/${user.sub.split("|")[1]}`}>Wishlist</a></li>)
+          return (<li><a href={`#/wishlist/${user.sub}`}>Wishlist</a></li>)
       }
       return (<li><a href='' onClick={() => loginWithRedirect()}>Wishlist</a></li>)
   }

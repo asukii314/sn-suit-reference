@@ -70,7 +70,7 @@ export default function WishlistPage () {
         }
 
         window.fetch(
-            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub.split("|")[1]}/${suit.id}`,
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}/${suit.id}`,
             {method: 'PUT'}
         )
     }
@@ -108,7 +108,7 @@ export default function WishlistPage () {
             setFilteredSuits(copy);
         }
         window.fetch(
-            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub.split("|")[1]}/${suit.id}`,
+            `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}/${suit.id}`,
             {method: 'DELETE'}
         );
     }
