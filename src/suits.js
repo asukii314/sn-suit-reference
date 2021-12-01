@@ -10,12 +10,12 @@ export default class SuitCards extends Component {
         this.state = {
         };
         ArrowKeysReact.config({
-          left: () => this.props.nextSuit({forward: false}),
-          right: () => this.props.nextSuit({forward: true})
+            left: () => this.props.nextSuit({forward: false}),
+            right: () => this.props.nextSuit({forward: true})
         });
         SwipeReact.config({
-          left: () => this.props.nextSuit({forward: false}),
-          right: () => this.props.nextSuit({forward: true})
+            left: () => this.props.nextSuit({forward: false}),
+            right: () => this.props.nextSuit({forward: true})
         });
     }
 
