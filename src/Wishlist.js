@@ -29,10 +29,10 @@ export default function WishlistPage () {
                 console.log('s',faveSuits)
                 setSuits(faveSuits);
                 setFilteredSuits(faveSuits);
-                if(user?.sub.split("|")[1] === userid) {
+                if(user?.sub === userid) {
                     setFavourites(favourites);
                 } else if(user?.sub) {
-                    window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user?.sub.split("|")[1]}`)
+                    window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user?.sub}`)
                         .then(r => r.json())
                         .then(setFavourites)
                 }
