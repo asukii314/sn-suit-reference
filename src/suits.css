@@ -3,9 +3,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 8px;
+    padding-top: 12px;
+    margin-left: 12px;
     position: fixed;
-    height: 100vh;
+    height: calc(100% - 60px);
 }
 
 .suit-cards-container.loaded {
@@ -16,6 +17,8 @@
     width: 150px;
     height: 220px;
     margin: 8px;
+    margin-top: 0;
+    margin-bottom: 12px;
     border: 1px solid #282c34;
 }
 
