@@ -14,7 +14,7 @@
     justify-content: space-between;
 }
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .suit-detail-container {
         flex-direction: column;
         height: 520px;
@@ -55,7 +55,7 @@
     border-radius: 10px;
 }
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .suit-detail-left-column {
         width: 100%;
         min-width: 0;
@@ -97,7 +97,7 @@ div {
     text-align: left;
 }
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .suit-title-block {
         width: 100%;
         font-size: 12px;
@@ -118,7 +118,7 @@ div {
 }
 
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .suit-detail-type-button-container {
         width: auto;
         margin-bottom: 10px;
@@ -139,7 +139,7 @@ div {
     font-size: 11px;
 }
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .suit-detail-type-button {
         width: auto;
         margin-right: 5px;
@@ -177,7 +177,7 @@ button.selected {
     margin-left: 8px;
 }
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .suit-detail-icon-container {
         flex-direction: row;
     }
@@ -257,7 +257,7 @@ button.selected {
 }
 
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .suit-detail-infocard-container {
         flex-direction: column;
         width: 100%;

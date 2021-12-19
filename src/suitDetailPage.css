@@ -71,7 +71,7 @@
     margin: 8px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 768px) {
     .suit-detail-header-container {
         flex-direction: column;
         align-items: flex-start;

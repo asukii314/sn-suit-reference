@@ -32,6 +32,18 @@ export default function SuitDetail({
         }
     })
 
+    const [width, setWidth] = useState(window.innerWidth);
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+    const isMobile = width <= 768;
+
     const renderSuitImageButton = (btnImgType) => {
         const cn = 'suit-detail-type-button' + (btnImgType === activeImgType ? ' selected' : '');
         return (
@@ -104,6 +116,39 @@ export default function SuitDetail({
         );
     }
 
+    const renderSuitInfoCards = () => {
+        if(isMobile) {
+            return (
+                <div className='suit-detail-infocard-container'>
+                <Carousel
+                    className='carousel'
+                    showStatus={false}
+                    showThumbs={false}
+                    useKeyboardArrows={false}
+                >
+                    <EventCard event={suit.source?.event} />
+                    <ReflectionInfo
+                        exists={suit.archive !== '(N/A - no reflection)'}
+                        iconUrl={suit.reflection?.images?.icon}
+                        CoR={suit.reflection?.CoR}
+                    />
+                </Carousel>
+                </div>
+            );
+        } else {
+            return (
+                <div className='suit-detail-infocard-container'>
+                    <EventCard event={suit.source?.event} />
+                    <ReflectionInfo
+                        exists={suit.archive !== '(N/A - no reflection)'}
+                        iconUrl={suit.reflection?.images?.icon}
+                        CoR={suit.reflection?.CoR}
+                    />
+                </div>
+            );
+        }
+    }
+
     if(suit) {
         const reflectionImgUrl = suit.reflection?.images?.[activeImgType];
         return (
@@ -114,21 +159,7 @@ export default function SuitDetail({
                     <div className='suit-title'>{`${suit.designer} · ${(activeImgType === 'awakened' && suit.awakenedName !== '') ? suit.awakenedName : suit.name}`}</div>
                     {renderSuitSubtitle()}
                     {renderSuitImageButtons()}
-                    <div className='suit-detail-infocard-container'>
-                        <Carousel
-                            className='carousel'
-                            showStatus={false}
-                            showThumbs={false}
-                            useKeyboardArrows={false}
-                        >
-                            <EventCard event={suit.source?.event} />
-                            <ReflectionInfo
-                                exists={suit.archive !== '(N/A - no reflection)'}
-                                iconUrl={suit.reflection?.images?.icon}
-                                CoR={suit.reflection?.CoR}
-                            />
-                        </Carousel>
-                    </div>
+                    {renderSuitInfoCards()}
                 </div>
             </div>
         );

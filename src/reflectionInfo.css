@@ -10,7 +10,7 @@
     padding-bottom: 25px;
 }
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 768px) {
     .reflection-info-card {
         width: 100%;
         height: auto;
@@ -24,11 +24,18 @@
 }
 
 .reflection-icon {
-    width: 60px;
-    padding-left: 20px;
-    min-width: 80px;
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
     margin-top: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+    .reflection-icon {
+        margin-left: 20px;
+    }
+}
+
 
 .CoR-title {
     color: white;
