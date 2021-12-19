@@ -44,7 +44,7 @@ export default class SuitFilter extends Component {
                 Source: {
                     Pavillion: {
                         'Permanent': false,
-                        'Rotational': false,
+                        'Gleam': false,
                         'Event': false,
                         'Collab': false,
                     },
