@@ -3,12 +3,12 @@ import './eventCard.css'
 function renderEventSuit(suit) {
     return (
         <li className='suit-link'>
-            <div><a className='inline' href={suit.detailPageUrl}>{suit.name}</a> - {suit.rarity} {suit.type}</div>
+            <div><a className='inline' href={suit.detailPageUrl/*.replace('https://asukii314.github.io/sn-suit-reference','')*/}>{suit.name}</a> - {suit.rarity} {suit.type}</div>
         </li>
     );
 }
 
-export default function eventCard({ event }) {
+export default function eventCard({ event, sourceType }) {
     let sortedSuits = (event.suits?.length ? [...event.suits] : []);
     sortedSuits.sort(function(a,b) {
         if(a.rarity === b.rarity) return 0;
@@ -16,8 +16,8 @@ export default function eventCard({ event }) {
     })
     return (
         <div className='event-card-container'>
-            <div className="event-title">Source: {event.name}</div>
-            <div className="event-subtitle">{event.type}</div>
+            <div className="event-title">{sourceType}</div>
+            <div className="event-subtitle">{event.name}</div>
             <ul>
                 {sortedSuits.map(renderEventSuit)}
             </ul>

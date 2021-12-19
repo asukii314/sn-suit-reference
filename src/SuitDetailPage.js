@@ -80,6 +80,29 @@ export default function SuitDetailPage() {
         fetchSuitByName(suitName).then(setSuit)
     }, [suitId]);
 
+    const getSuitSourceString = () => {
+        let string = (
+            suit.source.subtype
+                ? suit.source.subtype[0].toUpperCase() + suit.source.subtype.substring(1)
+                : suit.source.type
+        );
+
+        const verboseEventTypes = [
+            'Single SSR',
+            'Double SSR',
+            'Single UR',
+            'Double UR'
+        ];
+        if(suit.source.subtype === 'event' && verboseEventTypes.includes(suit.source.event?.type)) {
+            string = `${suit.source.event.type} event`
+        }
+        if(suit.source.subtype === 'collab' && verboseEventTypes.includes(suit.source.event?.type)) {
+            string = `${suit.source.event.type} collab`
+        }
+
+        return string;
+    }
+
     if(!suit) return null;
     return (
         <div>
@@ -91,7 +114,10 @@ export default function SuitDetailPage() {
                     </div>
                 </div>
                 <div className='suit-detail-infocard-container'>
-                    <EventCard event={suit.source?.event} />
+                    <EventCard
+                        event={suit.source?.event}
+                        sourceType={getSuitSourceString()}
+                    />
                     {suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
                         iconUrl={suit.reflection.images?.icon}
                         CoR={suit.reflection?.CoR}

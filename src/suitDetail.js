@@ -70,15 +70,27 @@ export default function SuitDetail({
         )
     }
 
-    const renderSuitSubtitle = () => {
-        return (
-            <div className='suit-subtitle-container'>
-                {suit.source.subtype
-                    ? `${suit.source.type} · ${suit.source.subtype}`
-                    : suit.source.type
-                }
-            </div>
+    const getSuitSourceString = () => {
+        let string = (
+            suit.source.subtype
+                ? suit.source.subtype[0].toUpperCase() + suit.source.subtype.substring(1)
+                : suit.source.type
         );
+
+        const verboseEventTypes = [
+            'Single SSR',
+            'Double SSR',
+            'Single UR',
+            'Double UR'
+        ];
+        if(suit.source.subtype === 'event' && verboseEventTypes.includes(suit.source.event?.type)) {
+            string = `${suit.source.event.type} event`
+        }
+        if(suit.source.subtype === 'collab' && verboseEventTypes.includes(suit.source.event?.type)) {
+            string = `${suit.source.event.type} collab`
+        }
+
+        return string;
     }
 
     const renderSuitImages = (reflectionImgUrl) => {
@@ -126,7 +138,10 @@ export default function SuitDetail({
                     showThumbs={false}
                     useKeyboardArrows={false}
                 >
-                    <EventCard event={suit.source?.event} />
+                    <EventCard
+                        event={suit.source?.event}
+                        sourceType={getSuitSourceString()}
+                    />
                     <ReflectionInfo
                         exists={suit.archive !== '(N/A - no reflection)'}
                         iconUrl={suit.reflection?.images?.icon}
@@ -138,7 +153,10 @@ export default function SuitDetail({
         } else {
             return (
                 <div className='suit-detail-infocard-container'>
-                    <EventCard event={suit.source?.event} />
+                    <EventCard
+                        event={suit.source?.event}
+                        sourceType={getSuitSourceString()}
+                    />
                     <ReflectionInfo
                         exists={suit.archive !== '(N/A - no reflection)'}
                         iconUrl={suit.reflection?.images?.icon}
@@ -157,7 +175,6 @@ export default function SuitDetail({
                 {renderSuitImages(reflectionImgUrl)}
                 <div className='suit-title-block'>
                     <div className='suit-title'>{`${suit.designer} · ${(activeImgType === 'awakened' && suit.awakenedName !== '') ? suit.awakenedName : suit.name}`}</div>
-                    {renderSuitSubtitle()}
                     {renderSuitImageButtons()}
                     {renderSuitInfoCards()}
                 </div>
