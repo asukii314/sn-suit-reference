@@ -75,6 +75,11 @@ export default function SuitDetailPage() {
         }
     }, [suit, suitName])
 
+    useEffect(() => {
+        const suitName = suitId[0].toUpperCase() + suitId.replace(/-/g, ' ').substring(1);
+        fetchSuitByName(suitName).then(setSuit)
+    }, [suitId]);
+
     if(!suit) return null;
     return (
         <div>

@@ -22,6 +22,15 @@ export default class ReflectionInfo extends Component {
     }
 
     render() {
+        if(!this.props.exists) return (
+            <div className='reflection-info-card' >
+                <div className='reflection-card-column'>
+                    <div className="CoR-title">Skill Info</div>
+                    <div className="CoR-description" style={{marginTop: '5px', color: 'darkgray'}}>N/A - suit does not have a reflection</div>
+                </div>
+            </div>
+        );
+
         if(!this.props.iconUrl?.length) return (
             <div className='reflection-info-card' >
                 <div className='reflection-card-column'>

@@ -4,6 +4,8 @@ import ReflectionInfo from './reflectionInfo';
 import VideoEmbed from './VideoEmbed';
 import EventCard from './eventCard';
 import ArrowKeysReact from 'arrow-keys-react';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import './suitDetail.css';
 
 export default class SuitDetail extends Component {
@@ -113,11 +115,19 @@ export default class SuitDetail extends Component {
                         {this.renderSuitSubtitle()}
                         {this.renderSuitImageButtons()}
                         <div className='suit-detail-infocard-container'>
-                            <EventCard event={this.props.suit.source?.event} />
-                            {this.props.suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
-                                iconUrl={this.props.suit.reflection.images?.icon}
-                                CoR={this.props.suit.reflection?.CoR}
-                            />}
+                            <Carousel
+                                className='carousel'
+                                showStatus={false}
+                                showThumbs={false}
+                                useKeyboardArrows={false}
+                            >
+                                <EventCard event={this.props.suit.source?.event} />
+                                <ReflectionInfo
+                                    exists={this.props.suit.archive !== '(N/A - no reflection)'}
+                                    iconUrl={this.props.suit.reflection?.images?.icon}
+                                    CoR={this.props.suit.reflection?.CoR}
+                                />
+                            </Carousel>
                         </div>
                     </div>
                 </div>

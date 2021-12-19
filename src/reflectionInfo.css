@@ -6,9 +6,11 @@
     display: flex;
     flex-direction: row;
     height: 40%;
+    text-align: left;
+    padding-bottom: 25px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 468px) {
     .reflection-info-card {
         width: 100%;
         height: auto;
@@ -23,6 +25,8 @@
 
 .reflection-icon {
     width: 60px;
+    padding-left: 20px;
+    min-width: 80px;
     margin-top: 10px;
 }
 

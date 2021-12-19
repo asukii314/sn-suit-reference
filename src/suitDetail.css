@@ -50,6 +50,11 @@
     max-width: 100%;
 }
 
+.carousel {
+    background-color: #33262b;
+    border-radius: 10px;
+}
+
 @media only screen and (max-width: 468px) {
     .suit-detail-left-column {
         width: 100%;
@@ -131,7 +136,7 @@ div {
     border-style: none;
     font-weight: bold;
     padding: 5px;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 @media only screen and (max-width: 468px) {
@@ -142,7 +147,7 @@ div {
 }
 
 
-.selected {
+button.selected {
     background-color: #d1668f;
     color: white;
 }
@@ -181,7 +186,6 @@ div {
 .favourite-icon-container {
     width: 20px;
     height: 20px;
-    margin-top: 8px;
 }
 
 .heart-icon {

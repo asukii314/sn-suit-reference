@@ -4,17 +4,19 @@
     border-radius: 10px;
     padding: 10px;
     color: white;
+    text-align: left;
 }
 
 .event-card-container ul {
     padding-inline-start: 20px;
+    margin: 1em 0;
 }
 
 
 @media only screen and (max-width: 468px) {
     .event-card-container {
         margin-right: 0;
-        margin-bottom: 10px;
+        padding-bottom: 25px;
     }
 }
 
