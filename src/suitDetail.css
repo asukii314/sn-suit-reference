@@ -234,9 +234,10 @@ button.selected {
 }
 
 .suit-attribute-label {
-    font-size: 11px;
+    font-size: 12px;
     font-style: italic;
-    color: lightgray;
+    font-weight: 500;
+    color: whitesmoke;
     padding-right: 10px;
 }
 
