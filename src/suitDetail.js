@@ -98,7 +98,7 @@ export default function SuitDetail({
             <div className='suit-detail-left-column'>
             <div className='suit-detail-img-container'>
                 {activeImgType === 'video' &&
-                    <VideoEmbed url={suit.video} autoplay={true} />
+                    <VideoEmbed url={suit.video}/>
                 }
                 {activeImgType !== 'video' && <ZoomableImage
                     className='suit-detail-img'

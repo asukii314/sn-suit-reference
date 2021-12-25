@@ -35,7 +35,7 @@ function renderVideoImageTile(videoUrl) {
         <div className='suit-img-tile' key='video'>
             <div className='suit-tile-title'>Suit Display Video</div>
             <div className='suit-tile-img-wrapper'>
-                <VideoEmbed url={videoUrl} autoplay={false} />
+                <VideoEmbed url={videoUrl}/>
             </div>
         </div>
     );
