@@ -10,6 +10,10 @@
     height: calc(100% - 60px);
 }
 
+.suit-cards-container.pane-open {
+    height: calc(100% - 465px);
+}
+
 .suit-cards-container.loaded {
     overflow-y: scroll;
 }

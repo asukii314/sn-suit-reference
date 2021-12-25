@@ -168,6 +168,7 @@ export default function SuitPanel() {
                     favouriteSuits={favourites}
                     favourite={addFavourite}
                     unfavourite={removeFavourite}
+                    filterPaneOpen={activeSuit !== null}
                 />
             </div>
       </div>
