@@ -8,8 +8,8 @@ export default function CreditsPage() {
         <br />
         <b>Website UI/UX Design Help</b>
         <ul>
-            <li><a className='inline' href='https://elisalam.squarespace.com'>Elisa Lam</a></li>
-            <li><a className='inline' href='mailto:natasha.djie@gmail.com'>Natasha Djie</a></li>
+            <li>Elisa Lam - <a className='inline' href='https://elisalam.squarespace.com'>website</a></li>
+            <li>Natasha Djie - <a className='inline' href='mailto:natasha.djie@gmail.com'>email</a></li>
         </ul>
 
 
@@ -19,6 +19,7 @@ export default function CreditsPage() {
             <li><a className='inline' href='https://lensdump.com/sakushi/albums/'>Saku's Lensdump</a> <i>(reflection art)</i></li>
             <li><a className='inline' href='https://lensdump.com/a/W7Tra/sub'>SND Lensdump</a> <i>(reflection icons)</i></li>
             <li><a className='inline' href='https://orangecatty-shiningnikki.tumblr.com/'>Orangecatty's Tumblr</a></li>
+            <li><a className='inline' href='https://twitter.com/rei_sh3'>R E I - Twitter</a></li>
             <li><a className='inline' href='https://nikki4.com.tw/newslist'>Official TW News</a></li>
             <li>Official twitter accounts for <a className='inline' href='https://twitter.com/ShiningNikki_JP'>Japan</a> and <a className='inline' href='https://twitter.com/ShiningNikki_SN'>Global</a></li>
             <li>Various posts on the official <a className='inline' href='https://discord.gg/shiningnikki'>SN Discord</a></li>
