@@ -20,6 +20,13 @@ export default class SuitDetail extends Component {
                     className={this.state.zoomed ? 'dark-background' : ''}
                     onClick={this.toggleZoom}
                 />
+                {!this.state.zoomed && (
+                    <div>
+                         <img src='zoom-in-button.png' className='zoom-in-button-background' alt='click to zoom' onClick={this.toggleZoom} />
+                         <img src='zoom-in-button.png' className='zoom-in-button' alt='click to zoom' onClick={this.toggleZoom} />
+                     </div>
+                 )}
+
                 <img
                     className={`${this.props.className} zoomed-out`}
                     src={this.props.src}

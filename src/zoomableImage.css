@@ -28,3 +28,19 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.zoom-in-button {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin: 10px;
+    cursor: zoom-in;
+}
+.zoom-in-button-background {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    cursor: zoom-in;
+    margin: 8px;
+    filter: blur(3px) invert(1);
+}
