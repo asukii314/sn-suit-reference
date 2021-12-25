@@ -138,6 +138,7 @@ div {
     font-weight: bold;
     padding: 5px;
     font-size: 11px;
+    border: 1px solid #33262b;
 }
 
 @media only screen and (max-width: 768px) {
