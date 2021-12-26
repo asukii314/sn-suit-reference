@@ -249,6 +249,12 @@ button.selected {
 }
 
 
+@media only screen and (max-width: 768px) {
+    .suit-attribute-label {
+        padding-right: 5px;
+    }
+}
+
 .suit-likes-container {
     display: flex;
 }
@@ -262,7 +268,15 @@ button.selected {
 .suit-attribute-label.light {
     font-weight: 200;
     font-size: 13px;
-    padding-right: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+    .suit-attribute-label.light {
+        display: none;
+    }
+    .owned-icon.detail {
+        margin-right: 10px;
+    }
 }
 
 .suit-detail-infocard-container {
