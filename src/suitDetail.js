@@ -14,6 +14,9 @@ export default function SuitDetail({
     isFavourited,
     favourite,
     unfavourite,
+    isOwned,
+    setOwned,
+    setNotOwned,
     closePane,
 }) {
 
@@ -119,9 +122,33 @@ export default function SuitDetail({
                         {suit.attribute && <div className='suit-attribute-label'>{suit.attribute}</div>}
                     </div>
                     <div className='suit-likes-container'>
+                        <div className='suit-attribute-label favourites light'>{isOwned ? 'Owned' : 'Not Owned'}</div>
+                        {!isOwned && <img
+                            src='tick-empty.png'
+                            className='action-bar-icon owned-icon detail shadowed'
+                            alt='mark as owned'
+                            onClick={(e) => setOwned(suit,e)}
+                        />}
+                        {isOwned &&
+                            <img src='tick-filled.png'
+                            className='action-bar-icon owned-icon detail shadowed'
+                            alt='unmark as owned'
+                            onClick={(e) => setNotOwned(suit,e)}
+                            />}
                         <div className='suit-attribute-label favourites'>{suit.likes}</div>
-                        {!isFavourited && <img src='heart_outline.png' className='heart-icon detail unfavourited' alt='favourite' onClick={() => favourite(suit)}/>}
-                        {isFavourited && <img src='heart_red.png' className='heart-icon detail favourited' alt='unfavourite' onClick={() => unfavourite(suit)}/>}
+                        {!isFavourited && <img
+                            src='heart_outline.png'
+                            className='action-bar-icon detail unfavourited'
+                            alt='favourite'
+                            onClick={() => favourite(suit)}
+                        />}
+                        {isFavourited && <img
+                            src='heart_red.png'
+                            className='action-bar-icon detail favourited'
+                            alt='unfavourite'
+                            onClick={() => unfavourite(suit)}
+                        />}
+
                     </div>
                 </div>
             </div>

@@ -190,7 +190,7 @@ button.selected {
     height: 20px;
 }
 
-.heart-icon {
+.action-bar-icon {
     width: 100%;
     height: 100%;
     width: 20px;
@@ -210,9 +210,15 @@ button.selected {
     justify-content: space-between;
 }
 
-.heart-icon.unfavourited {
+.action-bar-icon.unfavourited {
     filter: invert(100%);
     opacity: 0.5;
+}
+
+.owned-icon.detail {
+    filter: invert(100%);
+    opacity: 0.7;
+    margin-right: 15px;
 }
 
 .suit-detail-close-button {
@@ -251,6 +257,12 @@ button.selected {
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
+}
+
+.suit-attribute-label.light {
+    font-weight: 200;
+    font-size: 13px;
+    padding-right: 8px;
 }
 
 .suit-detail-infocard-container {

@@ -10,6 +10,7 @@ import './suits.css';
 export default function SuitPanel() {
     let [suits, setSuits] = useState([]);
     let [favourites, setFavourites] = useState([]);
+    let [ownedSuits, setOwnedSuits] = useState([]);
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
     let [filterPaneOpen, setFilterPaneOpen] = useState(false);
@@ -25,9 +26,15 @@ export default function SuitPanel() {
         }
         if(isAuthenticated && favourites.length === 0  && !fetchedFavourites) {
             setFetchedFavourites(true);
-            window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}`)
-                .then(r => r.json())
-                .then(res => setFavourites(res))
+            Promise.all([
+                window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}`)
+                    .then(r => r.json())
+                    .then(res => setFavourites(res)),
+
+                window.fetch(`https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}`)
+                    .then(r => r.json())
+                    .then(res => setOwnedSuits(res)),
+            ])
         }
     })
 
@@ -69,6 +76,20 @@ export default function SuitPanel() {
         )
     }
 
+    const addOwnedSuit = (suit,e) => {
+        if(e) e.stopPropagation();
+        if(!isAuthenticated) {
+            loginWithRedirect();
+            return;
+        }
+        if(!suit || !user?.sub) return;
+        setOwnedSuits([...ownedSuits, suit.id])
+        window.fetch(
+            `https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}/${suit.id}`,
+            {method: 'PUT'}
+        )
+    }
+
     const removeFavourite = (suit,e) => {
         if(e) e.stopPropagation();
         if(!suit || !user?.sub) return;
@@ -103,6 +124,23 @@ export default function SuitPanel() {
         }
         window.fetch(
             `https://sn-suit-reference-api.herokuapp.com/favourites/${user.sub}/${suit.id}`,
+            {method: 'DELETE'}
+        );
+    }
+
+    const removeOwnedSuit = (suit,e) => {
+        if(e) e.stopPropagation();
+        if(!suit || !user?.sub) return;
+
+        const index = ownedSuits.indexOf(suit.id);
+        if (index > -1) {
+            let copy = [...ownedSuits];
+            copy.splice(index, 1)
+            setOwnedSuits(copy);
+        }
+
+        window.fetch(
+            `https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}/${suit.id}`,
             {method: 'DELETE'}
         );
     }
@@ -159,6 +197,9 @@ export default function SuitPanel() {
                     isFavourited={favourites.includes(activeSuit?.id) || false}
                     favourite={addFavourite}
                     unfavourite={removeFavourite}
+                    isOwned={ownedSuits.includes(activeSuit?.id) || false}
+                    setOwned={addOwnedSuit}
+                    setNotOwned={removeOwnedSuit}
                 />
                 <SuitCards
                     suits={filteredSuits}
@@ -168,6 +209,9 @@ export default function SuitPanel() {
                     favouriteSuits={favourites}
                     favourite={addFavourite}
                     unfavourite={removeFavourite}
+                    ownedSuits={ownedSuits}
+                    setOwned={addOwnedSuit}
+                    setNotOwned={removeOwnedSuit}
                     filterPaneOpen={activeSuit !== null}
                 />
             </div>
