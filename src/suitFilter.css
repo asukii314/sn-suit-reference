@@ -1,13 +1,22 @@
 
 .suit-filter-container {
-    height: 100%;
-    min-width: 12px;
-    position: fixed;
-    margin: 18px 12px;
-    background-color: rgba(255,255,255,0.4);
+    width: calc(100vw - 30px);
+    min-height: 12px;
+    background-color: gray;
     padding: 15px;
+    padding-bottom: 5px;
     display: flex;
     flex-direction: column;
+    z-index: 555;
+}
+
+.suit-filter-container.collapsed {
+    padding-top: 5px;
+}
+
+.filter-fields-wrapper {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 input {
@@ -27,9 +36,8 @@ input {
 }
 
 .toggle-filter-btn {
-    position: absolute;
-    right: 8px;
-    top: 12px;
+    display: flex;
+    align-items: center;
 }
 
 .toggle-filter-icon {
@@ -38,17 +46,23 @@ input {
     padding: 5px;
     border-radius: 10px;
 }
+.toggle-filter-icon.collapse {
+    transform: rotate(90deg);
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
 
 .toggle-filter-label {
     font-size: 9px;
-    text-align: center;
-    width: 25px;
     font-style: italic;
     font-weight: 500;
+    margin-left: 5px;
 }
 
 .search-bar-wrapper {
     margin-bottom: 10px;
+    width: 200px;
 }
 
 .first {

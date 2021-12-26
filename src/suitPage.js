@@ -13,9 +13,22 @@ export default function SuitPanel() {
     let [ownedSuits, setOwnedSuits] = useState([]);
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
-    let [filterPaneOpen, setFilterPaneOpen] = useState(false);
     let [fetchedFavourites, setFetchedFavourites] = useState(false);
     const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+
+    const [width, setWidth] = useState(window.innerWidth);
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+    const isMobile = width <= 768;
+
+    let [filterPaneOpen, setFilterPaneOpen] = useState(!isMobile);
 
     useEffect(() => {
         if(!suits.length) {
@@ -188,8 +201,9 @@ export default function SuitPanel() {
                 expanded={filterPaneOpen}
                 toggleFilterPane={toggleFilterPane}
                 setActiveSuit={onSuitClick}
+                isMobile={isMobile}
             />
-            <div className={filterPaneOpen ? 'narrow' : 'wide'}>
+            <div>
                 <SuitDetail
                     suit={activeSuit}
                     closePane={closePane}
@@ -200,6 +214,7 @@ export default function SuitPanel() {
                     isOwned={ownedSuits.includes(activeSuit?.id) || false}
                     setOwned={addOwnedSuit}
                     setNotOwned={removeOwnedSuit}
+                    isMobile={isMobile}
                 />
                 <SuitCards
                     suits={filteredSuits}

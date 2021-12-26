@@ -1,15 +1,15 @@
 .filter-box-container {
-    background-color: rgba(255,255,255,0.6);
-    width: 100%;
-    margin: 8px 0px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 160px;
     font-size: 14px;
     font-weight: 700;
     color: #383838;
 }
 
 .filter-box-title {
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 12px;
     background-color: rgba(0,0,0,0.6);
     color: white;
     letter-spacing: 0.7px;
@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Lato', sans-serif;
 }
 
 .filter-icon {
@@ -27,6 +28,7 @@
 
 .filter-option-container {
     padding: 5px;
+    background-color: rgba(255,255,255,0.6);
 }
 
 .child-option-container {

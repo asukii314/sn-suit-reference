@@ -282,6 +282,7 @@ export default class SuitFilter extends Component {
                               fontSize: '11px',
                               height: '30px',
                               searchIconMargin: '0px 0px 0px 8px',
+                              zIndex: 999
                           }}
                           useCaching={false}
                         />
@@ -292,10 +293,10 @@ export default class SuitFilter extends Component {
 
     render() {
         return (
-            <div className='suit-filter-container'>
+            <div className={`suit-filter-container${this.props.expanded ? '' : ' collapsed'}`}>
                 <div className='toggle-filter-btn' onClick={this.props.toggleFilterPane}>
                     <img
-                        className='toggle-filter-icon'
+                        className={`toggle-filter-icon${this.props.expanded ? ' collapse' : ''}`}
                         alt='toggle-filter-view'
                         title={this.props.expanded ? 'Close filter pane' :'Open filter pane'}
                         src={this.props.expanded ? 'collapse-icon.png' :'filter-icon.png'}
@@ -303,9 +304,10 @@ export default class SuitFilter extends Component {
                     <div className={`toggle-filter-label${this.props.expanded ? ' hidden' : ''}`}>Show Filters</div>
                 </div>
                 <div className={this.props.expanded ? '' : 'hidden'}>
-                    <div className='filter-title'>Filters</div>
-                    {this.renderSearchBars()}
-                    {this.renderFilters()}
+                    <div className='filter-fields-wrapper'>
+                        {this.renderSearchBars()}
+                        {this.renderFilters()}
+                    </div>
                 </div>
             </div>
         );
