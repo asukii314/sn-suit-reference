@@ -22,7 +22,7 @@
 .suit-card {
     width: 150px;
     height: 220px;
-    margin: 8px;
+    margin: 25px;
     margin-top: 0;
     margin-bottom: 12px;
     border: 1px solid #282c34;
@@ -38,6 +38,7 @@
     width: 150px;
     height: 220px;
     object-fit: cover;
+    border-radius: 0px 5px 5px 0px;
 }
 
 
@@ -57,23 +58,40 @@
 
 @media only screen and (max-width: 768px) {
     .suit-card {
-        width: 125px;
+        width: 120px;
         height: 180px;
     }
     .suit-img {
-        width: 125px;
+        width: 120px;
         height: 180px;
     }
     .suit-name {
-        max-width: 105px;
+        max-width: 100px;
     }
 }
 
 .suit-icon-container {
     position: absolute;
     display: flex;
-    margin: 5px;
     flex-direction: column;
+    margin-left: -35px;
+    background-color: rgb(255,255,255,0.3);
+    height: 215px;
+    padding: 5px;
+    padding-bottom: 0;
+    padding-right: 10px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .suit-icon-container {
+        height: 180px;
+    }
+
+    .suit-card {
+        margin-right: 20px;
+    }
 }
 
 .suit-icon {
