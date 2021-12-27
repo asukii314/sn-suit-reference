@@ -308,11 +308,6 @@ export default class SuitFilter extends Component {
                     <div className='filter-fields-wrapper'>
                         {this.renderSearchBars()}
                         {this.renderFilters()}
-                        {this.props.isMobile && <button
-                            className='apply-filters-btn'
-                            onClick={this.props.toggleFilterPane}>
-                            Apply Filters
-                        </button>}
                     </div>
                 </div>
             </div>

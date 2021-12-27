@@ -10,13 +10,6 @@
     z-index: 555;
 }
 
-
-@media only screen and (max-width: 576px) {
-    .suit-filter-container.expanded {
-        height: 100vh;
-    }
-}
-
 .suit-filter-container.collapsed {
     padding-top: 5px;
 }
