@@ -7,6 +7,13 @@
     color: #383838;
 }
 
+@media only screen and (max-width: 375px) {
+    .filter-box-container {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
 .filter-box-title {
     font-weight: 400;
     font-size: 12px;

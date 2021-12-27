@@ -48,7 +48,7 @@ input {
 }
 .toggle-filter-icon.collapse {
     transform: rotate(90deg);
-    position: absolute;
+    position: fixed;
     right: 10px;
     top: 50px;
 }
@@ -71,4 +71,13 @@ input {
 
 .hidden {
     display: none;
+}
+
+.apply-filters-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #33262b;
+    color: white;
+    border-radius: 50px;
+    margin: 10px 0px;
 }

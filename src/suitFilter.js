@@ -198,6 +198,7 @@ export default class SuitFilter extends Component {
                     subcategories={this.state.childFilters[category]}
                     onChange={this.updateFilter}
                     hasIcons={this.metadata[category].hasIcons}
+                    isMobile={this.props.isMobile}
                 />
             )
         })
@@ -299,7 +300,7 @@ export default class SuitFilter extends Component {
                         className={`toggle-filter-icon${this.props.expanded ? ' collapse' : ''}`}
                         alt='toggle-filter-view'
                         title={this.props.expanded ? 'Close filter pane' :'Open filter pane'}
-                        src={this.props.expanded ? 'collapse-icon.png' :'filter-icon.png'}
+                        src={this.props.expanded ? 'black-x-icon.png' :'filter-icon.png'}
                     />
                     <div className={`toggle-filter-label${this.props.expanded ? ' hidden' : ''}`}>Show Filters</div>
                 </div>
@@ -307,6 +308,11 @@ export default class SuitFilter extends Component {
                     <div className='filter-fields-wrapper'>
                         {this.renderSearchBars()}
                         {this.renderFilters()}
+                        {this.props.isMobile && <button
+                            className='apply-filters-btn'
+                            onClick={this.props.toggleFilterPane}>
+                            Apply Filters
+                        </button>}
                     </div>
                 </div>
             </div>
