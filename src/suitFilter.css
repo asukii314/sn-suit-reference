@@ -2,7 +2,7 @@
 .suit-filter-container {
     width: calc(100vw - 30px);
     min-height: 12px;
-    background-color: rgb(255,255,255,0.3);
+    background-color: rgb(255,255,255,0.5);
     padding: 15px;
     padding-bottom: 5px;
     display: flex;
