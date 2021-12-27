@@ -8,6 +8,7 @@
     margin-left: 12px;
     position: fixed;
     height: calc(100% - 60px);
+    width: calc(100% - 12px);
 }
 
 .suit-cards-container.pane-open {
