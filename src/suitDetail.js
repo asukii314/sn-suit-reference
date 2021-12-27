@@ -121,7 +121,7 @@ export default function SuitDetail({
                         />}
                         {isOwned &&
                             <img src='tick-filled.png'
-                            className='action-bar-icon owned-icon detail shadowed'
+                            className='action-bar-icon owned-icon detail shadowed green'
                             alt='Unmark as owned'
                             title='Unmark as owned'
                             onClick={(e) => setNotOwned(suit,e)}

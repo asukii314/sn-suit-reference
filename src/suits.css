@@ -89,6 +89,11 @@
     opacity: 0.8;
 }
 
+/* https://codepen.io/sosuke/pen/Pjoqqp */
+.owned-icon.green {
+    filter: invert(56%) sepia(55%) saturate(391%) hue-rotate(84deg) brightness(99%) contrast(98%);
+}
+
 .fb-login-button {
     background: center/cover url('facebook-sign-in-button.png') no-repeat;
     width: 150px;

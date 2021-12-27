@@ -58,7 +58,7 @@ export default class SuitCards extends Component {
                             />}
                         {this.props.ownedSuits?.includes(suit.id) &&
                             <img src='tick-filled.png'
-                            className='action-bar-icon owned-icon suit-icon shadowed'
+                            className='action-bar-icon owned-icon suit-icon shadowed green'
                             alt='Unmark as owned'
                             title='Unmark as owned'
                             onClick={(e) => this.props.setNotOwned(suit,e)}
