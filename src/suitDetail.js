@@ -115,26 +115,30 @@ export default function SuitDetail({
                         {!isOwned && <img
                             src='tick-empty.png'
                             className='action-bar-icon owned-icon detail shadowed'
-                            alt='mark as owned'
+                            alt='Mark as owned'
+                            title='Mark as owned'
                             onClick={(e) => setOwned(suit,e)}
                         />}
                         {isOwned &&
                             <img src='tick-filled.png'
                             className='action-bar-icon owned-icon detail shadowed'
-                            alt='unmark as owned'
+                            alt='Unmark as owned'
+                            title='Unmark as owned'
                             onClick={(e) => setNotOwned(suit,e)}
                             />}
                         <div className='suit-attribute-label favourites'>{suit.likes}</div>
                         {!isFavourited && <img
                             src='heart_outline.png'
                             className='action-bar-icon detail unfavourited'
-                            alt='favourite'
+                            alt='Favourite'
+                            title='Favourite'
                             onClick={() => favourite(suit)}
                         />}
                         {isFavourited && <img
                             src='heart_red.png'
                             className='action-bar-icon detail favourited'
-                            alt='unfavourite'
+                            alt='Unfavourite'
+                            title='Unfavourite'
                             onClick={() => unfavourite(suit)}
                         />}
 

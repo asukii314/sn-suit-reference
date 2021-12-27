@@ -37,26 +37,30 @@ export default class SuitCards extends Component {
                         {!this.props.favouriteSuits?.includes(suit.id) && <img
                             src='heart_black.png'
                             className='action-bar-icon unfavourited suit-icon shadowed'
-                            alt='favourite'
+                            alt='Favourite'
+                            title='Favourite'
                             onClick={(e) => this.props.favourite(suit,e)}
                         />}
                         {this.props.favouriteSuits?.includes(suit.id) && <img
                             src='heart_red.png'
                             className='action-bar-icon favourited suit-icon shadowed'
-                            alt='unfavourite'
+                            alt='Unfavourite'
+                            title='Unfavourite'
                             onClick={(e) => this.props.unfavourite(suit,e)}
                             />}
 
                         {!this.props.ownedSuits?.includes(suit.id) &&
                             <img src='tick-empty.png'
                             className='action-bar-icon owned-icon suit-icon shadowed'
-                            alt='mark as owned'
+                            alt='Mark as owned'
+                            title='Mark as owned'
                             onClick={(e) => this.props.setOwned(suit,e)}
                             />}
                         {this.props.ownedSuits?.includes(suit.id) &&
                             <img src='tick-filled.png'
                             className='action-bar-icon owned-icon suit-icon shadowed'
-                            alt='unmark as owned'
+                            alt='Unmark as owned'
+                            title='Unmark as owned'
                             onClick={(e) => this.props.setNotOwned(suit,e)}
                             />}
                         <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon shadowed' alt='rarity' />
