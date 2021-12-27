@@ -294,7 +294,7 @@ export default class SuitFilter extends Component {
 
     render() {
         return (
-            <div className={`suit-filter-container${this.props.expanded ? '' : ' collapsed'}`}>
+            <div className={`suit-filter-container ${this.props.expanded ? 'expanded' : 'collapsed'}`}>
                 <div className='toggle-filter-btn' onClick={this.props.toggleFilterPane}>
                     <img
                         className={`toggle-filter-icon${this.props.expanded ? ' collapse' : ''}`}
