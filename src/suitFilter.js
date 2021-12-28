@@ -283,7 +283,10 @@ export default class SuitFilter extends Component {
                               fontSize: '11px',
                               height: '30px',
                               searchIconMargin: '0px 0px 0px 8px',
-                              zIndex: 999
+                              zIndex: 9 /* weird bug here;
+                                            too high & it renders overtop of zoomed images with a higher z-index than itself,
+                                            too low & list items render below the suit detail pane.
+                                            leaving low for now but should investigate more later */
                           }}
                           useCaching={false}
                         />
