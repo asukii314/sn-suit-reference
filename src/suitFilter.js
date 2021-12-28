@@ -295,7 +295,14 @@ export default class SuitFilter extends Component {
         )
     }
 
+    getNumAppliedFilters = () => {
+        return Object.values(this.state.filters).map((categoryInfo) => {
+            return Object.values(categoryInfo).filter(c => c).length
+        }).reduce((sum, val) => sum + val, 0)
+    }
+
     render() {
+        const numAppliedFilters = this.getNumAppliedFilters();
         return (
             <div className={`suit-filter-container ${this.props.expanded ? 'expanded' : 'collapsed'}`}>
                 <div className='toggle-filter-btn' onClick={this.props.toggleFilterPane}>
@@ -306,6 +313,7 @@ export default class SuitFilter extends Component {
                         src={this.props.expanded ? 'black-x-icon.png' :'filter-icon.png'}
                     />
                     <div className={`toggle-filter-label${this.props.expanded ? ' hidden' : ''}`}>Show Filters</div>
+                    {numAppliedFilters > 0 && <div className={`applied-filters${this.props.expanded ? ' hidden' : ''}`}>{numAppliedFilters}</div>}
                 </div>
                 <div className={this.props.expanded ? '' : 'hidden'}>
                     <div className='filter-fields-wrapper'>
