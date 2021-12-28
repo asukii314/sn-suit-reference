@@ -89,6 +89,7 @@ export default function SuitDetail({
         return (
             <div className='suit-detail-left-column'>
             <div className='suit-detail-img-container'>
+                {renderSuitImageButtons()}
                 {activeImgType === 'video' &&
                     <VideoEmbed url={suit.video}/>
                 }
@@ -102,7 +103,7 @@ export default function SuitDetail({
                     src={reflectionImgUrl}
                     alt='reflection'
                 />}
-                </div>
+            </div>
                 <div className='favourite-icon-container detail'>
                     <div className='suit-attribute-icons'>
                         <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />
@@ -195,7 +196,6 @@ export default function SuitDetail({
                 {renderSuitImages(reflectionImgUrl)}
                 <div className='suit-title-block'>
                     <div className='suit-title'>{`${suit.designer} · ${(activeImgType === 'awakened' && suit.awakenedName !== '') ? suit.awakenedName : suit.name}`}</div>
-                    {renderSuitImageButtons()}
                     {renderSuitInfoCards()}
                 </div>
             </div>
