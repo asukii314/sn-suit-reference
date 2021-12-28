@@ -2,19 +2,10 @@
 .reflection-info-card {
     background-color: #33262b;
     border-radius: 10px;
-    width: 250px;
     display: flex;
     flex-direction: row;
-    height: 40%;
     text-align: left;
     padding-bottom: 25px;
-}
-
-@media only screen and (max-width: 768px) {
-    .reflection-info-card {
-        width: 100%;
-        height: auto;
-    }
 }
 
 .reflection-card-column {

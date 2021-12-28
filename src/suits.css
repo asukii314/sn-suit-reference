@@ -1,3 +1,16 @@
+.suit-page-main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: calc(100vh - 115px);
+}
+
+@media only screen and (max-width: 768px) {
+    .suit-page-main-content {
+        height: calc(100vh - 75px);
+    }
+}
+
 .suit-cards-container {
     display: flex;
     flex-direction: row;
@@ -6,13 +19,7 @@
     align-content: flex-start;
     padding-top: 12px;
     margin-left: 12px;
-    position: fixed;
-    height: calc(100% - 60px);
-    width: calc(100% - 12px);
-}
-
-.suit-cards-container.pane-open {
-    height: calc(100% - 465px);
+    position: sticky;
 }
 
 .suit-cards-container.loaded {

@@ -85,9 +85,56 @@ export default function SuitDetail({
         return string;
     }
 
+    const renderActionBar = () => {
+        return (
+            <div className='favourite-icon-container detail'>
+                <div className='suit-attribute-icons'>
+                    <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />
+                    <div className='suit-attribute-label'>{suit.rarity}</div>
+                    {suit.attribute && <img src={`attribute/${suit.attribute.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />}
+                    {suit.attribute && <div className='suit-attribute-label'>{suit.attribute}</div>}
+                </div>
+                <div className='suit-likes-container'>
+                    <div className='suit-attribute-label favourites light'>{isOwned ? 'Owned' : 'Not Owned'}</div>
+                    {!isOwned && <img
+                        src='tick-empty.png'
+                        className='action-bar-icon owned-icon detail shadowed'
+                        alt='Mark as owned'
+                        title='Mark as owned'
+                        onClick={(e) => setOwned(suit,e)}
+                    />}
+                    {isOwned &&
+                        <img src='tick-filled.png'
+                        className='action-bar-icon owned-icon detail shadowed green'
+                        alt='Unmark as owned'
+                        title='Unmark as owned'
+                        onClick={(e) => setNotOwned(suit,e)}
+                        />}
+                    <div className='suit-attribute-label favourites'>{suit.likes}</div>
+                    {!isFavourited && <img
+                        src='heart_outline.png'
+                        className='action-bar-icon detail unfavourited'
+                        alt='Favourite'
+                        title='Favourite'
+                        onClick={() => favourite(suit)}
+                    />}
+                    {isFavourited && <img
+                        src='heart_red.png'
+                        className='action-bar-icon detail favourited'
+                        alt='Unfavourite'
+                        title='Unfavourite'
+                        onClick={() => unfavourite(suit)}
+                    />}
+
+                </div>
+            </div>
+        )
+    }
+
     const renderSuitImages = (reflectionImgUrl) => {
         return (
             <div className='suit-detail-left-column'>
+            {renderActionBar()}
             <div className='suit-detail-img-container'>
                 {renderSuitImageButtons()}
                 {activeImgType === 'video' &&
@@ -104,47 +151,6 @@ export default function SuitDetail({
                     alt='reflection'
                 />}
             </div>
-                <div className='favourite-icon-container detail'>
-                    <div className='suit-attribute-icons'>
-                        <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />
-                        <div className='suit-attribute-label'>{suit.rarity}</div>
-                        {suit.attribute && <img src={`attribute/${suit.attribute.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />}
-                        {suit.attribute && <div className='suit-attribute-label'>{suit.attribute}</div>}
-                    </div>
-                    <div className='suit-likes-container'>
-                        <div className='suit-attribute-label favourites light'>{isOwned ? 'Owned' : 'Not Owned'}</div>
-                        {!isOwned && <img
-                            src='tick-empty.png'
-                            className='action-bar-icon owned-icon detail shadowed'
-                            alt='Mark as owned'
-                            title='Mark as owned'
-                            onClick={(e) => setOwned(suit,e)}
-                        />}
-                        {isOwned &&
-                            <img src='tick-filled.png'
-                            className='action-bar-icon owned-icon detail shadowed green'
-                            alt='Unmark as owned'
-                            title='Unmark as owned'
-                            onClick={(e) => setNotOwned(suit,e)}
-                            />}
-                        <div className='suit-attribute-label favourites'>{suit.likes}</div>
-                        {!isFavourited && <img
-                            src='heart_outline.png'
-                            className='action-bar-icon detail unfavourited'
-                            alt='Favourite'
-                            title='Favourite'
-                            onClick={() => favourite(suit)}
-                        />}
-                        {isFavourited && <img
-                            src='heart_red.png'
-                            className='action-bar-icon detail favourited'
-                            alt='Unfavourite'
-                            title='Unfavourite'
-                            onClick={() => unfavourite(suit)}
-                        />}
-
-                    </div>
-                </div>
             </div>
         );
     }
@@ -193,11 +199,9 @@ export default function SuitDetail({
         return (
             <div className='suit-detail-container' {/*...SwipeReact.events*/ ...ArrowKeysReact.events} tabIndex="1">
                 <button className='suit-detail-close-button' onClick={closePane}>❌</button>
+                <div className='suit-title'>{`${suit.designer} · ${(activeImgType === 'awakened' && suit.awakenedName !== '') ? suit.awakenedName : suit.name}`}</div>
                 {renderSuitImages(reflectionImgUrl)}
-                <div className='suit-title-block'>
-                    <div className='suit-title'>{`${suit.designer} · ${(activeImgType === 'awakened' && suit.awakenedName !== '') ? suit.awakenedName : suit.name}`}</div>
-                    {renderSuitInfoCards()}
-                </div>
+                {renderSuitInfoCards()}
             </div>
         );
     }

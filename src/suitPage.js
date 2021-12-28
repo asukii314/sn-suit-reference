@@ -203,7 +203,7 @@ export default function SuitPanel() {
                 setActiveSuit={onSuitClick}
                 isMobile={isMobile}
             />
-            <div>
+            <div className='suit-page-main-content'>
                 <SuitDetail
                     suit={activeSuit}
                     closePane={closePane}
