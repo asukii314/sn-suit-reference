@@ -9,7 +9,7 @@
 
 .event-card-container ul {
     padding-inline-start: 20px;
-    margin: 1em 0;
+    margin-top: 0.8em;
 }
 
 
@@ -21,7 +21,7 @@
 }
 
 .suit-link {
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .event-title {
@@ -30,7 +30,7 @@
 }
 
 .event-subtitle {
-    font-size: 11px;
+    font-size: 12px;
     color: rgba(255,255,255,0.5);;
     margin-top: 5px;
 }

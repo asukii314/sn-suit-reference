@@ -163,7 +163,19 @@ button.selected {
 
 .suit-image-buttons-container {
     display: flex;
-    flex-direction: column;
+
+    /*
+     * workaround for flexbox bug with column wrap
+     * https://stackoverflow.com/a/68904668
+     */
+    flex-direction: row;
+    flex-wrap: wrap;
+    writing-mode: vertical-lr;
+}
+
+/* Ensures content is rendered correctly in Firefox */
+.suit-image-buttons-container * {
+    writing-mode: horizontal-tb;
 }
 
 .suit-subtitle-container {
