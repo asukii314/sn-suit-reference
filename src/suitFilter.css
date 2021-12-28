@@ -81,3 +81,15 @@ input {
     border-radius: 50px;
     margin: 10px 0px;
 }
+
+.clear-filters-btn {
+    margin-left: 10px;
+    border-radius: 20px;
+    height: 30px;
+    background-color: #d1668f;
+    color: white;
+}
+
+.clear-filters-btn:disabled {
+    opacity: 60%;
+}

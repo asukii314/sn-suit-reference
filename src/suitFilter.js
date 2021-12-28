@@ -3,6 +3,68 @@ import './suitFilter.css';
 import FilterBox from './filterBox';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 
+const initialFilterState = {
+    Rarity: {
+        SR: false,
+        SSR: false,
+        UR: false
+    },
+    Attribute: {
+        Cool: false,
+        Elegant: false,
+        Fresh: false,
+        Sexy: false,
+        Sweet: false
+    },
+    Source: {
+        Pavillion: false,
+        Crafting: false,
+        Free: false,
+        Paid: false,
+        'Other event type': false
+    },
+    Nation : {
+        Apple: false,
+        Cloud: false,
+        Ninir: false,
+        North: false,
+        Pigeon: false,
+        Ruin: false,
+        Wasteland: false
+    }
+}
+
+const initialChildFilterState = {
+    Source: {
+        Pavillion: {
+            'Permanent': false,
+            'Gleam': false,
+            'Event': false,
+            'Collab': false,
+        },
+        Crafting: {
+            'Lifetime': false,
+            'Chapter suit': false,
+            'Mind maze': false,
+            'Memory stairway': false,
+            'Other': false,
+        },
+        Free: {
+            'Arena': false,
+            'Pinnacle battle': false,
+            'Styling competition': false,
+            'Intel hub': false,
+            'Welfare': false,
+            'Other': false,
+        },
+        Paid: {
+            'Recharge': false,
+            'VIP level': false,
+            'Fashion plan': false,
+            'Purple diamonds': false,
+        }
+    }
+}
 
 export default class SuitFilter extends Component {
     constructor(props){
@@ -10,67 +72,8 @@ export default class SuitFilter extends Component {
         this.state = {
             searchByNameResults: null,
             searchByDesignerResults: null,
-            filters: {
-                Rarity: {
-                    SR: false,
-                    SSR: false,
-                    UR: false
-                },
-                Attribute: {
-                    Cool: false,
-                    Elegant: false,
-                    Fresh: false,
-                    Sexy: false,
-                    Sweet: false
-                },
-                Source: {
-                    Pavillion: false,
-                    Crafting: false,
-                    Free: false,
-                    Paid: false,
-                    'Other event type': false
-                },
-                Nation : {
-                    Apple: false,
-                    Cloud: false,
-                    Ninir: false,
-                    North: false,
-                    Pigeon: false,
-                    Ruin: false,
-                    Wasteland: false
-                }
-            },
-            childFilters: {
-                Source: {
-                    Pavillion: {
-                        'Permanent': false,
-                        'Gleam': false,
-                        'Event': false,
-                        'Collab': false,
-                    },
-                    Crafting: {
-                        'Lifetime': false,
-                        'Chapter suit': false,
-                        'Mind maze': false,
-                        'Memory stairway': false,
-                        'Other': false,
-                    },
-                    Free: {
-                        'Arena': false,
-                        'Pinnacle battle': false,
-                        'Styling competition': false,
-                        'Intel hub': false,
-                        'Welfare': false,
-                        'Other': false,
-                    },
-                    Paid: {
-                        'Recharge': false,
-                        'VIP level': false,
-                        'Fashion plan': false,
-                        'Purple diamonds': false,
-                    }
-                }
-            }
+            filters: initialFilterState,
+            childFilters: initialChildFilterState,
         };
         this.metadata = {
             Rarity: {
@@ -301,6 +304,24 @@ export default class SuitFilter extends Component {
         }).reduce((sum, val) => sum + val, 0)
     }
 
+    renderClearFiltersBtn = () => {
+        return (
+            <button
+                className='clear-filters-btn'
+                disabled={this.getNumAppliedFilters() === 0}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    this.setState({
+                        filters: initialFilterState,
+                        childFilters: initialChildFilterState
+                    })
+                }}
+            >
+            Clear Filters
+            </button>
+        )
+    }
+
     render() {
         const numAppliedFilters = this.getNumAppliedFilters();
         return (
@@ -314,11 +335,13 @@ export default class SuitFilter extends Component {
                     />
                     <div className={`toggle-filter-label${this.props.expanded ? ' hidden' : ''}`}>Show Filters</div>
                     {numAppliedFilters > 0 && <div className={`applied-filters${this.props.expanded ? ' hidden' : ''}`}>{numAppliedFilters}</div>}
+                    {numAppliedFilters > 0 && !this.props.expanded && this.renderClearFiltersBtn()}
                 </div>
                 <div className={this.props.expanded ? '' : 'hidden'}>
                     <div className='filter-fields-wrapper'>
                         {this.renderSearchBars()}
                         {this.renderFilters()}
+                        {this.renderClearFiltersBtn()}
                     </div>
                 </div>
             </div>
