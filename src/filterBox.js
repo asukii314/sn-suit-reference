@@ -69,12 +69,19 @@ export default class FilterBox extends Component {
         );
     }
 
+    // todo - make this care about subcategories
+    getNumAppliedFilters = () => {
+        return Object.values(this.props.checked).filter(c => c).length;
+    }
 
     render() {
         return (
             <div className='filter-box-container' >
             <div className='filter-box-title' onClick={this.toggleExpand}>
-                <div>{this.props.category}</div>
+                <div className='title-text-wrapper'>
+                    <div>{this.props.category}</div>
+                    {this.getNumAppliedFilters() > 0 && <div className='applied-filters'>{this.getNumAppliedFilters()}</div>}
+                </div>
                 <div style={{fontWeight: 'normal', fontSize: '10px'}}>{this.state.expanded ? '∧' : '∨'}</div>
             </div>
 
