@@ -17,7 +17,7 @@ export default function WishlistPage () {
     const { user } = useAuth0();
     const { userid } = useParams();
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-    
+
     const [width, setWidth] = useState(window.innerWidth);
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
@@ -162,6 +162,15 @@ export default function WishlistPage () {
         }
         if(!suit || !user?.sub) return;
         setOwnedSuits([...ownedSuits, suit.id])
+
+        const idx = suits.findIndex(s => s.id === suit.id);
+        const suitsCopy = [...suits];
+        suitsCopy[idx] = {
+            ...suits[idx],
+            owned: true
+        };
+        setSuits(suitsCopy);
+
         window.fetch(
             `https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}/${suit.id}`,
             {method: 'PUT'}
@@ -178,6 +187,14 @@ export default function WishlistPage () {
             copy.splice(index, 1)
             setOwnedSuits(copy);
         }
+
+        const idx = suits.findIndex(s => s.id === suit.id);
+        const suitsCopy = [...suits];
+        suitsCopy[idx] = {
+            ...suits[idx],
+            owned: false
+        };
+        setSuits(suitsCopy);
 
         window.fetch(
             `https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}/${suit.id}`,
