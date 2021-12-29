@@ -88,6 +88,8 @@ input {
     height: 30px;
     background-color: #d1668f;
     color: white;
+    font-weight: bold;
+    font-size: 11px;
 }
 
 .clear-filters-btn:disabled {
