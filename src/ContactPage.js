@@ -16,8 +16,8 @@ export default function ContactPage() {
       <p>
       Here's a few ways to reach me:
       <ul>
+      <li><b>Discord:</b> <a className='inline' href="https://discord.gg/rhwPZYpupN">Join the site's Discord Server</a></li>
       <li><b>Email:</b> <a className='inline' href="mailto:asukii314.twitch@gmail.com">asukii314.twitch@gmail.com</a></li>
-      <li><b>Discord:</b> <a className='inline' href="https://discord.gg/hWCTc69C3Y">Join my guild's server</a>, or DM me @asukii#7286</li>
       <li><b>Github:</b> <a className='inline' href="https://github.com/asukii314/sn-suit-reference">Public repo is here</a> - feel free to make a PR!</li>
       </ul>
       </p>
