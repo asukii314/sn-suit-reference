@@ -91,5 +91,5 @@ input {
 }
 
 .clear-filters-btn:disabled {
-    opacity: 60%;
+    opacity: 0.7;
 }
