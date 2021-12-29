@@ -31,6 +31,10 @@ const initialFilterState = {
         Pigeon: false,
         Ruin: false,
         Wasteland: false
+    },
+    Owned: {
+        True: false,
+        False: false
     }
 }
 
@@ -92,6 +96,10 @@ export default class SuitFilter extends Component {
             Nation: {
                 paths: ['nation'],
                 hasIcons: true,
+            },
+            Owned: {
+                paths: ['owned'],
+                hasIcons: false
             }
         }
     }
@@ -101,7 +109,7 @@ export default class SuitFilter extends Component {
         for(const step of path){
             res = res?.[step];
         }
-        return res;
+        return String(res);
     }
 
     updateFilter = (category, subcategory, option, value) => {

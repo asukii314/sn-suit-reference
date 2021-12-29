@@ -32,8 +32,10 @@ export default function WishlistPage () {
     const isMobile = width <= 768;
     let [filterPaneOpen, setFilterPaneOpen] = useState(!isMobile);
 
+    let fetchedSuits = false;
     useEffect(() => {
-        if(!suits.length) {
+        if(!suits.length && !fetchedSuits) {
+            fetchedSuits = true;
             Promise.all([
                 fetchAllSuits(),
                 window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${userid}`)
@@ -63,6 +65,21 @@ export default function WishlistPage () {
                     }
                 }
             })
+        }
+
+        if(suits.length > 0 && ownedSuits.length > 0 && suits[0].owned === undefined) {
+            setSuits(suits.map(suit => {
+                return {
+                    ...suit,
+                    owned: ownedSuits.includes(suit.id)
+                }
+            }));
+            setFilteredSuits(filteredSuits.map(suit => {
+                return {
+                    ...suit,
+                    owned: ownedSuits.includes(suit.id)
+                }
+            }));
         }
     })
 

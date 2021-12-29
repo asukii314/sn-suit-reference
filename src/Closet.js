@@ -64,6 +64,21 @@ export default function WishlistPage () {
                 }
             })
         }
+
+        if(suits.length > 0 && ownedSuits.length > 0 && suits[0].owned === undefined) {
+            setSuits(suits.map(suit => {
+                return {
+                    ...suit,
+                    owned: ownedSuits.includes(suit.id)
+                }
+            }));
+            setFilteredSuits(filteredSuits.map(suit => {
+                return {
+                    ...suit,
+                    owned: ownedSuits.includes(suit.id)
+                }
+            }));
+        }
     })
 
     const addFavourite = (suit,e) => {
