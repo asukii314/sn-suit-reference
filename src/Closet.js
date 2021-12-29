@@ -17,8 +17,7 @@ export default function WishlistPage () {
     const { user } = useAuth0();
     const { userid } = useParams();
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-
-
+    
     const [width, setWidth] = useState(window.innerWidth);
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
@@ -36,20 +35,21 @@ export default function WishlistPage () {
         if(!suits.length) {
             Promise.all([
                 fetchAllSuits(),
-                window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${userid}`)
-                    .then(r => r.json()),
+                window.fetch(`https://sn-suit-reference-api.herokuapp.com/owned/${userid}`)
+                    .then(r => r.json())
             ]).then((values) => {
-                const [allSuits, favourites, owned] = values;
-                const faveSuits = allSuits.filter(suit => favourites.includes(suit.id));
-                setSuits(faveSuits);
-                setFilteredSuits(faveSuits);
+                const [allSuits, owned] = values;
+                const closet = allSuits.filter(suit => owned.includes(suit.id));
+                setSuits(closet);
+                setFilteredSuits(closet);
+
                 if(user?.sub) {
                     if(user?.sub === userid) {
                         Promise.all([
-                            window.fetch(`https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}`)
+                            setOwnedSuits(owned),
+                            window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user?.sub}`)
                                 .then(r => r.json())
-                                .then(setOwnedSuits),
-                            setFavourites(favourites)
+                                .then(setFavourites)
                         ])
                     } else {
                         Promise.all([

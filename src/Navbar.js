@@ -32,6 +32,13 @@ export default function Navbar() {
       return (<li><a href='' onClick={() => loginWithRedirect()}>Wishlist</a></li>)
   }
 
+  const renderClosetBtn = () => {
+      if(user?.sub) {
+          return (<li><a href={`#/closet/${user.sub}`}>Closet</a></li>)
+      }
+      return (<li><a href='' onClick={() => loginWithRedirect()}>Closet</a></li>)
+  }
+
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen)
 
@@ -49,6 +56,7 @@ export default function Navbar() {
                 </ul>
                 </li>*/}
                 {renderWishlistBtn()}
+                {renderClosetBtn()}
                 <li><a href="#/credits">Credits</a></li>
                 <li><a href="#/contact">Contact</a></li>
                 {!isAuthenticated && <li><a href='' onClick={() => loginWithRedirect()}>Log In</a></li>}

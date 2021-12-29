@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 import ContactPage from './ContactPage';
 import CreditsPage from './CreditsPage';
 import Wishlist from './Wishlist';
+import Closet from './Closet';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                         <Route path="/credits" element={<CreditsPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                         <Route path="/wishlist/:userid" element={<Wishlist />} />
+                        <Route path="/closet/:userid" element={<Closet />} />
                     </Routes>
                 </header>
             </div>
