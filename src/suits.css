@@ -13,7 +13,6 @@
 
 .suit-cards-container {
     display: flex;
-    width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -21,6 +20,10 @@
     padding-top: 12px;
     margin-left: 12px;
     position: sticky;
+}
+
+.suit-cards-container.pane-closed {
+    width: 100%;
 }
 
 .suit-cards-container.loaded {

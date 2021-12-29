@@ -80,7 +80,7 @@ export default class SuitCards extends Component {
     render() {
         if(!this.props.suits) return null;
         return (
-            <div className={`suit-cards-container${this.props.suits.length ? ' loaded' : ''}${this.props.filterPaneOpen ? ' pane-open' : ''}`}>
+            <div className={`suit-cards-container${this.props.suits.length ? ' loaded' : ''}${this.props.filterPaneOpen ? ' pane-open' : ' pane-closed'}`}>
                 {this.props.suits.map(this.renderSuitCard)}
             </div>
         );
