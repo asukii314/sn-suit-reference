@@ -27,41 +27,44 @@ export default function Navbar() {
 
   const renderWishlistBtn = () => {
       if(user?.sub) {
-          return (<li><a href={`#/wishlist/${user.sub}`}>Wishlist</a></li>)
+          return (<li><a href={`#/wishlist/${user.sub}`} onClick={() => setMenuOpen(false)}>Wishlist</a></li>)
       }
-      return (<li><a href='' onClick={() => loginWithRedirect()}>Wishlist</a></li>)
+      return (<li><a href='' onClick={() => {loginWithRedirect(); setMenuOpen(false);}}>Wishlist</a></li>)
   }
 
   const renderClosetBtn = () => {
       if(user?.sub) {
-          return (<li><a href={`#/closet/${user.sub}`}>Closet</a></li>)
+          return (<li><a href={`#/closet/${user.sub}`} onClick={() => setMenuOpen(false)}>Closet</a></li>)
       }
-      return (<li><a href='' onClick={() => loginWithRedirect()}>Closet</a></li>)
+      return (<li><a href='' onClick={() => {loginWithRedirect(); setMenuOpen(false);}}>Closet</a></li>)
   }
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen)
 
     return (
-        <nav role='navigation' className={menuOpen ? ' open' : ''}>
-            <b>
-                <img className='mobile-hamburger-menu' src='./menu.png' onClick={toggleMenu} />
-                SN Suit Reference
-            </b>
-            <ul>
-                <li><a href="#/">All Suits</a></li>
-                {/*<li><a>Games</a>
+        <div>
+            {menuOpen && <div className='menu-open-background' onClick={() => setMenuOpen(false)}></div>}
+            <nav role='navigation' className={menuOpen ? 'open' : ''}>
+                <b>
+                    <img className='mobile-hamburger-menu' src='./menu.png' onClick={toggleMenu} />
+                    SN Suit Reference
+                </b>
                 <ul>
-                  {Object.keys(this.props.gamesConfig).map(this._renderGameLink)}
+                    <li><a href="#/" onClick={() => setMenuOpen(false)}>All Suits</a></li>
+                    {/*<li><a>Games</a>
+                    <ul>
+                      {Object.keys(this.props.gamesConfig).map(this._renderGameLink)}
+                    </ul>
+                    </li>*/}
+                    {renderWishlistBtn()}
+                    {renderClosetBtn()}
+                    <li><a href="#/credits" onClick={() => setMenuOpen(false)}>Credits</a></li>
+                    <li><a href="#/contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+                    {!isAuthenticated && <li><a href='' onClick={() => {loginWithRedirect(); setMenuOpen(false);}}>Log In</a></li>}
+                    {isAuthenticated && <li><a onClick={() => {logoutWithRedirect(); setMenuOpen(false);}}>Log Out</a></li>}
                 </ul>
-                </li>*/}
-                {renderWishlistBtn()}
-                {renderClosetBtn()}
-                <li><a href="#/credits">Credits</a></li>
-                <li><a href="#/contact">Contact</a></li>
-                {!isAuthenticated && <li><a href='' onClick={() => loginWithRedirect()}>Log In</a></li>}
-                {isAuthenticated && <li><a onClick={() => logoutWithRedirect()}>Log Out</a></li>}
-            </ul>
-        </nav>
+            </nav>
+        </div>
     );
 }
