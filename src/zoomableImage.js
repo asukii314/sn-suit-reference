@@ -5,12 +5,19 @@ export default class SuitDetail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            zoomed: false
+            zoomed: false,
+            loading: true,
         };
     }
 
     toggleZoom = () => {
         this.setState({zoomed: !this.state.zoomed})
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if(this.props.src !== nextProps.src) {
+            this.setState({loading: true})
+        }
     }
 
     render() {
@@ -27,12 +34,16 @@ export default class SuitDetail extends Component {
                      </div>
                  )}
 
-                <img
-                    className={`${this.props.className} zoomed-out`}
-                    src={this.props.src}
-                    alt={this.props.alt}
-                    onClick={this.toggleZoom}
-                />
+                <div style={{width: '100%', height: '100%', position: 'relative'}}>
+                    <img
+                        className={`${this.props.className}${this.state.loading ? ' loading' : ''} zoomed-out`}
+                        src={this.props.src}
+                        alt={this.props.alt}
+                        onClick={this.toggleZoom}
+                        onLoad={() => this.setState({loading: false})}
+                    />
+                    {this.state.loading && <div id="loading-spinner" />}
+                </div>
                 {this.state.zoomed && <img
                     className={`${this.props.className} zoomed-in`}
                     src={this.props.src}

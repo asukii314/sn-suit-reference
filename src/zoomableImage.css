@@ -1,5 +1,10 @@
 .zoomed-out {
     cursor: zoom-in;
+    box-sizing: border-box;
+}
+
+img.zoomed-out.loading {
+    filter: brightness(75%);
 }
 
 .zoomed-in {
@@ -44,4 +49,28 @@
     cursor: zoom-in;
     margin: 8px;
     filter: blur(3px) invert(1);
+}
+
+/* Adapted from https://codepen.io/mandelid/pen/vwKoe */
+#loading-spinner {
+  display: inline-block;
+  box-sizing: border-box;
+  position: absolute;
+  left: calc(50% - 25px);
+  top: calc(50% - 25px);
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
 }
