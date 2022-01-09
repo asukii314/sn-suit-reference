@@ -198,10 +198,12 @@ export default function SuitDetail({
         const reflectionImgUrl = suit.reflection?.images?.[activeImgType];
         return (
             <div className='suit-detail-container' {/*...SwipeReact.events*/ ...ArrowKeysReact.events} tabIndex="1">
+                <input type='image' className='suit-select-arrow previous' src='./down-arrow.png' onClick={() => nextSuit({forward: false})}/>
                 <button className='suit-detail-close-button' onClick={closePane}>❌</button>
                 <div className='suit-title'>{`${suit.designer} · ${(activeImgType === 'awakened' && suit.awakenedName !== '') ? suit.awakenedName : suit.name}`}</div>
                 {renderSuitImages(reflectionImgUrl)}
                 {renderSuitInfoCards()}
+                <input type='image' className='suit-select-arrow next' src='./down-arrow.png' onClick={() => nextSuit({forward: true})}/>
             </div>
         );
     }

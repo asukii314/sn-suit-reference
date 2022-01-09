@@ -47,8 +47,12 @@
     -webkit-user-select: none;
     flex-shrink: 1;
     max-height: 100%;
-    height: 100%;
     max-width: 100%;
+
+    /* TODO: figure out what to do about this...
+             leaving this line in can cause awkward image stretching on mobile (see desire deity),
+             but taking it out causes object fit overflow errors on Safari */
+    height: 100%;
 }
 
 .carousel {
@@ -305,4 +309,27 @@ button.selected {
         flex-direction: column;
         width: 100%;
     }
+}
+
+.suit-select-arrow {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50px;
+    position: absolute;
+    border: 2px solid #33262b;
+    top: 50%;
+}
+
+.suit-select-arrow.previous {
+    transform: rotate(90deg);
+    filter: drop-shadow(8px -8px 8px #33262b);
+    left: -20px;
+}
+
+.suit-select-arrow.next {
+    transform: rotate(270deg);
+    filter: drop-shadow(-8px 8px 8px #33262b);
+    right: -20px;
 }

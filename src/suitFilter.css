@@ -19,7 +19,7 @@
     flex-wrap: wrap;
 }
 
-input {
+.search-bar-wrapper input {
     padding-left: 5px !important;
 }
 
