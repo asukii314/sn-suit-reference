@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import {fetchSuitByName} from './fetchSuitInfo';
+import {fetchSuitById} from './fetchSuitInfo';
 import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
 import VideoEmbed from './VideoEmbed';
@@ -70,14 +70,12 @@ export default function SuitDetailPage() {
 
     useEffect(() => {
         if(!suit) {
-            fetchSuitByName(suitName)
-            .then(setSuit)
+            fetchSuitById(suitId).then(setSuit)
         }
     }, [suit, suitName])
 
     useEffect(() => {
-        const suitName = suitId[0].toUpperCase() + suitId.replace(/-/g, ' ').substring(1);
-        fetchSuitByName(suitName).then(setSuit)
+        fetchSuitById(suitId).then(setSuit)
     }, [suitId]);
 
     const getSuitSourceString = () => {
