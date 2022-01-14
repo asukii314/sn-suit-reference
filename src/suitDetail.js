@@ -3,6 +3,7 @@ import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
 import VideoEmbed from './VideoEmbed';
 import EventCard from './eventCard';
+import EventDateCard from './eventDateCard';
 import ArrowKeysReact from 'arrow-keys-react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -169,6 +170,11 @@ export default function SuitDetail({
                         event={suit.source?.event}
                         sourceType={getSuitSourceString()}
                     />
+                    <EventDateCard
+                        releases={suit.source?.event?.releases}
+                        sourceType={suit.source.type}
+                        sourceSubype={suit.source.subtype}
+                    />
                     <ReflectionInfo
                         exists={suit.archive !== '(N/A - no reflection)'}
                         iconUrl={suit.reflection?.images?.icon}
@@ -183,6 +189,11 @@ export default function SuitDetail({
                     <EventCard
                         event={suit.source?.event}
                         sourceType={getSuitSourceString()}
+                    />
+                    <EventDateCard
+                        releases={suit.source?.event?.releases}
+                        sourceType={suit.source.type}
+                        sourceSubype={suit.source.subtype}
                     />
                     <ReflectionInfo
                         exists={suit.archive !== '(N/A - no reflection)'}

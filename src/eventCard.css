@@ -7,11 +7,15 @@
     text-align: left;
 }
 
-.event-card-container ul {
+.event-suit-list {
     padding-inline-start: 20px;
     margin-top: 0.8em;
 }
 
+.event-release-list {
+    padding-inline-start: 20px;
+    margin-top: 0px;
+}
 
 @media only screen and (max-width: 768px) {
     .event-card-container {
@@ -33,4 +37,17 @@
     font-size: 12px;
     color: rgba(255,255,255,0.5);;
     margin-top: 5px;
+}
+
+.event-release-container {
+    font-size: 12px;
+    margin-left: 18px;
+}
+
+.event-release {
+    margin-top: 8px;
+}
+
+.relative-event-date {
+    color: rgba(255,255,255,0.5)
 }

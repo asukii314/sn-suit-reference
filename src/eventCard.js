@@ -18,7 +18,7 @@ export default function eventCard({ event, sourceType }) {
         <div className='event-card-container'>
             <div className="event-title">{sourceType}</div>
             <div className="event-subtitle">{event.name}</div>
-            <ul>
+            <ul className="event-suit-list">
                 {sortedSuits.map(renderEventSuit)}
             </ul>
         </div>
