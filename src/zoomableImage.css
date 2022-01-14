@@ -42,6 +42,7 @@ img.zoomed-out.loading {
     position: absolute;
     margin: 10px;
     cursor: zoom-in;
+    z-index: 5;
 }
 .zoom-in-button-background {
     width: 25px;
@@ -50,6 +51,7 @@ img.zoomed-out.loading {
     cursor: zoom-in;
     margin: 8px;
     filter: blur(3px) invert(1);
+    z-index: 5;
 }
 
 /* Adapted from https://codepen.io/mandelid/pen/vwKoe */
