@@ -19,13 +19,13 @@
     min-width: 70px;
     max-width: 70px;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
     .reflection-icon {
-        margin-left: 20px;
     }
-}
+} */
 
 
 .CoR-title {
