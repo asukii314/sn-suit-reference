@@ -23,13 +23,14 @@ export default function WishlistPage () {
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
     }
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
-    }, []);
-    const isMobile = width <= 768;
+    // useEffect(() => {
+    //     window.addEventListener('resize', handleWindowSizeChange);
+    //     return () => {
+    //         window.removeEventListener('resize', handleWindowSizeChange);
+    //     }
+    // }, []);
+    // const isMobile = width <= 768;
+    const isMobile = true;
     let [filterPaneOpen, setFilterPaneOpen] = useState(!isMobile);
 
     let fetchedSuits = false;
@@ -260,6 +261,7 @@ export default function WishlistPage () {
                     isOwned={ownedSuits.includes(activeSuit?.id) || false}
                     setOwned={setOwned}
                     setNotOwned={setNotOwned}
+                    isMobile={isMobile}
                 />
                 <SuitCards
                     suits={filteredSuits}
