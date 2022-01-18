@@ -102,6 +102,25 @@ div {
     text-align: left;
 }
 
+.suit-surtitle {
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+.suit-subtitle {
+    margin-top: 4px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    color: rgba(0,0,0,0.6);
+    font-family: 'Lato', sans-serif;
+}
+
 @media only screen and (max-width: 768px) {
     .suit-title-block {
         width: 100%;
@@ -109,6 +128,12 @@ div {
     }
     .suit-title {
         font-size: 24px;
+    }
+    .suit-surtitle {
+        font-size: 11px;
+    }
+    .suit-subtitle {
+        font-size: 14px;
     }
 }
 
@@ -331,23 +356,4 @@ button.selected {
     transform: rotate(270deg);
     filter: drop-shadow(-8px 8px 8px #33262b);
     right: -20px;
-}
-
-.suit-surtitle {
-    color: rgba(0,0,0,0.5);
-    margin-bottom: 5px;
-    margin-top: 5px;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 1px;
-}
-
-.suit-subtitle {
-    margin-top: 0;
-    margin-bottom: 30px;
-    font-size: 17px;
-    color: rgba(0,0,0,0.6);
-    font-family: 'Lato', sans-serif;
 }
