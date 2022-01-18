@@ -5,6 +5,7 @@ import ZoomableImage from './zoomableImage';
 import ReflectionInfo from './reflectionInfo';
 import VideoEmbed from './VideoEmbed';
 import EventCard from './eventCard';
+import EventDateCard from './eventDateCard';
 import './suitDetailPage.css';
 
 function renderSuitImageTile(imgType, suitImgUrl, reflectionImgUrl) {
@@ -111,15 +112,22 @@ export default function SuitDetailPage() {
                         <div className='suit-title full'>{`${suit.designer} · ${suit.name}`}</div>
                     </div>
                 </div>
-                <div className='suit-detail-infocard-container'>
+                <div className='suit-page-infocard-container'>
+                    <EventDateCard
+                        releases={suit.source?.event?.releases}
+                        sourceType={suit.source.type}
+                        sourceSubype={suit.source.subtype}
+                    />
                     <EventCard
                         event={suit.source?.event}
                         sourceType={getSuitSourceString()}
                     />
-                    {suit.archive !== '(N/A - no reflection)' && <ReflectionInfo
+                    <ReflectionInfo
                         iconUrl={suit.reflection.images?.icon}
                         CoR={suit.reflection?.CoR}
-                    />}
+                        exists={suit.archive !== '(N/A - no reflection)'}
+                        compress={true}
+                    />
                 </div>
 
             </div>

@@ -23,7 +23,7 @@ export default class ReflectionInfo extends Component {
 
     render() {
         if(!this.props.exists) return (
-            <div className='reflection-info-card' >
+            <div className={`reflection-info-card${this.props.compress ? ' compress' : ''}`}>
                 <div className='reflection-card-column'>
                     <div className="CoR-title">Skill Info</div>
                     <div className="CoR-description" style={{marginTop: '5px', color: 'darkgray'}}>N/A - suit does not have a reflection</div>
@@ -32,7 +32,7 @@ export default class ReflectionInfo extends Component {
         );
 
         if(!this.props.iconUrl?.length) return (
-            <div className='reflection-info-card' >
+            <div className={`reflection-info-card${this.props.compress ? ' compress' : ''}`}>
                 <div className='reflection-card-column'>
                     <div className="CoR-title">Skill Info</div>
                     <div className="CoR-description" style={{marginTop: '5px', color: 'darkgray'}}><i>(no skill info found)</i></div>
@@ -40,7 +40,7 @@ export default class ReflectionInfo extends Component {
             </div>
         );
         return (
-            <div className='reflection-info-card'>
+            <div className={`reflection-info-card${this.props.compress ? ' compress' : ''}`}>
                 <div className='reflection-card-column'>
                     <div className="CoR-title">Skill Info</div>
                     <img className='reflection-icon' src={this.props.iconUrl} alt='reflection-icon' />

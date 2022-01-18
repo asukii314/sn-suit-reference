@@ -8,6 +8,14 @@
     padding-bottom: 25px;
 }
 
+.reflection-info-card.compress {
+    max-width: 250px;
+    margin-bottom: 10px;
+}
+.reflection-info-card.compress > * > img {
+    margin-left: 5px;
+}
+
 .reflection-card-column {
     display: flex;
     flex-direction: column;
