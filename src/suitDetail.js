@@ -76,11 +76,24 @@ export default function SuitDetail({
             'Single UR',
             'Double UR'
         ];
+        const verboseEventSubtypes = [
+            'memory stairway',
+            'welfare',
+            'gleam',
+            'arena',
+            'recharge',
+        ]
         if(suit.source.subtype === 'event' && verboseEventTypes.includes(suit.source.event?.type)) {
             string = `${suit.source.event.type} event`
         }
         if(suit.source.subtype === 'collab' && verboseEventTypes.includes(suit.source.event?.type)) {
             string = `${suit.source.event.type} collab`
+        }
+        if(verboseEventSubtypes.includes(suit.source.subtype)) {
+            string = `${string} suit`
+        }
+        if(suit.source.subtype === 'permanent') {
+            string = 'Permanent pavillion suit'
         }
 
         return string;
@@ -166,14 +179,14 @@ export default function SuitDetail({
                     showThumbs={false}
                     useKeyboardArrows={false}
                 >
-                    <EventCard
-                        event={suit.source?.event}
-                        sourceType={getSuitSourceString()}
-                    />
                     <EventDateCard
                         releases={suit.source?.event?.releases}
                         sourceType={suit.source.type}
                         sourceSubype={suit.source.subtype}
+                    />
+                    <EventCard
+                        event={suit.source?.event}
+                        sourceType={getSuitSourceString()}
                     />
                     <ReflectionInfo
                         exists={suit.archive !== '(N/A - no reflection)'}
@@ -186,14 +199,14 @@ export default function SuitDetail({
         } else {
             return (
                 <div className='suit-detail-infocard-container'>
-                    <EventCard
-                        event={suit.source?.event}
-                        sourceType={getSuitSourceString()}
-                    />
                     <EventDateCard
                         releases={suit.source?.event?.releases}
                         sourceType={suit.source.type}
                         sourceSubype={suit.source.subtype}
+                    />
+                    <EventCard
+                        event={suit.source?.event}
+                        sourceType={getSuitSourceString()}
                     />
                     <ReflectionInfo
                         exists={suit.archive !== '(N/A - no reflection)'}
@@ -211,7 +224,9 @@ export default function SuitDetail({
             <div className='suit-detail-container' {/*...SwipeReact.events*/ ...ArrowKeysReact.events} tabIndex="1">
                 <input type='image' className='suit-select-arrow previous' src='./down-arrow.png' onClick={() => nextSuit({forward: false})}/>
                 <button className='suit-detail-close-button' onClick={closePane}>❌</button>
+                <div className='suit-surtitle'>{getSuitSourceString()}</div>
                 <div className='suit-title'>{`${suit.designer} · ${(activeImgType === 'awakened' && suit.awakenedName !== '') ? suit.awakenedName : suit.name}`}</div>
+                <div className='suit-subtitle'>{suit.source?.eventName === suit.name ? '' : suit.source?.eventName}</div>
                 {renderSuitImages(reflectionImgUrl)}
                 {renderSuitInfoCards()}
                 <input type='image' className='suit-select-arrow next' src='./down-arrow.png' onClick={() => nextSuit({forward: true})}/>
