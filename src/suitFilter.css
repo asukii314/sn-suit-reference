@@ -95,3 +95,22 @@
 .clear-filters-btn:disabled {
     opacity: 0.7;
 }
+
+.filter-divider {
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.6);
+    border-bottom: transparent;
+}
+
+.filter-wrapper.visible {
+    margin-bottom: 5px;
+}
+
+.sort-button {
+    margin-left: 8px;
+    background-color: #e3bac2;
+    padding: 6px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: bold;
+}

@@ -330,6 +330,26 @@ export default class SuitFilter extends Component {
         )
     }
 
+    renderSortBtn = (sortType) => {
+        return (
+            <button
+                className='sort-button'
+                onClick={(e) => this.props.setSortType(sortType)}
+            >
+            {sortType}
+            </button>
+        )
+    }
+
+    renderSortBtns = () => {
+        return (
+            <div>
+                Sort by:
+                {this.props.sortTypes.map(this.renderSortBtn)}
+            </div>
+        )
+    }
+
     render() {
         const numAppliedFilters = this.getNumAppliedFilters();
         return (
@@ -345,12 +365,14 @@ export default class SuitFilter extends Component {
                     {numAppliedFilters > 0 && <div className={`applied-filters${this.props.expanded ? ' hidden' : ''}`}>{numAppliedFilters}</div>}
                     {numAppliedFilters > 0 && !this.props.expanded && this.renderClearFiltersBtn()}
                 </div>
-                <div className={this.props.expanded ? '' : 'hidden'}>
+                <div className={`filter-wrapper ${this.props.expanded ? 'visible' : 'hidden'}`}>
                     <div className='filter-fields-wrapper'>
                         {this.renderSearchBars()}
                         {this.renderFilters()}
                         {this.renderClearFiltersBtn()}
                     </div>
+                    <hr className='filter-divider'/>
+                    {this.renderSortBtns()}
                 </div>
             </div>
         );

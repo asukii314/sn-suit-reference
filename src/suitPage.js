@@ -224,6 +224,27 @@ export default function SuitPanel() {
         setActiveSuit(filteredSuits[newSuitIdx]);
     }
 
+    const setSortType = (sortType) => {
+        const suitsCopy = [...suits];
+        const filteredSuitsCopy = [...suits];
+
+        switch(sortType) {
+            case 'Most Likes':
+                suitsCopy.sort((a, b) => b.likes - a.likes);
+                setSuits(suitsCopy);
+                filteredSuitsCopy.sort((a, b) => b.likes - a.likes);
+                setFilteredSuits(filteredSuitsCopy);
+                break;
+
+            case 'A to Z':
+                suitsCopy.sort((a, b) => b.name.toUpperCase() < a.name.toUpperCase() ? 1 : -1);
+                setSuits(suitsCopy);
+                filteredSuitsCopy.sort((a, b) => b.name.toUpperCase() < a.name.toUpperCase() ? 1 : -1);
+                setFilteredSuits(filteredSuitsCopy);
+                break;
+        }
+    }
+
     if(!suits) return null;
     return (
         <div>
@@ -234,6 +255,8 @@ export default function SuitPanel() {
                 toggleFilterPane={toggleFilterPane}
                 setActiveSuit={onSuitClick}
                 isMobile={isMobile}
+                sortTypes={['A to Z', 'Most Likes']}
+                setSortType={setSortType}
             />
             <div className='suit-page-main-content'>
                 <SuitDetail
