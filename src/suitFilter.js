@@ -331,6 +331,22 @@ export default class SuitFilter extends Component {
     }
 
     renderSortBtn = (sortType) => {
+        if(sortType === this.props.activeSortType) {
+            return (
+                <button
+                    className='sort-button active'
+                    onClick={(e) => this.props.setSortType(sortType)}
+                >
+                {sortType}
+                <img
+                    className={`sort-dir-icon ${this.props.isDescending ? 'descending' : 'ascending'}`}
+                    alt={this.props.isDescending ? 'Descending' :'Ascending'}
+                    title={this.props.isDescending ? 'Descending' :'Ascending'}
+                    src='down-filled-triangular-arrow.png'
+                />
+                </button>
+            )
+        }
         return (
             <button
                 className='sort-button'

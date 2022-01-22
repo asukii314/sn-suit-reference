@@ -86,8 +86,7 @@
     margin-left: 10px;
     border-radius: 20px;
     height: 30px;
-    background-color: #d1668f;
-    color: white;
+    background-color: #e082a6;
     font-weight: bold;
     font-size: 11px;
 }
@@ -112,5 +111,19 @@
     padding: 6px;
     border-radius: 50px;
     font-size: 11px;
+}
+
+.sort-button.active {
     font-weight: bold;
+    background-color: #e082a6;
+}
+
+.sort-dir-icon {
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
+}
+
+.sort-dir-icon.ascending {
+    transform: rotate(180deg);
 }

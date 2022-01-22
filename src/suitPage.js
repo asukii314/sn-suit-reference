@@ -14,6 +14,8 @@ export default function SuitPanel() {
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
     let [fetchedFavourites, setFetchedFavourites] = useState(false);
+    let [isDescending, setIsDescending] = useState(true);
+    let [sortType, setSortType] = useState('Alphabetical')
     const { user, isAuthenticated, loginWithRedirect } = useAuth0();
 
     const [width, setWidth] = useState(window.innerWidth);
@@ -224,19 +226,29 @@ export default function SuitPanel() {
         setActiveSuit(filteredSuits[newSuitIdx]);
     }
 
-    const setSortType = (sortType) => {
+    const updateSortType = (newSortType) => {
         const suitsCopy = [...suits];
         const filteredSuitsCopy = [...suits];
 
-        switch(sortType) {
-            case 'Most Likes':
+        if(newSortType === sortType) {
+            suitsCopy.reverse();
+            setSuits(suitsCopy);
+            filteredSuitsCopy.reverse();
+            setFilteredSuits(filteredSuitsCopy);
+            setIsDescending(!isDescending);
+            return;
+        }
+        setSortType(newSortType);
+        setIsDescending(true);
+        switch(newSortType) {
+            case 'Likes':
                 suitsCopy.sort((a, b) => b.likes - a.likes);
                 setSuits(suitsCopy);
                 filteredSuitsCopy.sort((a, b) => b.likes - a.likes);
                 setFilteredSuits(filteredSuitsCopy);
                 break;
 
-            case 'A to Z':
+            case 'Alphabetical':
                 suitsCopy.sort((a, b) => b.name.toUpperCase() < a.name.toUpperCase() ? 1 : -1);
                 setSuits(suitsCopy);
                 filteredSuitsCopy.sort((a, b) => b.name.toUpperCase() < a.name.toUpperCase() ? 1 : -1);
@@ -255,8 +267,10 @@ export default function SuitPanel() {
                 toggleFilterPane={toggleFilterPane}
                 setActiveSuit={onSuitClick}
                 isMobile={isMobile}
-                sortTypes={['A to Z', 'Most Likes']}
-                setSortType={setSortType}
+                sortTypes={['Alphabetical', 'Likes']}
+                activeSortType={sortType}
+                isDescending={isDescending}
+                setSortType={updateSortType}
             />
             <div className='suit-page-main-content'>
                 <SuitDetail
