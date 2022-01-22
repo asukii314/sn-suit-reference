@@ -241,7 +241,7 @@ export default function SuitPanel() {
         setSortType(newSortType);
         setIsDescending(true);
         switch(newSortType) {
-            case 'Likes':
+            case '# of Likes':
                 suitsCopy.sort((a, b) => b.likes - a.likes);
                 setSuits(suitsCopy);
                 filteredSuitsCopy.sort((a, b) => b.likes - a.likes);
@@ -282,7 +282,7 @@ export default function SuitPanel() {
                 toggleFilterPane={toggleFilterPane}
                 setActiveSuit={onSuitClick}
                 isMobile={isMobile}
-                sortTypes={['Alphabetical', 'Likes', '1st Release (TW)']}
+                sortTypes={['Alphabetical', '# of Likes', '1st Release (TW)']}
                 activeSortType={sortType}
                 isDescending={isDescending}
                 setSortType={updateSortType}
