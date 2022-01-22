@@ -254,6 +254,21 @@ export default function SuitPanel() {
                 filteredSuitsCopy.sort((a, b) => b.name.toUpperCase() < a.name.toUpperCase() ? 1 : -1);
                 setFilteredSuits(filteredSuitsCopy);
                 break;
+
+            case '1st Release (TW)':
+                const releaseSortFn = (a, b) => {
+                    const datestr_a = a.source?.event?.releases?.TW?.[0]?.start;
+                    const datestr_b = b.source?.event?.releases?.TW?.[0]?.start;
+                    if(!datestr_a && !datestr_b) return 0;
+                    if(!datestr_a) return 1;
+                    if(!datestr_b) return -1;
+                    return Date.parse(datestr_b) - Date.parse(datestr_a);
+                }
+                suitsCopy.sort(releaseSortFn);
+                setSuits(suitsCopy);
+                filteredSuitsCopy.sort(releaseSortFn);
+                setFilteredSuits(filteredSuitsCopy);
+                break;
         }
     }
 
@@ -267,7 +282,7 @@ export default function SuitPanel() {
                 toggleFilterPane={toggleFilterPane}
                 setActiveSuit={onSuitClick}
                 isMobile={isMobile}
-                sortTypes={['Alphabetical', 'Likes']}
+                sortTypes={['Alphabetical', 'Likes', '1st Release (TW)']}
                 activeSortType={sortType}
                 isDescending={isDescending}
                 setSortType={updateSortType}
