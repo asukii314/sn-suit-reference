@@ -228,7 +228,7 @@ export default function SuitPanel() {
 
     const updateSortType = (newSortType) => {
         const suitsCopy = [...suits];
-        const filteredSuitsCopy = [...suits];
+        const filteredSuitsCopy = [...filteredSuits];
 
         if(newSortType === sortType) {
             suitsCopy.reverse();
