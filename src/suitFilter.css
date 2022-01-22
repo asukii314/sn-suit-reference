@@ -101,16 +101,13 @@
     border-bottom: transparent;
 }
 
-.filter-wrapper.visible {
-    margin-bottom: 5px;
-}
-
 .sort-button {
     margin-left: 8px;
     background-color: #e3bac2;
     padding: 6px;
     border-radius: 50px;
     font-size: 11px;
+    margin-bottom: 5px;
 }
 
 .sort-button.active {
