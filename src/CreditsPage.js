@@ -23,7 +23,6 @@ export default function CreditsPage() {
             <li><a className='inline' href='https://lensdump.com/a/W7Tra/sub'>SND Lensdump</a> <i>(reflection icons)</i></li>
             <li><a className='inline' href='https://orangecatty-shiningnikki.tumblr.com/'>Orangecatty's Tumblr</a></li>
             <li><a className='inline' href='https://twitter.com/rei_sh3'>R E I - Twitter</a></li>
-            <li>Various posts on the official <a className='inline' href='https://discord.gg/shiningnikki'>Shining Nikki Discord</a> <i>(in #future-events)</i></li>
         </ul>
 
 
@@ -49,6 +48,7 @@ export default function CreditsPage() {
         <b>Misc/Other</b>
         <ul>
             <li>Icons made by <a className='inline' href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" className='inline' title="Flaticon">www.flaticon.com</a></li>
+            <li>Various info from posts on the official <a className='inline' href='https://discord.gg/shiningnikki'>Shining Nikki Discord</a> <i>(in #future-events)</i></li>
             <li>And of course, <a className='inline' href="#/contact">me (asukii)</a> to pull it all together :)</li>
         </ul>
       </p>
