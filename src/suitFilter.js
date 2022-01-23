@@ -358,6 +358,7 @@ export default class SuitFilter extends Component {
     }
 
     renderSortBtns = () => {
+        if(!this.props.sortTypes) return null;
         return (
             <div>
                 Sort by:
