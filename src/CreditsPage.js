@@ -13,27 +13,29 @@ export default function CreditsPage() {
         </ul>
 
 
-        <b>SN Reference Images</b>
+        <b>SN Images + Event Info (Official)</b>
         <ul>
-            <li><a className='inline' href='https://nikki4.com.tw/newslist'>Official TW News</a></li>
-            <li>Official Twitter accounts for <a className='inline' href='https://twitter.com/ShiningNikki_JP'>Japan</a> and <a className='inline' href='https://twitter.com/ShiningNikki_SN'>Global</a></li>
-            <li>Official Facebook accounts for <a className='inline' href='https://www.facebook.com/ShiningNikkiTW/'>Taiwan</a> and <a className='inline' href='https://www.facebook.com/shiningnikki.vietnam'>Vietnam</a></li>
-            <li><a className='inline' href='https://lensdump.com/rumi/albums'>Rumi's Lensdump</a> <i>(suit images)</i></li>
-            <li><a className='inline' href='https://lensdump.com/sakushi/albums/'>Saku's Lensdump</a> and <a className='inline' href='https://lensdump.com/a/iKQN9'>CrystalRain's lensdump</a> <i>(full reflection art)</i></li>
-            <li><a className='inline' href='https://lensdump.com/a/W7Tra/sub'>SND Lensdump</a> <i>(reflection icons)</i></li>
-            <li><a className='inline' href='https://orangecatty-shiningnikki.tumblr.com/'>Orangecatty's Tumblr</a></li>
-            <li><a className='inline' href='https://twitter.com/rei_sh3'>R E I - Twitter</a></li>
+            <li><a className='inline' href='https://nikki4.com.tw/newslist'>TW Newslist</a></li>
+            <li>Twitter accounts for <a className='inline' href='https://twitter.com/ShiningNikki_JP'>Japan</a> and <a className='inline' href='https://twitter.com/ShiningNikki_SN'>Global</a></li>
+            <li>Facebook accounts for <a className='inline' href='https://www.facebook.com/ShiningNikkiTW/'>Taiwan</a> and <a className='inline' href='https://www.facebook.com/shiningnikki.vietnam'>Vietnam</a></li>
         </ul>
 
 
-        <b>Event Release Info</b>
+        <b>SN Images (Unofficial)</b>
         <ul>
-            <li>Official Twitter accounts for <a className='inline' href='https://twitter.com/ShiningNikki_JP'>Japan</a> and <a className='inline' href='https://twitter.com/ShiningNikki_SN'>Global</a></li>
-            <li>Official Facebook accounts for <a className='inline' href='https://www.facebook.com/ShiningNikkiTW/'>Taiwan</a> and <a className='inline' href='https://www.facebook.com/shiningnikki.vietnam'>Vietnam</a></li>
-            <li>#newsflash channels in <a className='inline' href='https://discord.gg/yDJfk5q'>Shining Nikki Discord (SND)</a></li>
+            <li><a className='inline' href='https://lensdump.com/rumi/albums'>Rumi's Lensdump</a> <i>(suit images)</i></li>
+            <li><a className='inline' href='https://lensdump.com/sakushi/albums/'>Saku's Lensdump</a> and <a className='inline' href='https://lensdump.com/a/iKQN9'>CrystalRain's lensdump</a> <i>(full reflection art)</i></li>
+            <li><a className='inline' href='https://lensdump.com/a/W7Tra/sub'>SND Lensdump</a> <i>(reflection icons)</i></li>
+            <li><a className='inline' href='https://twitter.com/rei_sh3'>R E I - Twitter</a></li>
             <li><a className='inline' href='https://orangecatty-shiningnikki.tumblr.com/'>Orangecatty's Tumblr</a></li>
+        </ul>
+
+
+        <b>Event Info (Unofficial)</b>
+        <ul>
             <li><a className='inline' href='https://docs.google.com/spreadsheets/d/1OyUo4VS1FKWqOvAdD7c48EgtIOeo8o-c_yOAoUQPTyI/edit#gid=1851570774'>Shining Nikki TN Event Calendar</a> by Jeanne#2998</li>
             <li><a className='inline' href='https://docs.google.com/spreadsheets/d/1kwS5WTBxfHhDCliR1BTdcTRtKF-dQVSncYcybvCpdB0/edit#gid=326770706'>Shining Nikki JP Calendar</a> by noodle oreo#1037</li>
+            <li><a className='inline' href='https://orangecatty-shiningnikki.tumblr.com/'>Orangecatty's Tumblr</a></li>
         </ul>
 
 
