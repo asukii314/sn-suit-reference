@@ -35,6 +35,7 @@ export default function CreditsPage() {
         <ul>
             <li><a className='inline' href='https://docs.google.com/spreadsheets/d/1OyUo4VS1FKWqOvAdD7c48EgtIOeo8o-c_yOAoUQPTyI/edit#gid=1851570774'>Shining Nikki TN Event Calendar</a> by Jeanne#2998</li>
             <li><a className='inline' href='https://docs.google.com/spreadsheets/d/1kwS5WTBxfHhDCliR1BTdcTRtKF-dQVSncYcybvCpdB0/edit#gid=326770706'>Shining Nikki JP Calendar</a> by noodle oreo#1037</li>
+            <li>#newsflash channels in <a className='inline' href='https://discord.gg/yDJfk5q'>Shining Nikki Discord (SND)</a></li>
             <li><a className='inline' href='https://orangecatty-shiningnikki.tumblr.com/'>Orangecatty's Tumblr</a></li>
         </ul>
 
