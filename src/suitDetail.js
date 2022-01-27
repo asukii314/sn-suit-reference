@@ -4,6 +4,7 @@ import ReflectionInfo from './reflectionInfo';
 import VideoEmbed from './VideoEmbed';
 import EventCard from './eventCard';
 import EventDateCard from './eventDateCard';
+import MetadataCard from './metadataCard';
 import ArrowKeysReact from 'arrow-keys-react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -102,13 +103,7 @@ export default function SuitDetail({
     const renderActionBar = () => {
         return (
             <div className='favourite-icon-container detail'>
-                <div className='suit-attribute-icons'>
-                    <img src={`rarity/${suit.rarity.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />
-                    <div className='suit-attribute-label'>{suit.rarity}</div>
-                    {suit.attribute && <img src={`attribute/${suit.attribute.toLowerCase()}.png`} className='suit-icon detail' alt='rarity' />}
-                    {suit.attribute && <div className='suit-attribute-label'>{suit.attribute}</div>}
-                </div>
-                <div className='suit-likes-container'>
+                <div className='labelled-action-container'>
                     <div className='suit-attribute-label favourites light'>{isOwned ? 'Owned' : 'Not Owned'}</div>
                     {!isOwned && <img
                         src='tick-empty.png'
@@ -124,6 +119,8 @@ export default function SuitDetail({
                         title='Unmark as owned'
                         onClick={(e) => setNotOwned(suit,e)}
                         />}
+                </div>
+                <div className='labelled-action-container'>
                     <div className='suit-attribute-label favourites'>{suit.likes}</div>
                     {!isFavourited && <img
                         src='heart_outline.png'
@@ -139,7 +136,6 @@ export default function SuitDetail({
                         title='Unfavourite'
                         onClick={() => unfavourite(suit)}
                     />}
-
                 </div>
             </div>
         )
@@ -179,6 +175,12 @@ export default function SuitDetail({
                     showThumbs={false}
                     useKeyboardArrows={false}
                 >
+                    <MetadataCard
+                        attribute={suit.attribute}
+                        rarity={suit.rarity}
+                        nation={suit.nation}
+                        archive={suit.archive}
+                    />
                     <EventDateCard
                         releases={suit.source?.event?.releases}
                         sourceType={suit.source.type}

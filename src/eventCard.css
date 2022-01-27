@@ -5,6 +5,7 @@
     padding: 10px;
     color: white;
     text-align: left;
+    padding-bottom: 20px;
 }
 
 .event-suit-list {
@@ -19,7 +20,6 @@
 @media only screen and (max-width: 768px) {
     .event-card-container {
         margin-right: 0;
-        padding-bottom: 25px;
     }
 }
 
@@ -50,4 +50,22 @@
 
 .relative-event-date {
     color: rgba(255,255,255,0.5)
+}
+
+.metadata-list {
+    font-size: 12px;
+    margin-top: 12px;
+    margin-left: 20px;
+}
+
+.metadata-list-item {
+    margin-bottom: 8px;
+}
+
+.metadata-list-item > .indent {
+    margin-left: 28px;
+}
+
+.metadata-list-item > b {
+    font-weight: 600;
 }

@@ -105,9 +105,9 @@
     }
 }
 
-.suit-icon {
-    margin: 3px;
-    width: 20px;
+img.suit-icon {
+    margin-right: 8px;
+    width: 20px !important;
     height: 20px;
 }
 

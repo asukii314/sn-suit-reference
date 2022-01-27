@@ -26,7 +26,6 @@
     background-color: #e3bac2;
     border-radius: 10px;
     min-height: 50px;
-    margin-bottom: 20px;
 }
 
 .suit-detail-img-container {
@@ -246,9 +245,10 @@ button.selected {
     box-sizing: border-box;
     padding: 5px;
     padding-right: 15px;
+    padding-left: 15px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .action-bar-icon.unfavourited {
@@ -256,10 +256,14 @@ button.selected {
     opacity: 0.5;
 }
 
+.labelled-action-container {
+    display: flex;
+    margin-left: 15px;
+}
+
 .owned-icon.detail {
     filter: invert(100%);
     opacity: 0.7;
-    margin-right: 15px;
 }
 
 .suit-detail-close-button {
@@ -309,15 +313,6 @@ button.selected {
 .suit-attribute-label.light {
     font-weight: 200;
     font-size: 13px;
-}
-
-@media only screen and (max-width: 768px) {
-    .suit-attribute-label.light {
-        display: none;
-    }
-    .owned-icon.detail {
-        margin-right: 10px;
-    }
 }
 
 .suit-detail-infocard-container {
