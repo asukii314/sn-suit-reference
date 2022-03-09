@@ -174,9 +174,10 @@ export default class SuitFilter extends Component {
                 if(this.state.childFilters[category]) {
                     let activeChildFilters = [], affectedParentFilters = [];
                     for (const subcategory of appliedFiltersTitleCase) {
+                        if(!this.state.childFilters[category][subcategory]) continue;
                         const selectedChildOptions = (
-                            Object.keys(this.state.childFilters[category][subcategory])
-                            .filter((option) => this.state.childFilters[category][subcategory][option])
+                            Object.keys(this.state.childFilters[category]?.[subcategory])
+                            .filter((option) => this.state.childFilters[category][subcategory]?.[option])
                             .map(x => x.toLowerCase())
                         );
 
