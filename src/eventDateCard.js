@@ -32,10 +32,10 @@ function printRelativeDate(release) {
      )
 }
 
-function renderEventRelease(server, releases, type, subtype) {
+function renderEventRelease(server, releases, type, subtype, eventType) {
     return (
         <div className='event-release'>
-            <b>{server}: </b>{getEventStatus(releases, type.toLowerCase(), subtype?.toLowerCase())}
+            <b>{server}: </b>{getEventStatus(releases, type.toLowerCase(), subtype?.toLowerCase(), eventType?.toLowerCase())}
             <ul className='event-release-list'>
                 {releases?.map(release => (
                     <li>{getDateRangeString(release.start, release.end)} {printRelativeDate(release)}</li>
@@ -45,7 +45,7 @@ function renderEventRelease(server, releases, type, subtype) {
     )
 }
 
-function getEventStatus(releases, type, subtype) {
+function getEventStatus(releases, type, subtype, eventType) {
     // check if no release info
     // TODO: change to "unreleased" once more event info added, and then "unannounced" once 'spotted in index' info is added
     if(!releases || releases.length === 0) {
@@ -102,6 +102,9 @@ function getEventStatus(releases, type, subtype) {
             return 'Completed';
         } else if(permSeasonSubtypes.includes(subtype)) {
             return 'Permanently Available';
+        } else if(subtype === 'welfare') {
+            if(eventType === 'welfare') return 'Completed';
+            else return 'Rerun Expected';
         } else {
             return 'Rerun Expected';
         }
@@ -146,12 +149,12 @@ function relativeTimeString(timeString) {
     }
 }
 
-export default function eventDateCard({ releases, sourceType, sourceSubype }) {
+export default function eventDateCard({ releases, sourceType, sourceSubype, eventType }) {
     return (
         <div className='event-card-container'>
             <div className="event-title">Releases</div>
             <div className='event-release-container'>
-                {releases && Object.keys(releases).map(server => renderEventRelease(server, releases[server], sourceType, sourceSubype))}
+                {releases && Object.keys(releases).map(server => renderEventRelease(server, releases[server], sourceType, sourceSubype, eventType))}
             </div>
         </div>
     );

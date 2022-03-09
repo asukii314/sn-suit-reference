@@ -115,6 +115,7 @@ export default function SuitDetailPage() {
                 <div className='suit-page-infocard-container'>
                     <EventDateCard
                         releases={suit.source?.event?.releases}
+                        eventType={suit.source?.event?.type}
                         sourceType={suit.source.type}
                         sourceSubype={suit.source.subtype}
                     />

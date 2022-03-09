@@ -183,6 +183,7 @@ export default function SuitDetail({
                     />
                     <EventDateCard
                         releases={suit.source?.event?.releases}
+                        eventType={suit.source?.event?.type}
                         sourceType={suit.source.type}
                         sourceSubype={suit.source.subtype}
                     />
@@ -203,6 +204,7 @@ export default function SuitDetail({
                 <div className='suit-detail-infocard-container'>
                     <EventDateCard
                         releases={suit.source?.event?.releases}
+                        eventType={suit.source?.event?.type}
                         sourceType={suit.source.type}
                         sourceSubype={suit.source.subtype}
                     />
