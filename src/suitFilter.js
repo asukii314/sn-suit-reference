@@ -160,6 +160,11 @@ export default class SuitFilter extends Component {
                 this.state.filters[category][val]
             ).map((v) => v.toLowerCase());
 
+            // ughhhhhh I hate this hack lmao
+            const appliedFiltersTitleCase = Object.keys(this.state.filters[category]).filter((val) =>
+                this.state.filters[category][val]
+            );
+
             return suits.filter((suit) => {
                 // can we rule out based on the parent categoories only?
                 const suitVal = this.getNestedValue(suit, this.metadata[category].paths).toLowerCase();
@@ -168,7 +173,7 @@ export default class SuitFilter extends Component {
                 // check children
                 if(this.state.childFilters[category]) {
                     let activeChildFilters = [], affectedParentFilters = [];
-                    for (const subcategory of Object.keys(this.state.childFilters[category])) {
+                    for (const subcategory of appliedFiltersTitleCase) {
                         const selectedChildOptions = (
                             Object.keys(this.state.childFilters[category][subcategory])
                             .filter((option) => this.state.childFilters[category][subcategory][option])
