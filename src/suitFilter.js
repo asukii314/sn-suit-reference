@@ -329,7 +329,7 @@ export default class SuitFilter extends Component {
                     this.setState({
                         filters: initialFilterState,
                         childFilters: initialChildFilterState
-                    }, this.filterSuits);
+                    }, this.handleDesignerClear);
                 }}
             >
             Clear Filters
