@@ -30,7 +30,8 @@ const initialFilterState = {
         North: false,
         Pigeon: false,
         Ruin: false,
-        Wasteland: false
+        Wasteland: false,
+        Special: false,
     },
     Owned: {
         True: false,
