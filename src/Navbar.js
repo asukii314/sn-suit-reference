@@ -61,6 +61,7 @@ export default function Navbar() {
                     {renderClosetBtn()}
                     <li><a href="#/credits" onClick={() => setMenuOpen(false)}>Credits</a></li>
                     <li><a href="#/contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+                    <li><a href="https://ko-fi.com/asukii" target="_blank" onClick={() => setMenuOpen(false)}>Donate</a></li>
                     {!isAuthenticated && <li><a href='' onClick={() => {loginWithRedirect(); setMenuOpen(false);}}>Log In</a></li>}
                     {isAuthenticated && <li><a onClick={() => {logoutWithRedirect(); setMenuOpen(false);}}>Log Out</a></li>}
                 </ul>
