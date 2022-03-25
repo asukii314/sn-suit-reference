@@ -14,6 +14,8 @@ export default function WishlistPage () {
     let [ownedSuits, setOwnedSuits] = useState([]);
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
+    let [sortType, setSortType] = useState('Alphabetical')
+    let [isDescending, setIsDescending] = useState(true);
     const { user } = useAuth0();
     const { userid } = useParams();
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -238,15 +240,68 @@ export default function WishlistPage () {
         setActiveSuit(filteredSuits[newSuitIdx]);
     }
 
+
+            const updateSortType = (newSortType) => {
+                const suitsCopy = [...suits];
+                const filteredSuitsCopy = [...filteredSuits];
+
+                if(newSortType === sortType) {
+                    suitsCopy.reverse();
+                    setSuits(suitsCopy);
+                    filteredSuitsCopy.reverse();
+                    setFilteredSuits(filteredSuitsCopy);
+                    setIsDescending(!isDescending);
+                    return;
+                }
+                setSortType(newSortType);
+                setIsDescending(true);
+                switch(newSortType) {
+                    case '# of Likes':
+                        suitsCopy.sort((a, b) => b.likes - a.likes);
+                        setSuits(suitsCopy);
+                        filteredSuitsCopy.sort((a, b) => b.likes - a.likes);
+                        setFilteredSuits(filteredSuitsCopy);
+                        break;
+
+                    case 'Alphabetical':
+                        suitsCopy.sort((a, b) => b.name.toUpperCase() < a.name.toUpperCase() ? 1 : -1);
+                        setSuits(suitsCopy);
+                        filteredSuitsCopy.sort((a, b) => b.name.toUpperCase() < a.name.toUpperCase() ? 1 : -1);
+                        setFilteredSuits(filteredSuitsCopy);
+                        break;
+
+                    case '1st Release (TW)':
+                        const releaseSortFn = (a, b) => {
+                            const datestr_a = a.source?.event?.releases?.TW?.[0]?.start;
+                            const datestr_b = b.source?.event?.releases?.TW?.[0]?.start;
+                            if(!datestr_a && !datestr_b) return 0;
+                            if(!datestr_a) return 1;
+                            if(!datestr_b) return -1;
+                            return Date.parse(datestr_b) - Date.parse(datestr_a);
+                        }
+                        suitsCopy.sort(releaseSortFn);
+                        setSuits(suitsCopy);
+                        filteredSuitsCopy.sort(releaseSortFn);
+                        setFilteredSuits(filteredSuitsCopy);
+                        break;
+                }
+            }
+
     if(!suits) return null;
     return (
         <div>
             <SuitFilter
                 suits={suits}
                 updateFilteredSuits={setFilteredSuits}
+                suitCount={filteredSuits.length}
                 expanded={filterPaneOpen}
                 toggleFilterPane={toggleFilterPane}
                 setActiveSuit={onSuitClick}
+                isMobile={isMobile}
+                sortTypes={['Alphabetical', '# of Likes', '1st Release (TW)']}
+                activeSortType={sortType}
+                isDescending={isDescending}
+                setSortType={updateSortType}
             />
             <div className='suit-page-main-content'>
                 <SuitDetail
