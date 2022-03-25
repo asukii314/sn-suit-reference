@@ -278,6 +278,7 @@ export default function SuitPanel() {
             <SuitFilter
                 suits={suits}
                 updateFilteredSuits={setFilteredSuits}
+                suitCount={filteredSuits.length}
                 expanded={filterPaneOpen}
                 toggleFilterPane={toggleFilterPane}
                 setActiveSuit={onSuitClick}

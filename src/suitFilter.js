@@ -367,9 +367,12 @@ export default class SuitFilter extends Component {
     renderSortBtns = () => {
         if(!this.props.sortTypes) return null;
         return (
-            <div>
-                Sort by:
-                {this.props.sortTypes.map(this.renderSortBtn)}
+            <div className='sort-bar-container'>
+                <div className='sort-btn-container'>
+                    Sort by:
+                    {this.props.sortTypes.map(this.renderSortBtn)}
+                </div>
+                {this.props.expanded && <div className='suit-count-label expanded'>Suits ({this.props.suitCount})</div>}
             </div>
         )
     }
@@ -398,6 +401,7 @@ export default class SuitFilter extends Component {
                     <hr className='filter-divider'/>
                     {this.renderSortBtns()}
                 </div>
+                {!this.props.expanded && <div className='suit-count-label collapsed'>Suits ({this.props.suitCount})</div>}
             </div>
         );
     }
