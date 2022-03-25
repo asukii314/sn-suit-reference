@@ -163,6 +163,10 @@ img.suit-icon {
     filter: invert(56%) sepia(55%) saturate(391%) hue-rotate(84deg) brightness(99%) contrast(98%);
 }
 
+.owned-icon.gold {
+    filter: invert(77%) sepia(96%) saturate(5421%) hue-rotate(354deg) brightness(102%) contrast(99%);
+}
+
 .fb-login-button {
     background: center/cover url('facebook-sign-in-button.png') no-repeat;
     width: 150px;

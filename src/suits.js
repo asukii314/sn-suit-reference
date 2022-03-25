@@ -56,21 +56,32 @@ export default class SuitCards extends Component {
 
                         {/* Owned icon */}
                         <div className='favourite-icon-with-label'>
-                            {!this.props.ownedSuits?.includes(suit.id) &&
+                            {!this.props.ownedSuits?.includes(suit.id) && !this.props.awakenedSuits?.includes(suit.id) &&
                                 <img src='tick-empty.png'
                                 className='action-bar-icon owned-icon suit-icon shadowed'
                                 alt='Mark as owned'
                                 title='Mark as owned'
                                 onClick={(e) => this.props.setOwned(suit,e)}
                             />}
-                            {this.props.ownedSuits?.includes(suit.id) &&
+                            {this.props.ownedSuits?.includes(suit.id) && !this.props.awakenedSuits?.includes(suit.id) &&
                                 <img src='tick-filled.png'
                                 className='action-bar-icon owned-icon suit-icon shadowed green'
+                                alt='Mark as awakened'
+                                title='Mark as awakened'
+                                onClick={(e) => this.props.setAwakened(suit,e)}
+                            />}
+                            {this.props.awakenedSuits?.includes(suit.id) &&
+                                <img src='tick-filled.png'
+                                className='action-bar-icon owned-icon suit-icon shadowed gold'
                                 alt='Unmark as owned'
                                 title='Unmark as owned'
                                 onClick={(e) => this.props.setNotOwned(suit,e)}
                             />}
-                            <div className='icon-label'>{this.props.ownedSuits?.includes(suit.id) ? 'Owned' : 'Not owned'}</div>
+                            <div className='icon-label'>{this.props.awakenedSuits?.includes(suit.id)
+                                ? 'Owned · Awakened'
+                                : this.props.ownedSuits?.includes(suit.id)
+                                    ? 'Owned · Unawakened'
+                                    : 'Not owned'}</div>
                         </div>
 
                         {/* Rarity icon */}

@@ -12,6 +12,7 @@ export default function SuitPanel() {
     let [favourites, setFavourites] = useState([]);
     let [ownedSuits, setOwnedSuits] = useState([]);
     let [filteredSuits, setFilteredSuits] = useState([]);
+    let [awakenedSuits, setAwakenedSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
     let [fetchedFavourites, setFetchedFavourites] = useState(false);
     let [isDescending, setIsDescending] = useState(true);
@@ -50,19 +51,41 @@ export default function SuitPanel() {
                 window.fetch(`https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}`)
                     .then(r => r.json())
                     .then(res => setOwnedSuits(res)),
+
+                window.fetch(`https://sn-suit-reference-api.herokuapp.com/awakened/${user.sub}`)
+                    .then(r => r.json())
+                    .then(res => setAwakenedSuits(res))
             ])
         }
         if(suits.length > 0 && ownedSuits.length > 0 && suits[0].owned === undefined) {
             setSuits(suits.map(suit => {
                 return {
                     ...suit,
-                    owned: ownedSuits.includes(suit.id)
+                    owned: ownedSuits.includes(suit.id),
+                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Owned' : 'Not Owned')
                 }
             }));
             setFilteredSuits(filteredSuits.map(suit => {
                 return {
                     ...suit,
-                    owned: ownedSuits.includes(suit.id)
+                    owned: ownedSuits.includes(suit.id),
+                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Owned' : 'Not Owned')
+                }
+            }));
+        }
+        if(suits.length > 0 && awakenedSuits.length > 0 && suits[0].awakened === undefined) {
+            setSuits(suits.map(suit => {
+                return {
+                    ...suit,
+                    awakened: awakenedSuits.includes(suit.id),
+                    obtained: awakenedSuits.includes(suit.id) ? 'Awakened' : suit.obtained
+                }
+            }));
+            setFilteredSuits(filteredSuits.map(suit => {
+                return {
+                    ...suit,
+                    awakened: awakenedSuits.includes(suit.id),
+                    obtained: awakenedSuits.includes(suit.id) ? 'Awakened' : suit.obtained
                 }
             }));
         }
@@ -119,12 +142,37 @@ export default function SuitPanel() {
         const suitsCopy = [...suits];
         suitsCopy[idx] = {
             ...suits[idx],
-            owned: true
+            owned: true,
+            obtained: 'Owned'
         };
         setSuits(suitsCopy);
 
         window.fetch(
             `https://sn-suit-reference-api.herokuapp.com/owned/${user.sub}/${suit.id}`,
+            {method: 'PUT'}
+        )
+    }
+
+    const addAwakenedSuit = (suit,e) => {
+        if(e) e.stopPropagation();
+        if(!isAuthenticated) {
+            loginWithRedirect();
+            return;
+        }
+        if(!suit || !user?.sub) return;
+        setAwakenedSuits([...awakenedSuits, suit.id])
+
+        const idx = suits.findIndex(s => s.id === suit.id);
+        const suitsCopy = [...suits];
+        suitsCopy[idx] = {
+            ...suits[idx],
+            awakened: true,
+            obtained: 'Awakened'
+        };
+        setSuits(suitsCopy);
+
+        window.fetch(
+            `https://sn-suit-reference-api.herokuapp.com/awakened/${user.sub}/${suit.id}`,
             {method: 'PUT'}
         )
     }
@@ -171,18 +219,27 @@ export default function SuitPanel() {
         if(e) e.stopPropagation();
         if(!suit || !user?.sub) return;
 
-        const index = ownedSuits.indexOf(suit.id);
+        let index = ownedSuits.indexOf(suit.id);
         if (index > -1) {
             let copy = [...ownedSuits];
             copy.splice(index, 1)
             setOwnedSuits(copy);
         }
 
+        index = awakenedSuits.indexOf(suit.id);
+        if (index > -1) {
+            let copy = [...awakenedSuits];
+            copy.splice(index, 1)
+            setAwakenedSuits(copy);
+        }
+
         const idx = suits.findIndex(s => s.id === suit.id);
         const suitsCopy = [...suits];
         suitsCopy[idx] = {
             ...suits[idx],
-            owned: false
+            owned: false,
+            awakened: false,
+            obtained: 'Not Owned'
         };
         setSuits(suitsCopy);
 
@@ -297,7 +354,9 @@ export default function SuitPanel() {
                     favourite={addFavourite}
                     unfavourite={removeFavourite}
                     isOwned={ownedSuits.includes(activeSuit?.id) || false}
+                    isAwakened={awakenedSuits.includes(activeSuit?.id) || false}
                     setOwned={addOwnedSuit}
+                    setAwakened={addAwakenedSuit}
                     setNotOwned={removeOwnedSuit}
                     isMobile={isMobile}
                 />
@@ -310,7 +369,9 @@ export default function SuitPanel() {
                     favourite={addFavourite}
                     unfavourite={removeFavourite}
                     ownedSuits={ownedSuits}
+                    awakenedSuits={awakenedSuits}
                     setOwned={addOwnedSuit}
+                    setAwakened={addAwakenedSuit}
                     setNotOwned={removeOwnedSuit}
                     filterPaneOpen={activeSuit !== null}
                 />

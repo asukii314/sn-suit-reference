@@ -12,6 +12,7 @@ export default function WishlistPage () {
     let [suits, setSuits] = useState([]);
     let [favourites, setFavourites] = useState([]);
     let [ownedSuits, setOwnedSuits] = useState([]);
+    let [awakenedSuits, setAwakenedSuits] = useState([]);
     let [filteredSuits, setFilteredSuits] = useState([]);
     let [activeSuit, setActiveSuit] = useState(null);
     let [sortType, setSortType] = useState('Alphabetical')
@@ -61,7 +62,11 @@ export default function WishlistPage () {
                                 .then(setOwnedSuits),
                             window.fetch(`https://sn-suit-reference-api.herokuapp.com/favourites/${user?.sub}`)
                                 .then(r => r.json())
-                                .then(setFavourites)
+                                .then(setFavourites),
+                            window.fetch(`https://sn-suit-reference-api.herokuapp.com/awakened/${user.sub}`)
+                                .then(r => r.json())
+                                .then(res => setAwakenedSuits(res))
+                                .then(() => console.log("ASDASD", awakenedSuits))
                         ])
                     }
                 }
@@ -72,13 +77,31 @@ export default function WishlistPage () {
             setSuits(suits.map(suit => {
                 return {
                     ...suit,
-                    owned: ownedSuits.includes(suit.id)
+                    owned: ownedSuits.includes(suit.id),
+                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Owned' : 'Not Owned')
                 }
             }));
             setFilteredSuits(filteredSuits.map(suit => {
                 return {
                     ...suit,
-                    owned: ownedSuits.includes(suit.id)
+                    owned: ownedSuits.includes(suit.id),
+                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Owned' : 'Not Owned')
+                }
+            }));
+        }
+        if(suits.length > 0 && awakenedSuits.length > 0 && suits[0].awakened === undefined) {
+            setSuits(suits.map(suit => {
+                return {
+                    ...suit,
+                    awakened: awakenedSuits.includes(suit.id),
+                    obtained: awakenedSuits.includes(suit.id) ? 'Awakened' : suit.obtained
+                }
+            }));
+            setFilteredSuits(filteredSuits.map(suit => {
+                return {
+                    ...suit,
+                    awakened: awakenedSuits.includes(suit.id),
+                    obtained: awakenedSuits.includes(suit.id) ? 'Awakened' : suit.obtained
                 }
             }));
         }
@@ -170,7 +193,8 @@ export default function WishlistPage () {
         const suitsCopy = [...suits];
         suitsCopy[idx] = {
             ...suits[idx],
-            owned: true
+            owned: true,
+            obtained: 'Owned'
         };
         setSuits(suitsCopy);
 
@@ -184,18 +208,27 @@ export default function WishlistPage () {
         if(e) e.stopPropagation();
         if(!suit || !user?.sub) return;
 
-        const index = ownedSuits.indexOf(suit.id);
+        let index = ownedSuits.indexOf(suit.id);
         if (index > -1) {
             let copy = [...ownedSuits];
             copy.splice(index, 1)
             setOwnedSuits(copy);
         }
 
+        index = awakenedSuits.indexOf(suit.id);
+        if (index > -1) {
+            let copy = [...awakenedSuits];
+            copy.splice(index, 1)
+            setAwakenedSuits(copy);
+        }
+
         const idx = suits.findIndex(s => s.id === suit.id);
         const suitsCopy = [...suits];
         suitsCopy[idx] = {
             ...suits[idx],
-            owned: false
+            owned: false,
+            awakened: false,
+            obtained: 'Not Owned'
         };
         setSuits(suitsCopy);
 
@@ -230,6 +263,30 @@ export default function WishlistPage () {
 
     const toggleFilterPane = () => {
         setFilterPaneOpen(!filterPaneOpen);
+    }
+
+    const addAwakenedSuit = (suit,e) => {
+        if(e) e.stopPropagation();
+        if(!isAuthenticated) {
+            loginWithRedirect();
+            return;
+        }
+        if(!suit || !user?.sub) return;
+        setAwakenedSuits([...awakenedSuits, suit.id])
+
+        const idx = suits.findIndex(s => s.id === suit.id);
+        const suitsCopy = [...suits];
+        suitsCopy[idx] = {
+            ...suits[idx],
+            awakened: true,
+            obtained: 'Awakened'
+        };
+        setSuits(suitsCopy);
+
+        window.fetch(
+            `https://sn-suit-reference-api.herokuapp.com/awakened/${user.sub}/${suit.id}`,
+            {method: 'PUT'}
+        )
     }
 
     const nextSuit = ({forward=true}={}) => {
@@ -313,6 +370,8 @@ export default function WishlistPage () {
                     unfavourite={removeFavourite}
                     isOwned={ownedSuits.includes(activeSuit?.id) || false}
                     setOwned={setOwned}
+                    isAwakened={awakenedSuits.includes(activeSuit?.id) || false}
+                    setAwakened={addAwakenedSuit}
                     setNotOwned={setNotOwned}
                     isMobile={isMobile}
                 />
@@ -327,6 +386,8 @@ export default function WishlistPage () {
                     ownedSuits={ownedSuits}
                     setOwned={setOwned}
                     setNotOwned={setNotOwned}
+                    awakenedSuits={awakenedSuits}
+                    setAwakened={addAwakenedSuit}
                 />
             </div>
       </div>

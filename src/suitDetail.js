@@ -18,6 +18,8 @@ export default function SuitDetail({
     unfavourite,
     isOwned,
     setOwned,
+    isAwakened,
+    setAwakened,
     setNotOwned,
     closePane,
     isMobile,
@@ -104,21 +106,31 @@ export default function SuitDetail({
         return (
             <div className='favourite-icon-container detail'>
                 <div className='labelled-action-container'>
-                    <div className='suit-attribute-label favourites light'>{isOwned ? 'Owned' : 'Not Owned'}</div>
-                    {!isOwned && <img
+                    <div className='suit-attribute-label favourites light'>
+                        {isAwakened ? 'Owned · Awakened' :
+                            isOwned ? 'Owned · Unawakened' : 'Not Owned'}
+                    </div>
+                    {!isOwned && !isAwakened && <img
                         src='tick-empty.png'
                         className='action-bar-icon owned-icon detail shadowed'
                         alt='Mark as owned'
                         title='Mark as owned'
                         onClick={(e) => setOwned(suit,e)}
                     />}
-                    {isOwned &&
+                    {isOwned && !isAwakened &&
                         <img src='tick-filled.png'
                         className='action-bar-icon owned-icon detail shadowed green'
+                        alt='Mark as awakened'
+                        title='Mark as awakened'
+                        onClick={(e) => setAwakened(suit,e)}
+                    />}
+                    {isAwakened &&
+                        <img src='tick-filled.png'
+                        className='action-bar-icon owned-icon detail shadowed gold'
                         alt='Unmark as owned'
                         title='Unmark as owned'
                         onClick={(e) => setNotOwned(suit,e)}
-                        />}
+                    />}
                 </div>
                 <div className='labelled-action-container'>
                     <div className='suit-attribute-label favourites'>{suit.likes}</div>

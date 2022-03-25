@@ -33,9 +33,10 @@ const initialFilterState = {
         Wasteland: false,
         Special: false,
     },
-    Owned: {
-        True: false,
-        False: false
+    Obtained: {
+        'Not Owned': false,
+        Owned: false,
+        Awakened: false
     }
 }
 
@@ -98,8 +99,8 @@ export default class SuitFilter extends Component {
                 paths: ['nation'],
                 hasIcons: true,
             },
-            Owned: {
-                paths: ['owned'],
+            Obtained: {
+                paths: ['obtained'],
                 hasIcons: false
             }
         }
