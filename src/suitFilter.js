@@ -35,7 +35,7 @@ const initialFilterState = {
     },
     Obtained: {
         'Not Owned': false,
-        Owned: false,
+        Unawakened: false,
         Awakened: false
     }
 }

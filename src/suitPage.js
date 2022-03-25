@@ -62,14 +62,14 @@ export default function SuitPanel() {
                 return {
                     ...suit,
                     owned: ownedSuits.includes(suit.id),
-                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Owned' : 'Not Owned')
+                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Unawakened' : 'Not Owned')
                 }
             }));
             setFilteredSuits(filteredSuits.map(suit => {
                 return {
                     ...suit,
                     owned: ownedSuits.includes(suit.id),
-                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Owned' : 'Not Owned')
+                    obtained: suit.obtained ?? (ownedSuits.includes(suit.id) ? 'Unawakened' : 'Not Owned')
                 }
             }));
         }
@@ -143,7 +143,7 @@ export default function SuitPanel() {
         suitsCopy[idx] = {
             ...suits[idx],
             owned: true,
-            obtained: 'Owned'
+            obtained: 'Unawakened'
         };
         setSuits(suitsCopy);
 
