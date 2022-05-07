@@ -34,7 +34,7 @@ export default function CreditsPage() {
         <b>Event Info (Unofficial)</b>
         <ul>
             <li><a className='inline' href='https://docs.google.com/spreadsheets/d/1OyUo4VS1FKWqOvAdD7c48EgtIOeo8o-c_yOAoUQPTyI/edit#gid=1851570774'>Shining Nikki TN Event Calendar</a> by Jeanne#2998</li>
-            <li><a className='inline' href='https://docs.google.com/spreadsheets/d/1kwS5WTBxfHhDCliR1BTdcTRtKF-dQVSncYcybvCpdB0/edit#gid=326770706'>Shining Nikki JP Calendar</a> by noodle oreo#1037</li>
+            <li><a className='inline' href='https://docs.google.com/spreadsheets/d/1kwS5WTBxfHhDCliR1BTdcTRtKF-dQVSncYcybvCpdB0/edit#gid=326770706'>Shining Nikki JP Calendar</a> and <a className='inline' href='https://rebrand.ly/SNFutureEvents'>Shining Nikki Future Events</a> by noodle oreo#1037</li>
             <li>#newsflash channels in <a className='inline' href='https://discord.gg/yDJfk5q'>Shining Nikki Discord (SND)</a></li>
             <li><a className='inline' href='https://orangecatty-shiningnikki.tumblr.com/'>Orangecatty's Tumblr</a></li>
         </ul>
@@ -45,6 +45,7 @@ export default function CreditsPage() {
             <li><a className='inline' href='https://docs.google.com/spreadsheets/d/12bhpoIReHTVyQjNewiodA4rhL7zUSAhmq4i-5WV5BiU/edit#gid=0'>Suit Archive sheet</a> by luckynozomi#2333</li>
             <li>Reflection skill data from Kami's <a className='inline' href='https://docs.google.com/spreadsheets/d/1Va9SCIrxni6TUEB1DFxwQK8Vj9mnsCxztsPA9OJja-g/'>Shadow Ranking Sheet</a></li>
             <li>Metadata for global suits from the <a className='inline' href='https://shining-nikki.fandom.com/wiki/Shining_Nikki_Wiki'>Shining Nikki Wiki</a></li>
+            <li>Misc data gathering help from Pevemoi#1484 and Cyra#7120 on Discord</li>
         </ul>
 
 
