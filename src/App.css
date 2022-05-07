@@ -16,6 +16,7 @@ a.inline:visited {
     color: lightgrey;
     margin-left: 25px;
     margin-right: 25px;
+    padding-bottom: 40px;
 }
 
 .App {

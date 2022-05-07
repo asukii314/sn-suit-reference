@@ -1,7 +1,7 @@
 export default function ContactPage() {
   return (
     <div className="infopage">
-      <h3> Get in touch </h3>
+      <h2> Get in touch </h2>
       <p>
         I love hearing from people! Please don't hesitate to reach out if you...
         <ul>

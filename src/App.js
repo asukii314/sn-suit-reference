@@ -7,6 +7,7 @@ import {Auth0Provider} from "@auth0/auth0-react";
 import Navbar from './Navbar';
 import ContactPage from './ContactPage';
 import CreditsPage from './CreditsPage';
+import PrivacyPolicy from './PrivacyPolicy';
 import Wishlist from './Wishlist';
 import Closet from './Closet';
 
@@ -33,6 +34,7 @@ function App() {
                         <Route path=":suitId" element={<SuitDetailPage />} />
                         <Route path="/credits" element={<CreditsPage />} />
                         <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/privacy" element={<PrivacyPolicy />} />
                         <Route path="/wishlist/:userid" element={<Wishlist />} />
                         <Route path="/closet/:userid" element={<Closet />} />
                     </Routes>

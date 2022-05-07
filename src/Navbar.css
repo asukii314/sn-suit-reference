@@ -32,7 +32,7 @@ nav {
   z-index: 2;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1055px) {
   nav {
     height: 40px;
     min-height: 40px;
@@ -108,7 +108,7 @@ nav > ul ul li a {
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1055px) {
     .mobile-hamburger-menu {
         width: 20px;
         height: 20px;

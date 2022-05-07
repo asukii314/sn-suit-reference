@@ -1,7 +1,7 @@
 export default function CreditsPage() {
   return (
     <div className="infopage">
-      <h3> Credits </h3>
+      <h2> Credits </h2>
       <p>
         This site wouldn't have been possible without the massive contributions - both explicit and implicit - from many others in the Shining Nikki community. Here they are:
         <br />
