@@ -63,8 +63,8 @@ export default function Navbar() {
                     <li><a href="#/contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
                     <li><a href="#/privacy" onClick={() => setMenuOpen(false)}>Privacy</a></li>
                     <li><a href="https://ko-fi.com/asukii" target="_blank" onClick={() => setMenuOpen(false)}>Donate</a></li>
-                    {!isAuthenticated && <li><a href='' onClick={() => {loginWithRedirect(); setMenuOpen(false);}}>Log In</a></li>}
-                    {isAuthenticated && <li><a onClick={() => {logoutWithRedirect(); setMenuOpen(false);}}>Log Out</a></li>}
+                    {!isAuthenticated && <li><button href='' onClick={() => {loginWithRedirect(); setMenuOpen(false);}}>Log In</button></li>}
+                    {isAuthenticated && <li><button onClick={() => {logoutWithRedirect(); setMenuOpen(false);}}>Log Out</button></li>}
                 </ul>
             </nav>
         </div>

@@ -89,6 +89,18 @@ nav ul li a {
   text-transform: uppercase;
 }
 
+nav ul li button {
+  display: block;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  padding: 12px 20px;
+  font-size: .9em;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
 nav > ul ul {
   display: none;
   background: #fff;
